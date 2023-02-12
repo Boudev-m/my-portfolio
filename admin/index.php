@@ -1,4 +1,4 @@
-<!-- PAGE DE CONNEXION POUR L'UTILISATEUR -->
+<!-- PAGE DE CONNEXION POUR L'ADMIN' -->
 <!-- Path : http://localhost/portfolio/admin/ -->
 
 <?php include '../assets/inc/front/head.php' ?>

@@ -10,7 +10,7 @@
 <!-- GET ALL SKILLS FROM DB -->
 <?php
 require '../../core/skillController.php';
-$skills = getAllSkills();
+$skills = (new SkillController())->getAll();
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -48,23 +48,23 @@ $skills = getAllSkills();
             <!-- AFFICHE TOUTES LES COMPETENCES -->
             <?php
             foreach ($skills as $skill) :
-                $type = $skill['type'] === '1' ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
-                $text = !empty($skill['text']) ? $skill['text'] : '&#8211';
-                $image = !empty($skill['image']) ? $skill['image'] : 'no-image.png';
-                $active = $skill['active'] === '1' ? 'Activé' : 'Désactivé';
+                $type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
+                $text = !empty($skill->text) ? $skill->text : '&#8211';
+                $image = !empty($skill->image) ? $skill->image : 'no-image.png';
+                $active = $skill->active ? 'Activé' : 'Désactivé';
                 echo "
                     <tr class='align-middle'>
-                    <td>{$skill['id_skill']}</td>
+                    <td>{$skill->id_skill}</td>
                     <td><img src='../../assets/images/upload/$image' alt='image de la competence' width=70% class='rounded'></td>
-                    <td class='text-break'>{$skill['title']}</td>
+                    <td class='text-break'>{$skill->title}</td>
                     <td>$type</td>
                     <td class='text-break'>$text</td>
                     <td>$active</td>
-                    <td class='text-center'><a href='./detailSkill.php?id={$skill['id_skill']}' title='Voir'>
+                    <td class='text-center'><a href='./detailSkill.php?id={$skill->id_skill}' title='Voir'>
                     <div class='btn btn-success fs-5 py-1 px-2 border border-dark'>&#128209;</div></a></td>
-                    <td class='text-center'><a href='./updateSkill.php?id={$skill['id_skill']}' title='Modifier'>
+                    <td class='text-center'><a href='./updateSkill.php?id={$skill->id_skill}' title='Modifier'>
                     <div class='btn btn-info fs-5 py-1 px-2 border border-dark'>&#128394;</div></a></td>
-                    <td class='text-center'><a href='./confirmDeleteSkill.php?id={$skill['id_skill']}' title='Supprimer'>
+                    <td class='text-center'><a href='./confirmDeleteSkill.php?id={$skill->id_skill}' title='Supprimer'>
                     <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div></a></td>
                     </tr>";
             endforeach;

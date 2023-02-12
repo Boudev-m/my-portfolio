@@ -1,0 +1,14 @@
+# # Fichier Apache
+# # Ce fichier va permettre d'insérer des réglages pour le serveur Apache
+# # Conseil : éviter l'utilisation des chiffres dans l'URL
+
+# # Active la réécriture d'URL
+# RewriteEngine On
+
+# # Réécriture d'URL pour la page de détail d'un élément
+# # Avoir '/project/1' au lieu de 'projectDetail.php?id=1'
+# # $1 est une variable
+# RewriteRule ^project/([0-9]+)/*$ projectDetail.php?id=$1 [L]
+
+# # Réécriture d'URL pour retirer l'extension du fichier (pour avoir une URL clean)
+# RewriteRule ^([a-zA-Z_]+)/*$ $1.php [L]

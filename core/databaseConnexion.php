@@ -1,6 +1,5 @@
 <?php
-// Fichier de connexion à la base de données (portfolio)
-// Fichier de configuration de connexion à la BDD
+// Fichier de connexion à supprimer une fois PDO complètement implémenté
 
 // var de connexion
 $online = false;

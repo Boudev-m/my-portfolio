@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     </div>
     <div class="mx-auto py-4" style="border: 2px solid #666;">
         <div class="card-body">
-            <p class="card-text text-center">Vous avez des questions ou vous souhaitez simplement me contacter ? Remplissez ce formulaire.</p>
+            <p class="card-text text-center">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
             <?php
             if (isset($_SESSION['message'])) {
                 echo $_SESSION['message'];

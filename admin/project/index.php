@@ -10,7 +10,7 @@
 <!-- GET ALL PROJECTS FROM DB -->
 <?php
 require '../../core/projectController.php';
-$projects = getAllProjects();
+$projects = (new ProjectController())->getAll();
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -48,25 +48,25 @@ $projects = getAllProjects();
             <!-- AFFICHE TOUTES LES COMPETENCES -->
             <?php
             foreach ($projects as $project) :
-                $image = !empty($project['image']) ? $project['image'] : 'no-image.png';
-                $text = !empty($project['text']) ? $project['text'] : '&#8211';
-                $date_start = implode('/', array_reverse(explode('-', $project['date_start'])));
-                $date_end = !is_null($project['date_end']) ? implode('/', array_reverse(explode('-', $project['date_end']))) : '&#8211';
-                $active = $project['active'] === '1' ? 'Activé' : 'Désactivé';
+                $image = !empty($project->image) ? $project->image : 'no-image.png';
+                $text = !empty($project->text) ? $project->text : '&#8211';
+                $date_start = implode('/', array_reverse(explode('-', $project->date_start)));
+                $date_end = !is_null($project->date_end) ? implode('/', array_reverse(explode('-', $project->date_end))) : '&#8211';
+                $active = $project->active ? 'Activé' : 'Désactivé';
                 echo "
                     <tr class='align-middle'>
-                    <td>{$project['id_project']}</td>
+                    <td>{$project->id_project}</td>
                     <td><img src='../../assets/images/upload/$image' alt='image de la competence' width=50% class='rounded'></td>
-                    <td class='text-break'>{$project['title']}</td>
+                    <td class='text-break'>{$project->title}</td>
                     <td class='text-break'>$text</td>
                     <td>$date_start</td>
                     <td>$date_end</td>
                     <td>$active</td>
-                    <td class='text-center'><a href='./detailProject.php?id={$project['id_project']}' title='Voir'>
+                    <td class='text-center'><a href='./detailProject.php?id={$project->id_project}' title='Voir'>
                     <div class='btn btn-success fs-5 py-1 px-2 border border-dark'>&#128209;</div></a></td>
-                    <td class='text-center'><a href='./updateProject.php?id={$project['id_project']}' title='Modifier'>
+                    <td class='text-center'><a href='./updateProject.php?id={$project->id_project}' title='Modifier'>
                     <div class='btn btn-info fs-5 py-1 px-2 border border-dark'>&#128394;</div></a></td>
-                    <td class='text-center'><a href='./confirmDeleteProject.php?id={$project['id_project']}' title='Supprimer'>
+                    <td class='text-center'><a href='./confirmDeleteProject.php?id={$project->id_project}' title='Supprimer'>
                     <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div></a></td>
                     </tr>";
             endforeach;
