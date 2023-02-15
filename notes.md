@@ -62,7 +62,7 @@ ____________________________________
 - mettre le site en MVC, avec l'utilisation des class, namespace, autoloader, PDO et la connexion unique à la BDD
 
 - ne créer qu'une seule connexion à la BDD avec PDO (voir le projet MVC OCR)
-- ajouter commentaire au message
+- fonction ajout de commentaire au message
 - faire apparaitre l'image après la selection d'une image à uploader (avec js ?)
 - modification mdp avec ancien mdp et confirmation new mdp
 - ajouter la possibilité de mettre plusieurs images pour les projects
@@ -70,9 +70,13 @@ ____________________________________
 - mettre un htaccess pour réécrire les urls (je l'ai ajouté mais ne fonctionne pas)
 - ajouter un champ level dans la table skill (mon niveau pour une compétence, basé sur 5 étoiles)
 - optimiser les requêtes SQL : recuperer seulement les champs necessaires
+- clean code, reduire le php dans le html
+- optimiser les chemins de fichier ou utiliser un autoloader
 - Dans la BDD, les champs nullables doivent être NULL si ils sont vides
 - lier les skills au projet (many to many)
 - ne pas afficher de lien vers la page de connexion (car sert uniquement pour la connexion admin)
 - apparemment le 'no-image.png' se supprime quand j'effectue une opération (laquelle ?)
 - écrire les commentaires et la doc en anglais
+- afficher une icone github sur le home
+- créer une classe picture pour les images
 - voir github de Srikahn (Richard) pour le portofolio orienté objet
