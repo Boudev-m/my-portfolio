@@ -6,22 +6,28 @@
 <!-- Vérifie si l'utilisateur connecté est Admin -->
 <?php require '../../core/authentificationAdmin.php' ?>
 
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') {
+    require_once '../../core/skillController.php';
+    (new SkillController)->delete($_POST['id']);
+} ?>
+
 <!-- GET ONE SKILL FROM DB -->
 <?php
 require '../../core/skillController.php';
-$skill = getOneSkill($_GET['id']);
-$type = $skill['type'] === '1' ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
-$text = !empty($skill['text']) ? $skill['text'] : '&#8211';
-$image = !empty($skill['image']) ? $skill['image'] : 'no-image.png';
-$link = !empty($skill['link']) ? "<a href='{$skill['link']}' class='fw-bold' target='_blank'>{$skill['link']}</a>" : '&#8211';
-$active = $skill['active'] === '1' ? 'Activé' : 'Désactivé';
+$skill = (new SkillController())->getOne($_GET['id']);
+$type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
+$text = !empty($skill->text) ? $skill->text : '&#8211';
+$image = !empty($skill->image) ? $skill->image : 'no-image.png';
+$link = !empty($skill->link) ? "<a href='$skill->link' class='fw-bold' target='_blank'>$skill->link</a>" : '&#8211';
+$active = $skill->active ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Suppression de la compétence n°<?= $skill['id_skill'] ?></h4>
+        <h4 class="text-center pt-1">Suppression de la compétence n°<?= $skill->id_skill ?></h4>
     </div>
     <div class="pb-0" style="border: 2px solid #666;">
         <h5 class="text-center py-3">Voulez-vous vraiment supprimer cette compétence ?</h5>
@@ -35,11 +41,11 @@ $active = $skill['active'] === '1' ? 'Activé' : 'Désactivé';
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Id :</th>
-                    <td class='col-6'><?= $skill['id_skill'] ?></td>
+                    <td class='col-6'><?= $skill->id_skill ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Titre :</th>
-                    <td class='col-6 text-break'><?= $skill['title'] ?></td>
+                    <td class='col-6 text-break'><?= $skill->title ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Type :</th>
@@ -58,12 +64,12 @@ $active = $skill['active'] === '1' ? 'Activé' : 'Désactivé';
                     <td class='col-6'><?= $active ?></td>
                 </tr>
             </table>
-            <form action="../../core/skillController.php" method="post">
+            <form action="" method="post">
                 <input type='hidden' name='action' value='delete'>
-                <input type='hidden' name='id' value='<?= $skill['id_skill'] ?>'>
+                <input type='hidden' name='id' value='<?= $skill->id_skill ?>'>
                 <div class="py-1 text-center">
-                    <button type='submit' class='btn btn-success py-2 px-4 border border-dark'>Valider</button>
-                    <a href="./detailSkill.php?id=<?= $skill['id_skill'] ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
+                    <button type='submit' name='submit' class='btn btn-success py-2 px-4 border border-dark'>Valider</button>
+                    <a href="./detailSkill.php?id=<?= $skill->id_skill ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
         </div>

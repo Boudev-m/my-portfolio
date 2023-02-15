@@ -1,11 +1,16 @@
-<!-- NEW SKILL (ACCES RESERVE A ADMIN UNIQUEMENT) -->
-<!-- Ce fichier permet de créer une compétence qui sera sauvegardé dans la BDD -->
+<!-- PAGE NOUVELLE COMPETENCE (BACK-OFFICE) -->
 
 <?php include '../../assets/inc/back/head.php' ?>
-<title>Nouvel compétence</title>
+<title>Nouvelle compétence</title>
 
 <!-- Vérifie si l'user est admin en analysant les données en session -->
 <?php require '../../core/authentificationAdmin.php' ?>
+
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit'])) {
+    require_once '../../core/skillController.php';
+    (new SkillController)->create();
+} ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
@@ -21,7 +26,7 @@
                 unset($_SESSION['message']);
             };
             ?>
-            <form action="../../core/skillController.php" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" name="action" value="create">
                 <!-- TITLE -->

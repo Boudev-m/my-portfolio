@@ -7,11 +7,16 @@
 <!-- Vérifie si l'utilisateur connecté est Admin -->
 <?php require '../../core/authentificationAdmin.php' ?>
 
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit'])) {
+    require_once '../../core/skillController.php';
+    (new SkillController)->update($_POST['id']);
+} ?>
+
 <!-- GET ONE SKILL FROM DB -->
 <?php
 require '../../core/skillController.php';
 $skill = (new SkillController())->getOne($_GET['id']);
-var_dump($skill);
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -23,7 +28,7 @@ var_dump($skill);
     <div class="pb-0" style="border: 2px solid #666;">
         <div class="col-6 mx-auto py-3">
 
-            <form action='../../core/skillController.php' method='post' enctype='multipart/form-data'>
+            <form action='' method='post' enctype='multipart/form-data'>
                 <?php
                 if (isset($_SESSION['message'])) {
                     echo $_SESSION['message'];
@@ -31,10 +36,6 @@ var_dump($skill);
                 };
                 ?>
                 <table class="table table-striped">
-
-                    <!-- AFFICHE LA COMPETENCE A MODIFIER -->
-                    <!-- Je place l'action (=update) et l'id de la compétence dans un input caché -->
-                    <!-- il me serviront pour modifier la compétence (dans skillController.php) -->
 
                     <input type='hidden' name='action' value='update'>
                     <input type='hidden' name='id' value='<?= $skill->id_skill ?>'>
@@ -52,11 +53,11 @@ var_dump($skill);
                             <div class='d-flex mx-auto justify-content-evenly mt-3'>
                                 <div class='form-check form-switch'>
                                     <label class='form-check-label' for='front-end'>Front-end</label>
-                                    <input class='form-check-input' type='radio' name='type' id='front-end' value='1' <?= $skill->type === 2 ? 'checked' : ''; ?>>
+                                    <input class='form-check-input' type='radio' name='type' id='front-end' value='1' <?= $skill->type === 1 ? 'checked' : ''; ?>>
                                 </div>
                                 <div class='form-check form-switch'>
                                     <label class='form-check-label' for='back-end'>Back-end</label>
-                                    <input class='form-check-input' type='radio' name='type' id='back-end' value='2' <?= $skill->type === 1 ? 'checked' : ''; ?>>
+                                    <input class='form-check-input' type='radio' name='type' id='back-end' value='2' <?= $skill->type === 2 ? 'checked' : ''; ?>>
                                 </div>
                             </div>
                         </td>
@@ -84,7 +85,7 @@ var_dump($skill);
                     </tr>
                 </table>
                 <div class='text-center'>
-                    <button class='btn btn-success py-2 px-4 border border-dark' type='submit'>Valider</button>
+                    <button class='btn btn-success py-2 px-4 border border-dark' type='submit' name="submit">Valider</button>
                     <a href='./detailSkill.php?id=<?= $skill->id_skill ?>' class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
