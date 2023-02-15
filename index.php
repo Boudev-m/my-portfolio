@@ -59,13 +59,12 @@ $messages = (new MessageController())->getAll();
             </div>
 
             <div class="row row-cols-1 row-cols-md-3 g-4 p-5 justify-content-center">
-                <?php foreach ($skills as $skill) :
-                    $image = !empty($skill->image) ? $skill->image : 'no-image-2.png'; ?>
+                <?php foreach ($skills as $skill) : ?>
                     <div class="col-sm-4 " style="max-width:150px;max-height:150px;">
                         <div class="card border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent pointer" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
                             <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
                                 <div class="icon-box icon-box--success">
-                                    <img src="./assets/images/upload/<?= $skill->image ?>" alt="image de <?= $skill->title ?>" width="100%">
+                                    <img src="./assets/images/upload/<?= $skill->image ?? 'no-image.png' ?>" alt="image de <?= $skill->title ?>" width="100%">
                                 </div>
                             </div>
                         </div>
@@ -89,10 +88,10 @@ $messages = (new MessageController())->getAll();
 
     <!-- BLOC FORM MESSAGE -->
     <div id="messageForm" class="my-5 text-light bg-transparent">
-        <div class="">
-            <h4 class="text-center pt-1">Laisser un message</h4>
+        <div class="mb-4">
+            <h4 class="text-center pt-1">Laisser un commentaire</h4>
         </div>
-        <div class="">
+        <div>
             <div class="col-6 mx-auto">
                 <form action="./core/messageController.php" method="post">
 
@@ -111,28 +110,28 @@ $messages = (new MessageController())->getAll();
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
 
                         <div class="col-6">
-                            <div class="my-1">
+                            <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="text" name="last_name" id="last_name" placeholder="Nom *">
                             </div>
-                            <div class="my-1">
+                            <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="text" name="first_name" id="first_name" placeholder="Prénom *">
                             </div>
-                            <div class="my-1">
+                            <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="email" name="email" id="email" placeholder="Adresse email *">
                             </div>
                         </div>
 
                         <div class="col-6">
-                            <div class="my-1">
+                            <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="text" name="company" id="company" placeholder="Société">
                             </div>
-                            <div class="my-1">
+                            <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="tel" name="phone" id="phone" placeholder="Téléphone">
                             </div>
                         </div>
 
 
-                        <div class="my-1">
+                        <div class="mb-2">
                             <textarea class="form-control pointer border border-dark" name="message" id="message" rows="3" placeholder="Votre message *"></textarea>
                         </div>
 
