@@ -1,23 +1,28 @@
-<!-- MESSAGE UPDATE (ADMIN UNIQUEMENT) -->
-<!-- Page qui permet de modifier les infos d'un message -->
+<!-- PAGE MESSAGE UPDATE (BACK OFFICE) -->
 
 <?php include '../../assets/inc/back/head.php' ?>
 <title>Modification Message</title>
 
 <!-- Vérifie si le message connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
-<!-- GET ONE MESSAGE FROM DB -->
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
+    require_once '../../core/messageController.php';
+    (new MessageController)->update($_POST['id']);
+} ?>
+
+<!-- GET ONE SKILL FROM DB -->
 <?php
 require '../../core/messageController.php';
-$message = getOneMessage($_GET['id']);
+$message = (new MessageController())->readOne($_GET['id']);
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Modifier le message n°<?= $message['id'] ?></h4>
+        <h4 class="text-center pt-1">Modifier le message n°<?= $message->id_message ?></h4>
     </div>
     <?php
     if (isset($_SESSION['message'])) {
@@ -27,44 +32,44 @@ $message = getOneMessage($_GET['id']);
     ?>
     <div class="py-2" style="border: 2px solid #666;">
 
-        <form action="../../core/messageController.php" method="post">
+        <form action="" method="post">
 
             <div class="row col-8 justify-content-center mx-auto">
 
                 <input type='hidden' name='action' value='update'>
-                <input type='hidden' name='id' value='<?= $message['id'] ?>'>
-                <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '?id=' . $message['id'] ?>>
+                <input type='hidden' name='id' value='<?= $message->id_message ?>'>
+                <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '?id=' . $message->id_message ?>>
 
                 <div class="col-6">
                     <div class="my-1">
-                        <label for="last_name">Nom * :</label>
-                        <input class="form-control pointer border border-dark" type="text" name="last_name" id="last_name" value="<?= $message['last_name'] ?>">
+                        <label for="last-name">Nom * :</label>
+                        <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" value="<?= $message->last_name ?>">
                     </div>
                     <div class="my-1">
-                        <label for="first_name">Prénom * :</label>
-                        <input class="form-control pointer border border-dark" type="text" name="first_name" id="first_name" value="<?= $message['first_name'] ?>">
+                        <label for="first-name">Prénom * :</label>
+                        <input class="form-control pointer border border-dark" type="text" name="first-name" id="first-name" value="<?= $message->first_name ?>">
                     </div>
                     <div class="my-1">
                         <label for="email">Adresse email * :</label>
-                        <input class="form-control pointer border border-dark" type="email" name="email" id="email" value="<?= $message['email'] ?>">
+                        <input class="form-control pointer border border-dark" type="email" name="email" id="email" value="<?= $message->email ?>">
                     </div>
                 </div>
 
                 <div class="col-6">
                     <div class="my-1">
                         <label for="company">Société :</label>
-                        <input class="form-control pointer border border-dark" type="text" name="company" id="company" value="<?= $message['company'] ?>">
+                        <input class="form-control pointer border border-dark" type="text" name="company" id="company" value="<?= $message->company ?>">
                     </div>
                     <div class="my-1">
                         <label for="phone">Téléphone :</label>
-                        <input class="form-control pointer border border-dark" type="tel" name="phone" id="phone" value="<?= $message['phone'] ?>">
+                        <input class="form-control pointer border border-dark" type="tel" name="phone" id="phone" value="<?= $message->phone ?>">
                     </div>
                 </div>
 
 
                 <div class="my-1">
-                    <label for="message">Message * :</label>
-                    <textarea class="form-control pointer border border-dark" name="message" id="message" rows="6"><?= $message['text'] ?></textarea>
+                    <label for="content">Message * :</label>
+                    <textarea class="form-control pointer border border-dark" name="content" id="content" rows="6"><?= $message->content ?></textarea>
                 </div>
 
                 <div class="my-3">

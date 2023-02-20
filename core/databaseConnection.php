@@ -1,4 +1,5 @@
 <?php
+// DATABASE CONNECTION
 // Fichier de configuration de connexion à la BDD MySQL Portfolio avec PDO (PHP Data Objects)
 
 define("DB_HOST", "localhost");

@@ -1,14 +1,13 @@
-<!-- SKILL UPDATE (ADMIN UNIQUEMENT) -->
-<!-- Page qui permet de modifier les infos d'une compétence -->
+<!-- PAGE SKILL UPDATE (BACK OFFICE) -->
 
 <?php include '../../assets/inc/back/head.php' ?>
 <title>Détail compétence</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit'])) {
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
     require_once '../../core/skillController.php';
     (new SkillController)->update($_POST['id']);
 } ?>
@@ -16,7 +15,7 @@
 <!-- GET ONE SKILL FROM DB -->
 <?php
 require '../../core/skillController.php';
-$skill = (new SkillController())->getOne($_GET['id']);
+$skill = (new SkillController())->readOne($_GET['id']);
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>

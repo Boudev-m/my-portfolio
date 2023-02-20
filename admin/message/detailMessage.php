@@ -5,21 +5,21 @@
 <title>Détail message</title>
 
 <!-- Vérifie si l'message connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- GET ONE MESSAGE FROM DB -->
 <?php
 require '../../core/messageController.php';
-$message = getOneMessage($_GET['id']);
-$company = !empty($message['company']) ? $message['company'] : '&#8211';
-$phone = !empty($message['phone']) ? $message['phone'] : '&#8211';
+$message = (new MessageController())->readOne($_GET['id']);
+$company = !empty($message->company) ? $message->company : '&#8211';
+$phone = !empty($message->phone) ? $message->phone : '&#8211';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Détails sur le message n°<?= $message['id'] ?></h4>
+        <h4 class="text-center pt-1">Détails sur le message n°<?= $message->id_message ?></h4>
     </div>
     <?php
     if (isset($_SESSION['message'])) {
@@ -36,41 +36,46 @@ $phone = !empty($message['phone']) ? $message['phone'] : '&#8211';
 
                     <tr class='align-middle'>
                         <th class='text-end col-3'>Id :</th>
-                        <td><?= $message['id'] ?></td>
+                        <td><?= $message->id_message ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Prénom :</th>
-                        <td class='text-break'><?= $message['first_name'] ?></td>
+                        <td class='text-break'><?= $message->first_name ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Nom :</th>
-                        <td><?= $message['last_name'] ?></td>
+                        <td><?= $message->last_name ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Email :</th>
-                        <td class='text-break'><?= $message['email'] ?></td>
+                        <td class='text-break'><?= $message->email ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Société :</th>
-                        <td class='text-break fw-bold'><?= $company ?></td>
+                        <td class='text-break'><?= $company ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Téléphone :</th>
-                        <td class='text-break fw-bold'><?= $phone ?></td>
+                        <td class='text-break'><?= $phone ?></td>
+                    </tr>
+
+                    <tr>
+                        <th class='text-end col-3'>Date d'envoi :</th>
+                        <td class='text-break'><?= $message->created_at ?></td>
                     </tr>
 
                     <tr>
                         <th></th>
                         <td class='text-center'>
-                            <a href='./updateMessage.php?id=<?= $message['id'] ?>' title='Modifier le message'>
+                            <a href='./updateMessage.php?id=<?= $message->id_message ?>' title='Modifier le message'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./confirmDeleteMessage.php?id=<?= $message['id'] ?>' title='Supprimer le message'>
+                            <a href='./confirmDeleteMessage.php?id=<?= $message->id_message ?>' title='Supprimer le message'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>
@@ -80,10 +85,10 @@ $phone = !empty($message['phone']) ? $message['phone'] : '&#8211';
 
                 <table class='table table-striped table-hover text-center border border-secondary'>
                     <tr>
-                        <th class='text-center'>Message :</th>
+                        <th class='text-center'>Contenu du message :</th>
                     </tr>
                     <tr>
-                        <td class='text-break fw-bold' style='text-align:justify'><?= nl2br($message['text']) ?></td>
+                        <td class='text-break fw-bold h-100' style='text-align:justify'><?= nl2br($message->content) ?></td>
                     </tr>
                 </table>
 

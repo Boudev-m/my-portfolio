@@ -1,11 +1,15 @@
 <!-- PAGE D'ACCUEIL DU PORTFOLIO -->
-
 <?php
-
-use Symfony\Component\VarDumper\VarDumper;
 
 include './assets/inc/front/head.php' ?>
 <title>Portfolio</title>
+
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
+    require_once 'core/messageController.php';
+    (new MessageController)->create();
+} ?>
+
 <?php define('PROFILE_COLOR', ['#379', '#397', '#739', '#793', '#937', '#973']) ?>
 <?php include './assets/inc/front/header.php' ?>
 
@@ -14,9 +18,9 @@ include './assets/inc/front/head.php' ?>
 require 'core/projectController.php';
 require 'core/skillController.php';
 require 'core/messageController.php';
-$projects = (new ProjectController())->getAll('active');
-$skills = (new SkillController())->getAll('active');
-$messages = (new MessageController())->getAll();
+$projects = (new ProjectController())->readAll('active');
+$skills = (new SkillController())->readAll('active');
+$messages = (new MessageController())->readAll();
 ?>
 
 <main>
@@ -26,9 +30,9 @@ $messages = (new MessageController())->getAll();
         unset($_SESSION['message']);
     };
     ?>
-    <!-- BLOC PROJECTS -->
     <div class="my-2">
 
+        <!-- BLOC PROJECTS -->
         <div class="border-bottom border-top border-dark">
             <h4 class="text-center pt-2">&#x1F4E3; MES REALISATIONS &#x1F4E3;</h4>
         </div>
@@ -93,7 +97,7 @@ $messages = (new MessageController())->getAll();
         </div>
         <div>
             <div class="col-6 mx-auto">
-                <form action="./core/messageController.php" method="post">
+                <form action="" method="post">
 
                     <div class="row justify-content-center mx-auto">
                         <div>
@@ -111,10 +115,10 @@ $messages = (new MessageController())->getAll();
 
                         <div class="col-6">
                             <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="text" name="last_name" id="last_name" placeholder="Nom *">
+                                <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" placeholder="Nom *">
                             </div>
                             <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="text" name="first_name" id="first_name" placeholder="Prénom *">
+                                <input class="form-control pointer border border-dark" type="text" name="first-name" id="first-name" placeholder="Prénom *">
                             </div>
                             <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="email" name="email" id="email" placeholder="Adresse email *">
@@ -132,7 +136,7 @@ $messages = (new MessageController())->getAll();
 
 
                         <div class="mb-2">
-                            <textarea class="form-control pointer border border-dark" name="message" id="message" rows="3" placeholder="Votre message *"></textarea>
+                            <textarea class="form-control pointer border border-dark" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
                         </div>
 
                         <div class="my-3 w-50">

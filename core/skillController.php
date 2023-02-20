@@ -1,15 +1,15 @@
 <?php
-// Ce fichier permet de récupérer, créer, modifier et supprimer un projet/une réalisation
+// MANAGE SKILL
 
 if (session_status() === 1) session_start();
 
-require_once(__DIR__ . "/pdoConnexion.php");
+require_once(__DIR__ . "/databaseConnection.php");
 require_once(__DIR__ . "/../models/Skill.php");
 
 class SkillController
 {
 
-    public function getAll(string $statut = null): array
+    public function readAll(string $statut = null): array
     {
         // Récupère seulement les compétences actives
         if ($statut === 'active') {
@@ -26,17 +26,15 @@ class SkillController
         return $result;
     }
 
-    public function getOne($id): Skill
+    public function readOne($id): Skill
     {
-        global $pdo;
 
-        // Requête de récupération du projet
         $sql = "SELECT * FROM skill WHERE id_skill = :id";
 
+        global $pdo;
         $statement = $pdo->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
-
         $statement->setFetchMode(PDO::FETCH_CLASS, "Skill");
         $result = $statement->fetch();
 

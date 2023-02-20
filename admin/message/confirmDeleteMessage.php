@@ -4,21 +4,27 @@
 <title>Confirmation de suppression</title>
 
 <!-- Vérifie si le message connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
+
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') {
+    require_once '../../core/messageController.php';
+    (new MessageController)->delete($_POST['id']);
+} ?>
 
 <!-- GET ONE MESSAGE FROM DB -->
 <?php
 require '../../core/messageController.php';
-$message = getOneMessage($_GET['id']);
-$company = !empty($message['company']) ? $message['company'] : '&#8211';
-$phone = !empty($message['phone']) ? $message['phone'] : '&#8211'; ?>
+$message = (new MessageController())->readOne($_GET['id']);
+$company = !empty($message->company) ? $message->company : '&#8211';
+$phone = !empty($message->phone) ? $message->phone : '&#8211'; ?>
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Suppression du compte n°<?= $message['id'] ?></h4>
+        <h4 class="text-center pt-1">Suppression du compte n°<?= $message->id_message ?></h4>
     </div>
     <div class="pb-0" style="border: 2px solid #666;">
         <h5 class="text-center py-3">Voulez-vous vraiment supprimer ce compte ?</h5>
@@ -29,43 +35,47 @@ $phone = !empty($message['phone']) ? $message['phone'] : '&#8211'; ?>
                 <!-- AFFICHE LE MESSAGE RECUPERé DANS LA BDD -->
                 <tr>
                     <th class='text-end col-6'>Id :</th>
-                    <td class='col-6'><?= $message['id'] ?></td>
+                    <td class='col-6'><?= $message->id_message ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Prénom :</th>
-                    <td class='col-6'><?= $message['first_name'] ?></td>
+                    <td class='col-6'><?= $message->first_name ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Nom :</th>
-                    <td class='col-6'><?= $message['last_name'] ?></td>
+                    <td class='col-6'><?= $message->last_name ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Email :</th>
-                    <td class='col-6'><?= $message['email'] ?></td>
+                    <td class='col-6'><?= $message->email ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Société :</th>
-                    <td class='col-6 fw-bold'><?= $company ?></td>
+                    <td class='col-6'><?= $company ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Téléphone :</th>
-                    <td class='col-6 fw-bold'><?= $phone ?></td>
+                    <td class='col-6'><?= $phone ?></td>
+                </tr>
+                <tr>
+                    <th class='text-end col-6'>Date d'envoi :</th>
+                    <td class='col-6'><?= $message->created_at ?></td>
                 </tr>
             </table>
             <table class='table table-striped table-hover text-center border border-secondary'>
                 <tr>
-                    <th class='text-center'>Message :</th>
+                    <th class='text-center'>Contenu du message :</th>
                 </tr>
                 <tr>
-                    <td class='text-break fw-bold text-justify' style='text-align:justify'><?= nl2br($message['text']) ?></td>
+                    <td class='text-break fw-bold text-justify' style='text-align:justify'><?= nl2br($message->content) ?></td>
                 </tr>
             </table>
-            <form action="../../core/messageController.php" method="post">
+            <form action="" method="post">
                 <input type='hidden' name='action' value='delete'>
-                <input type='hidden' name='id' value='<?= $message['id'] ?>'>
+                <input type='hidden' name='id' value='<?= $message->id_message ?>'>
                 <div class="py-3 text-center">
-                    <button type='submit' class='btn btn-success py-2 px-4 border border-dark'>Valider</button>
-                    <a href="./detailMessage.php?id=<?= $message['id'] ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
+                    <button type='submit' name='submit' class='btn btn-success py-2 px-4 border border-dark'>Valider</button>
+                    <a href="./detailMessage.php?id=<?= $message->id_message ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
         </div>

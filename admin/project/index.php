@@ -5,12 +5,12 @@
 <title>Gestion des Réalisations</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- GET ALL PROJECTS FROM DB -->
 <?php
 require '../../core/projectController.php';
-$projects = (new ProjectController())->getAll();
+$projects = (new ProjectController())->readAll();
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -50,8 +50,8 @@ $projects = (new ProjectController())->getAll();
             foreach ($projects as $project) :
                 $image = !empty($project->image) ? $project->image : 'no-image.png';
                 $text = !empty($project->text) ? $project->text : '&#8211';
-                $date_start = implode('/', array_reverse(explode('-', $project->date_start)));
-                $date_end = !is_null($project->date_end) ? implode('/', array_reverse(explode('-', $project->date_end))) : '&#8211';
+                $date_start = $project->displayDateStart();
+                $date_end = !is_null($project->date_end) ? $project->displayDateEnd() : '&#8211';
                 $active = $project->active ? 'Activé' : 'Désactivé';
                 echo "
                     <tr class='align-middle'>

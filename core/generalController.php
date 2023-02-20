@@ -1,7 +1,7 @@
 <?php
 
 if (session_status() === 1) session_start();
-require_once(__DIR__ . "/pdoConnexion.php");
+require_once(__DIR__ . "/databaseConnection.php");
 
 class GeneralController
 {
@@ -71,16 +71,16 @@ class GeneralController
     // FONCTION DE SUPPRESSION D'IMAGE DU DISQUE
     public static function removeImageFromDisk($pdo, $id, $table): void
     {
-        // Récupère le nom de l'ancienne image dans la BDD
+        // Récupère le nom de l'ancienne image dans la BDD (null ou non)
         $sql = "
             SELECT image FROM $table WHERE `id_$table` = :id
         ";
         $statement = $pdo->prepare($sql);
         $statement->bindParam(':id', $id);
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_CLASS, "Skill");
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         $oldImageName = $statement->fetch()->image;
-        // Vérifie si la compétence possède déjà une image
+        // Vérifie si la compétence possède déjà une image (non null)
         if (!is_null($oldImageName)) {
             // Supprime l'ancienne
             unlink(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'upload' . DIRECTORY_SEPARATOR . $oldImageName);

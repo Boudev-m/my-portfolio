@@ -5,12 +5,12 @@
 <title>Gestion des Compétences</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- GET ALL SKILLS FROM DB -->
 <?php
 require '../../core/skillController.php';
-$skills = (new SkillController())->getAll();
+$skills = (new SkillController())->readAll();
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>

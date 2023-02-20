@@ -4,10 +4,10 @@
 <title>Nouvelle compétence</title>
 
 <!-- Vérifie si l'user est admin en analysant les données en session -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit'])) {
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
     require_once '../../core/skillController.php';
     (new SkillController)->create();
 } ?>

@@ -5,12 +5,12 @@
 <title>Gestion des Messages</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- GET ALL MESSAGES FROM DB -->
 <?php
 require '../../core/messageController.php';
-$messages = (new MessageController())->getAll();
+$messages = (new MessageController())->readAll();
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -34,6 +34,7 @@ $messages = (new MessageController())->getAll();
 
             <!-- EN-TETES DU TABLEAU -->
             <tr class="text-center">
+                <th class="col-1">Id</th>
                 <th class="col-2">Prénom</th>
                 <th class="col-2">Nom</th>
                 <th class="col-2">Email</th>
@@ -49,6 +50,7 @@ $messages = (new MessageController())->getAll();
                 $company = !empty($message->company) ? $message->company : '&#8211';
                 $phone = !empty($message->phone) ? $message->phone : '&#8211'; ?>
                 <tr class='align-middle text-center'>
+                    <td><?= $message->id_message ?></td>
                     <td><?= $message->first_name ?></td>
                     <td><?= $message->last_name ?></td>
                     <td><?= $message->email ?></td>

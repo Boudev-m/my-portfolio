@@ -2,7 +2,7 @@
     <div class="container">
 
         <header>
-            <nav class="navbar navbar-expand-lg my-2" style="border: 2px solid #666;">
+            <nav class="navbar navbar-expand-lg my-2">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="http://localhost/portfolio">&#127962; ACCUEIL</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,11 +1,16 @@
-<!-- NEW PROJECT (ACCES RESERVE A ADMIN UNIQUEMENT) -->
-<!-- Ce fichier permet de créer une réalisation (ou projet) qui sera sauvegardé dans la BDD -->
+<!-- PAGE NOUVELLE PROJET (BACK-OFFICE) -->
 
 <?php include '../../assets/inc/back/head.php' ?>
 <title>Nouvelle Réalisation</title>
 
 <!-- Vérifie si l'user est admin en analysant les données en session -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
+
+<!-- Vérifie que le formulaire est soumis -->
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
+    require_once '../../core/projectController.php';
+    (new ProjectController)->create();
+} ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
@@ -21,7 +26,7 @@
                 unset($_SESSION['message']);
             };
             ?>
-            <form action="../../core/projectController.php" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" name="action" value="create">
 

@@ -1,29 +1,28 @@
-<!-- PROJECT DETAIL (ACCES ADMIN UNIQUEMENT) -->
-<!-- Page qui affiche les détails sur une réalisation (depuis l'id en parametre url)-->
+<!-- PAGE DETAIL PROJECT (BACK-OFFICE) -->
 
 <?php include '../../assets/inc/back/head.php' ?>
 <title>Détail réalisation</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- GET ONE PROJECT FROM DB -->
 <?php
 require '../../core/projectController.php';
-$project = getOneProject($_GET['id']);
-$text = !empty($project['text']) ? $project['text'] : '&#8211';
-$image = !empty($project['image']) ? $project['image'] : 'no-image.png';
-$date_start = implode('/', array_reverse(explode('-', $project['date_start'])));
-$date_end = !is_null($project['date_end']) ? implode('/', array_reverse(explode('-', $project['date_end']))) : '&#8211';
-$link = !empty($project['link']) ? "<a href='{$project['link']}' class='fw-bold' target='_blank'>{$project['link']}</a>" : '&#8211';
-$active = $project['active'] === '1' ? 'Activé' : 'Désactivé';
+$project = (new ProjectController)->readOne($_GET['id']);
+$text = !empty($project->text) ? $project->text : '&#8211';
+$image = !empty($project->image) ? $project->image : 'no-image.png';
+$date_start = implode('/', array_reverse(explode('-', $project->date_start)));
+$date_end = !is_null($project->date_end) ? implode('/', array_reverse(explode('-', $project->date_end))) : '&#8211';
+$link = !empty($project->link) ? "<a href='{$project->link}' class='fw-bold' target='_blank'>{$project->link}</a>" : '&#8211';
+$active = $project->active === '1' ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Détails sur la réalisation n°<?= $project['id_project'] ?></h4>
+        <h4 class="text-center pt-1">Détails sur la réalisation n°<?= $project->id_project ?></h4>
     </div>
     <div class="pb-0" style="border: 2px solid #666;">
 
@@ -45,12 +44,12 @@ $active = $project['active'] === '1' ? 'Activé' : 'Désactivé';
 
                     <tr class='align-middle'>
                         <th class='text-end col-3'>Id :</th>
-                        <td><?= $project['id_project'] ?></td>
+                        <td><?= $project->id_project ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Titre :</th>
-                        <td class='text-break'><?= $project['title'] ?></td>
+                        <td class='text-break'><?= $project->title ?></td>
                     </tr>
 
                     <tr>
@@ -81,10 +80,10 @@ $active = $project['active'] === '1' ? 'Activé' : 'Désactivé';
                     <tr>
                         <th></th>
                         <td class='text-center'>
-                            <a href='./updateProject.php?id=<?= $project['id_project'] ?>' class="text-decoration-none" title='Modifier'>
+                            <a href='./updateProject.php?id=<?= $project->id_project ?>' class="text-decoration-none" title='Modifier'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./confirmDeleteProject.php?id=<?= $project['id_project'] ?>' class="text-decoration-none" title='Supprimer'>
+                            <a href='./confirmDeleteProject.php?id=<?= $project->id_project ?>' class="text-decoration-none" title='Supprimer'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>

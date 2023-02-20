@@ -5,12 +5,12 @@
 <title>Détail compétence</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentificationAdmin.php' ?>
+<?php require '../../core/authentification.php' ?>
 
 <!-- GET ONE SKILL FROM DB -->
 <?php
 require '../../core/skillController.php';
-$skill = (new SkillController())->getOne($_GET['id']);
+$skill = (new SkillController())->readOne($_GET['id']);
 $type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
 $text = !empty($skill->text) ? $skill->text : '&#8211';
 $image = !empty($skill->image) ? $skill->image : 'no-image.png';
