@@ -3,7 +3,7 @@
 <?php include '../assets/inc/back/head.php' ?>
 <title>Tableau de bord</title>
 
-<?php require '../core/authentificationAdmin.php' ?>
+<?php require '../core/authentification.php' ?>
 
 <?php
 // COUNT DATAS FROM DB
@@ -28,17 +28,17 @@ $messagesLength = GeneralController::countAllDatas('message');
     <div class="row mx-auto text-center justify-content-center py-4" style="border: 2px solid #666;">
 
         <div class="col-5 p-0 m-3 shadow text-decoration-none text-danger" style="background:#EEF;max-width:400px;transition:300ms" onmouseout="this.style.transform='scale(1)'" onmouseover="this.style.transform='scale(1.05)'">
-            <a href="./skill" class="text-decoration-none text-dark d-block border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#FFE;">
-                <h5>Nombre de compétences</h5>
-                <p class="fs-4"><?= $skillsLength ?></p>
+            <a href="./project" class="text-decoration-none text-dark d-block border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#EFF;">
+                <h5>Nombre de réalisations</h5>
+                <p class="fs-4"><?= $projectsLength ?></p>
                 <p class="btn border border-secondary shadow" style="transition:300ms" onmouseout="this.style.color='initial';this.style.background='initial'" onmouseover="this.style.color='#FFF';this.style.background='#111'">Voir la liste</p>
             </a>
         </div>
 
         <div class="col-5 p-0 m-3 shadow text-decoration-none text-danger" style="background:#EEF;max-width:400px;transition:300ms" onmouseout="this.style.transform='scale(1)'" onmouseover="this.style.transform='scale(1.05)'">
-            <a href="./project" class="text-decoration-none text-dark d-block border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#EFF;">
-                <h5>Nombre de réalisations</h5>
-                <p class="fs-4"><?= $projectsLength ?></p>
+            <a href="./skill" class="text-decoration-none text-dark d-block border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#FFE;">
+                <h5>Nombre de compétences</h5>
+                <p class="fs-4"><?= $skillsLength ?></p>
                 <p class="btn border border-secondary shadow" style="transition:300ms" onmouseout="this.style.color='initial';this.style.background='initial'" onmouseover="this.style.color='#FFF';this.style.background='#111'">Voir la liste</p>
             </a>
         </div>
@@ -52,8 +52,9 @@ $messagesLength = GeneralController::countAllDatas('message');
         </div>
 
         <div class="col-5 p-0 m-3 shadow text-decoration-none text-danger" style="background:#EEF;max-width:400px;transition:300ms" onmouseout="this.style.transform='scale(1)'" onmouseover="this.style.transform='scale(1.05)'">
-            <a href="./user" class="text-decoration-none text-dark d-block border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#FEE;">
+            <a href="./account" class="text-decoration-none text-dark d-block d-flex flex-column justify-content-between align-items-center border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#FEE;">
                 <h5>Mon compte</h5>
+                <p class="fs-4">&#128209;</p>
                 <p class="btn border border-secondary shadow" style="transition:300ms" onmouseout="this.style.color='initial';this.style.background='initial'" onmouseover="this.style.color='#FFF';this.style.background='#111'">Voir</p>
             </a>
         </div>
