@@ -70,7 +70,7 @@ ____________________________________
 - mettre un htaccess pour réécrire les urls (je l'ai ajouté mais ne fonctionne pas)
 - ajouter un champ level dans la table skill (mon niveau pour une compétence, basé sur 5 étoiles)
 - optimiser les requêtes SQL : recuperer seulement les champs necessaires
-- clean code, reduire le php dans le html
+- clean code, reduire le php dans le html et corriger les types (bool, null, ...), form (submit && action)
 - optimiser les chemins de fichier ou utiliser un autoloader
 - Dans la BDD, les champs nullables doivent être NULL si ils sont vides
 - lier les skills au projet (many to many)
@@ -79,4 +79,9 @@ ____________________________________
 - écrire les commentaires et la doc en anglais
 - afficher une icone github sur le home
 - créer une classe picture pour les images
+- ajouter un bouton suppression d'image et un bouton ajout d'image seulement
 - voir github de Srikahn (Richard) pour le portofolio orienté objet
+- utiliser le format de la date présente dans la class Project Model et le créer pour Message Model
+- var env pour les identifiants de la BDD
+- faire disparaitre le bouton de connexion
+- ajout d'un champ hidden_password pour camoufler le mot de passe non hashé (seulement les 2 derniers caractères sont visibles)
