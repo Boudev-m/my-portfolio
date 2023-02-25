@@ -12,17 +12,18 @@ class Project
     public ?string $image;
     public bool $active;
 
-    public function __construct()
+    public function getImage()
     {
+        return $this->image ?? 'no-image.png';
     }
 
-    public function displayDateStart(): string
+    public function getDateStart(): string
     {
         $datetime = DateTime::createFromFormat("Y-m-d", $this->date_start);
         return $datetime->format("d-m-Y");
     }
 
-    public function displayDateEnd(): string
+    public function getDateEnd(): string
     {
         $datetime = DateTime::createFromFormat("Y-m-d", $this->date_end);
         return $datetime->format("d-m-Y");
