@@ -50,8 +50,8 @@ $projects = (new ProjectController())->readAll();
             foreach ($projects as $project) :
                 $image = !empty($project->image) ? $project->image : 'no-image.png';
                 $text = !empty($project->text) ? $project->text : '&#8211';
-                $date_start = $project->displayDateStart();
-                $date_end = !is_null($project->date_end) ? $project->displayDateEnd() : '&#8211';
+                $date_start = $project->getDateStart();
+                $date_end = !is_null($project->date_end) ? $project->getDateEnd() : '&#8211';
                 $active = $project->active ? 'Activé' : 'Désactivé';
                 echo "
                     <tr class='align-middle'>

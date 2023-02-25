@@ -10,7 +10,6 @@ include './assets/inc/front/head.php' ?>
     (new MessageController)->create();
 } ?>
 
-<?php define('PROFILE_COLOR', ['#379', '#397', '#739', '#793', '#937', '#973']) ?>
 <?php include './assets/inc/front/header.php' ?>
 
 <?php
@@ -41,9 +40,9 @@ $messages = (new MessageController())->readAll();
 
             <?php foreach ($projects as $project) : ?>
                 <div class="col" style="max-width:250px;">
-                    <a href="<?= !empty($project->link) ? $project->link : '#'; ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
+                    <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
                         <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
-                            <img src="./assets/images/upload/<?= !empty($project->image) ? $project->image : 'no-image.png'; ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
+                            <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
                             <div class="card-body text-white" style="background:#170046;">
                                 <h5 class="card-title"><?= $project->title ?></h5>
                                 <p class="card-text"><?= $project->text ?></p>
@@ -68,7 +67,7 @@ $messages = (new MessageController())->readAll();
                         <div class="card border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent pointer" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
                             <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
                                 <div class="icon-box icon-box--success">
-                                    <img src="./assets/images/upload/<?= $skill->image ?? 'no-image.png' ?>" alt="image de <?= $skill->title ?>" width="100%">
+                                    <img src="./assets/images/upload/<?= $skill->getImage() ?>" alt="image de <?= $skill->title ?>" width="100%">
                                 </div>
                             </div>
                         </div>
@@ -134,7 +133,6 @@ $messages = (new MessageController())->readAll();
                             </div>
                         </div>
 
-
                         <div class="mb-2">
                             <textarea class="form-control pointer border border-dark" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
                         </div>
@@ -153,20 +151,18 @@ $messages = (new MessageController())->readAll();
     <!-- BLOC MESSAGES -->
     <div class="my-5 text-light bg-transparent w-50">
 
-        <?php foreach ($messages as $message) :
-            $date = implode('/', array_reverse(explode('-', explode(' ', $message->created_at)[0])));
-            $time = explode(' ', $message->created_at)[1]; ?>
+        <?php foreach ($messages as $message) : ?>
             <div class='p-2 mb-3' style="background-color: rgb(24, 0, 61, 0.5)">
                 <div class="border-bottom border-secondary d-flex pb-1">
                     <div class="pe-3" style="width: max-content;">
-                        <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= PROFILE_COLOR[mt_rand(0, count(PROFILE_COLOR) - 1)] ?>">
+                        <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= $message->getRandomColor() ?>">
                     </div>
                     <div>
                         <p class="m-0"><?= $message->first_name ?> <?= $message->last_name ?>,</p>
-                        <p class="m-0">le <?= $date ?> à <?= $time ?></p>
+                        <p class="m-0">le <?= $message->getDate() ?> à <?= $message->getTime() ?></p>
                     </div>
                 </div>
-                <p><?= nl2br($message->content) ?></p>
+                <p><?= $message->getContent() ?></p>
             </div>
         <?php endforeach ?>
 

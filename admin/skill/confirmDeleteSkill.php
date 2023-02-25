@@ -16,11 +16,11 @@
 <?php
 require '../../core/skillController.php';
 $skill = (new SkillController())->readOne($_GET['id']);
-$type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
-$text = !empty($skill->text) ? $skill->text : '&#8211';
-$image = !empty($skill->image) ? $skill->image : 'no-image.png';
-$link = !empty($skill->link) ? "<a href='$skill->link' class='fw-bold' target='_blank'>$skill->link</a>" : '&#8211';
-$active = $skill->active ? 'Activé' : 'Désactivé';
+// $type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
+// $text = !empty($skill->description) ? $skill->description : '&#8211';
+// $image = !empty($skill->image) ? $skill->image : 'no-image.png';
+// $link = !empty($skill->link) ? "<a href='$skill->link' class='fw-bold' target='_blank'>$skill->link</a>" : '&#8211';
+// $active = $skill->active ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -37,7 +37,7 @@ $active = $skill->active ? 'Activé' : 'Désactivé';
 
                 <!-- AFFICHE LA COMPETENCE RECUPERéE DANS LA BDD -->
                 <tr>
-                    <td class='text-center' colspan='2'><img src='../../assets/images/upload/<?= $image ?>' alt='image de la competence' width=20% class='rounded'></td>
+                    <td class='text-center' colspan='2'><img src='../../assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' width=20% class='rounded'></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Id :</th>
@@ -49,19 +49,25 @@ $active = $skill->active ? 'Activé' : 'Désactivé';
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Type :</th>
-                    <td class='col-6'><?= $type ?></td>
+                    <td class='col-6'><span style="color:<?= $skill->getType()['color'] ?>;font-weight:bold;"><?= $skill->getType()['type'] ?></span></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Description :</th>
-                    <td class='col-6 text-break'><?= $text ?></td>
+                    <td class='col-6 text-break'><?= $skill->description ?? '&#8211' ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Lien :</th>
-                    <td class='col-6 text-break'><?= $link ?></td>
+                    <td class='col-6 text-break'>
+                        <?php if ($skill->link) : ?>
+                            <a href='<?= $skill->link ?>' class='fw-bold' target='_blank'><?= $skill->link ?></a>
+                        <?php else : ?>
+                            &#8211
+                        <?php endif ?>
+                    </td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Statut :</th>
-                    <td class='col-6'><?= $active ?></td>
+                    <td class='col-6'><?= $skill->getStatut() ?></td>
                 </tr>
             </table>
             <form action="" method="post">

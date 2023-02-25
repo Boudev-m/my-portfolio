@@ -11,11 +11,11 @@
 <?php
 require '../../core/skillController.php';
 $skill = (new SkillController())->readOne($_GET['id']);
-$type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
-$text = !empty($skill->text) ? $skill->text : '&#8211';
-$image = !empty($skill->image) ? $skill->image : 'no-image.png';
-$link = !empty($skill->link) ? "<a href='{$skill->link}' class='fw-bold' target='_blank'>{$skill->link}</a>" : '&#8211';
-$active = $skill->active ? 'Activé' : 'Désactivé';
+// $type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
+// $text = !empty($skill->text) ? $skill->text : '&#8211';
+// $image = !empty($skill->image) ? $skill->image : 'no-image.png';
+// $link = !empty($skill->link) ? "<a href='{$skill->link}' class='fw-bold' target='_blank'>{$skill->link}</a>" : '&#8211';
+// $active = $skill->active ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -34,7 +34,7 @@ $active = $skill->active ? 'Activé' : 'Désactivé';
 
         <div class="row w-100 mx-auto my-2">
 
-            <div class='col-4 ps-4 d-flex justify-content-center align-items-center'><img class='rounded' src='../../assets/images/upload/<?= $image ?>' alt='image de la compétence' width=80%></div>
+            <div class='col-4 ps-4 d-flex justify-content-center align-items-center'><img class='rounded' src='../../assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' width=80%></div>
             <div class="col-8">
                 <table class='table table-striped table-hover text-center border border-secondary'>
 
@@ -50,22 +50,28 @@ $active = $skill->active ? 'Activé' : 'Désactivé';
 
                     <tr>
                         <th class='text-end col-3'>Type :</th>
-                        <td><?= $type ?></td>
+                        <td><span style="color:<?= $skill->getType()['color'] ?>;font-weight:bold;"><?= $skill->getType()['type'] ?></span></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Description :</th>
-                        <td class='text-break'><?= $text ?></td>
+                        <td class='text-break'><?= $skill->description ?? '&#8211' ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Lien :</th>
-                        <td class='text-break'><?= $link ?></td>
+                        <td class='text-break'>
+                            <?php if ($skill->link) : ?>
+                                <a href='<?= $skill->link ?>' class='fw-bold' target='_blank'><?= $skill->link ?></a>
+                            <?php else : ?>
+                                &#8211
+                            <?php endif ?>
+                        </td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Statut :</th>
-                        <td><?= $active ?></td>
+                        <td><?= $skill->getStatut() ?></td>
                     </tr>
 
                     <tr>

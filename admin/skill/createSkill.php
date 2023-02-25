@@ -53,8 +53,8 @@
 
                 <!-- TEXT -->
                 <div class="my-2">
-                    <label for="text">Description :</label>
-                    <textarea class="form-control pointer border border-dark" name="text" id="text" rows="3"></textarea>
+                    <label for="description">Description :</label>
+                    <textarea class="form-control pointer border border-dark" name="description" id="description" rows="3"></textarea>
                 </div>
 
                 <!-- LINK -->

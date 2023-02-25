@@ -56,30 +56,32 @@ class SkillController
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
-                $imageName = GeneralController::createImageName();
-                GeneralController::saveImageToDisk($imageName);
+                require_once 'imageController.php';
+                // Sauvegarde l'image dans le disque
+                $imageName = ImageController::createName();
+                ImageController::saveToDisk($imageName);
             }
         }
 
         // On récupère toutes les données du formulaire
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
         $type = (int)$_POST['type'];
-        $text = $_POST['text'] ?: null;
+        $description = $_POST['description'] ?: null;
         $image = $imageName ?: null;
         $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
         // Création de la requête SQL avec les données ci-dessus
         $sql = "
-            INSERT INTO skill (title, type, text, image, link, active)
-            VALUES (:title, :type, :text, :image, :link, :active)
+            INSERT INTO skill (title, type, description, image, link, active)
+            VALUES (:title, :type, :description, :image, :link, :active)
         ";
 
         global $pdo;
         $statement = $pdo->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":type", $type);
-        $statement->bindParam(":text", $text);
+        $statement->bindParam(":description", $description);
         $statement->bindParam(":image", $image);
         $statement->bindParam(":link", $link);
         $statement->bindParam(":active", $active);
@@ -106,12 +108,13 @@ class SkillController
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
+                require_once 'imageController.php';
                 // Sauvegarde l'image dans le disque
-                $imageName = GeneralController::createImageName();
-                GeneralController::saveImageToDisk($imageName);
+                $imageName = ImageController::createName();
+                ImageController::saveToDisk($imageName);
 
                 // Supprime l'ancienne image du disque (s'il y en a une)
-                GeneralController::removeImageFromDisk($pdo, $id, 'skill');
+                ImageController::removeFromDisk($pdo, $id, 'skill');
 
                 // Met à jour l'image dans la BDD
                 $sql = "
@@ -128,7 +131,7 @@ class SkillController
         // On récupère toutes les données du formulaire
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
         $type = (int)$_POST['type'];
-        $text = $_POST['text'] ?: null;
+        $description = $_POST['description'] ?: null;
         $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
@@ -137,7 +140,7 @@ class SkillController
             UPDATE skill SET
             title = :title,
             type = :type,
-            text = :text,
+            description = :description,
             link = :link,
             active = :active
             WHERE id_skill = :id
@@ -146,7 +149,7 @@ class SkillController
         $statement = $pdo->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":type", $type);
-        $statement->bindParam(":text", $text);
+        $statement->bindParam(":description", $description);
         $statement->bindParam(":link", $link);
         $statement->bindParam(":active", $active);
         $statement->bindParam(":id", $id);
@@ -158,8 +161,9 @@ class SkillController
     public function delete($id): void
     {
         require_once 'generalController.php';
+        require_once 'imageController.php';
         global $pdo;
-        GeneralController::removeImageFromDisk($pdo, $id, 'skill');
+        ImageController::removeFromDisk($pdo, $id, 'skill');
         $sql = "
             DELETE FROM skill
             WHERE id_skill = :id
@@ -181,8 +185,8 @@ class SkillController
         if (strlen($_POST['title']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'Le titre ne doit pas dépasser 255 caractères.');
         }
-        if ($_POST['text'] && strlen($_POST['text']) > 255) {
-            GeneralController::redirectWithError($redirectionPath, 'Le texte ne doit pas dépasser 255 caractères.');
+        if ($_POST['description'] && strlen($_POST['description']) > 255) {
+            GeneralController::redirectWithError($redirectionPath, 'La description ne doit pas dépasser 255 caractères.');
         }
         if ($_POST['link'] && strlen($_POST['link']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'Le lien ne doit pas dépasser 255 caractères.');

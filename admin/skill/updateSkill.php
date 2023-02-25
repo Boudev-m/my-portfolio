@@ -63,7 +63,7 @@ $skill = (new SkillController())->readOne($_GET['id']);
                     </tr>
                     <tr>
                         <th class='text-end'>Description :</th>
-                        <td><textarea class='form-control' name='text' id='text' rows='5'><?= $skill->text ?></textarea></td>
+                        <td><textarea class='form-control' name='description' id='description' rows='5'><?= $skill->description ?></textarea></td>
                     </tr>
                     <tr>
                         <th class='text-end align-middle col-3'>Image :</th>
@@ -78,7 +78,7 @@ $skill = (new SkillController())->readOne($_GET['id']);
                         <td>
                             <select class='pointer' style='padding: 10px;' name='isActive' id='isActive'>
                                 <option value=1>Activé</option>
-                                <option value=0 <?= !$skill->active ? 'selected' : '' ?>>Désactivé</option>
+                                <option value=0 <?= $skill->active ?: 'selected' ?>>Désactivé</option>
                             </select>
                         </td>
                     </tr>

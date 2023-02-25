@@ -63,8 +63,9 @@ class ProjectController
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
-                $imageName = GeneralController::createImageName();
-                GeneralController::saveImageToDisk($imageName);
+                require_once 'imageController.php';
+                $imageName = ImageController::createName();
+                ImageController::saveToDisk($imageName);
             }
         }
 
@@ -115,12 +116,13 @@ class ProjectController
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
+                require_once 'imageController.php';
                 // Sauvegarde l'image dans le disque
-                $imageName = GeneralController::createImageName();
-                GeneralController::saveImageToDisk($imageName);
+                $imageName = ImageController::createName();
+                ImageController::saveToDisk($imageName);
 
                 // Supprime l'ancienne image du disque (s'il y en a une)
-                GeneralController::removeImageFromDisk($pdo, $id, 'project');
+                ImageController::removeFromDisk($pdo, $id, 'project');
 
                 // Met à jour l'image dans la BDD
                 $sql = "
@@ -170,8 +172,9 @@ class ProjectController
     public function delete($id): void
     {
         require_once 'generalController.php';
+        require_once 'imageController.php';
         global $pdo;
-        GeneralController::removeImageFromDisk($pdo, $id, 'project');
+        ImageController::removeFromDisk($pdo, $id, 'project');
         $sql = "
             DELETE FROM project
             WHERE id_project = :id

@@ -22,7 +22,7 @@ if (isset($_SESSION['isLog'], $_SESSION['role'])) {
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-2">CONNEXION</h4>
+        <h4 class="text-center pt-2">ESPACE DE CONNEXION</h4>
     </div>
     <div style="border: 2px solid #666;">
         <div class="col-4 mx-auto py-4">
