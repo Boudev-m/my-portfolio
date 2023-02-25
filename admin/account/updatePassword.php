@@ -12,12 +12,6 @@
     (new AccountController)->updatePassword();
 } ?>
 
-<!-- GET ACCOUNT FROM DB -->
-<?php
-require '../../core/accountController.php';
-$myAccount = (new AccountController)->read();
-?>
-
 <?php include '../../assets/inc/back/header.php' ?>
 
 <main>
