@@ -38,19 +38,25 @@ $myAccount = (new AccountController)->read();
                         <th class='text-end col-4'>Email :</th>
                         <td class='text-break'><?= $myAccount->email ?>
                             <a href='./updateEmail.php' title="Modifier l'email">
-                                <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
+                                <div class='btn btn-info fs-6 py-1 px-2 border border-dark'>&#128394;</div>
                             </a>
                         </td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-4'>Mot de passe :</th>
-                        <td class='text-break fw-bold'><?= $myAccount->hidden_password ?>
+                        <td class='text-break'><?= $myAccount->hidden_password ?>
                             <a href='./updatePassword.php' title="Modifier le mot de passe">
-                                <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
+                                <div class='btn btn-info fs-6 py-1 px-2 border border-dark'>&#128394;</div>
                             </a>
                         </td>
                     </tr>
+
+                    <tr>
+                        <th class='text-end col-4'>Date de la dernière modification :</th>
+                        <td class='text-break'>le xx/XX/XX</td>
+                    </tr>
+
                 </table>
             </div>
         </div>
