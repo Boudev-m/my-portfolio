@@ -14,9 +14,14 @@
                                 <a class="nav-link" href="http://localhost/portfolio/contact.php">CONTACT</a>
                             </li>
                         </ul>
-                        <div>
-                            <a href="http://localhost/portfolio/admin/">
-                                <button class="btn btn-secondary" type="submit">CONNEXION</button>
+                        <div class="mx-1">
+                            <a href="https://github.com/Bouimust" class="d-block rounded-circle">
+                                <img src="http://localhost/portfolio/assets/images/icons/github-icon.svg" class="rounded-circle" alt="mon github" title="Github" width="40px">
+                            </a>
+                        </div>
+                        <div class="mx-1">
+                            <a href="https://www.linkedin.com/in/mustapha-bouibrine-b83216265" class="d-block rounded-circle">
+                                <img src="http://localhost/portfolio/assets/images/icons/linkedin-icon.svg" class="rounded-circle" alt="mon linkedin" title="LinkedIn" width="40px">
                             </a>
                         </div>
                     </div>
