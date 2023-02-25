@@ -14,13 +14,20 @@ HTML - CSS - BOOTSTRAP - PHP - SQL
 VSC - WAMP
 
 ## PAGES
-- front-office : 2
+- front-office : 2 + page de connexion
 - back-office : 10+
 
 ## SECURITE
 - DONNEES STOCKES EN SESSION
 - MDP HASHé DANS LA BDD
 - DROIT D'ACCES AU BACK-OFFICE UNIQUEMENT RESERVé A L'ADMIN
+(-VERIFICATION FORM)
+(-BIND PARAM)
+(-VAR ENV)
+
+## IDENTIFIANTS ADMIN
+- email : admin@gmail.com
+- mdp : azertyuiop
 
 - table user avec les champs :
     - id (Auto Increment, primary key)      : non null
@@ -59,29 +66,28 @@ Création du fichier core/userController.php pour executer la fonction login de 
 ____________________________________
 
 ## A FAIRE
-- mettre le site en MVC, avec l'utilisation des class, namespace, autoloader, PDO et la connexion unique à la BDD
-
-- ne créer qu'une seule connexion à la BDD avec PDO (voir le projet MVC OCR)
+- mettre le site en MVC (x PDO, x class, namespace, autoloader)
+- connexion unique BDD (voir le projet MVC OCR)
 - fonction ajout de commentaire au message
 - faire apparaitre l'image après la selection d'une image à uploader (avec js ?)
-- modification mdp avec ancien mdp et confirmation new mdp
-- ajouter la possibilité de mettre plusieurs images pour les projects
+x modification mdp avec ancien mdp et confirmation new mdp
+- ajouter la possibilité de mettre plusieurs images pour les projets
 - faire fonctionner l'envoi de mail vers ma boite (pour la page contact)
 - mettre un htaccess pour réécrire les urls (je l'ai ajouté mais ne fonctionne pas)
 - ajouter un champ level dans la table skill (mon niveau pour une compétence, basé sur 5 étoiles)
 - optimiser les requêtes SQL : recuperer seulement les champs necessaires
 - clean code, reduire le php dans le html et corriger les types (bool, null, ...), form (submit && action)
 - optimiser les chemins de fichier ou utiliser un autoloader
-- Dans la BDD, les champs nullables doivent être NULL si ils sont vides
-- lier les skills au projet (many to many)
-- ne pas afficher de lien vers la page de connexion (car sert uniquement pour la connexion admin)
-- apparemment le 'no-image.png' se supprime quand j'effectue une opération (laquelle ?)
+x Dans la BDD, les champs nullables doivent être NULL si ils sont vides
+x le chargement et la sauvegarde d'une nouvelle image supprime l'ancienne image du disque
+- lier les skills aux projets (many to many), ajouter le choix multiple des compétences à la création/modification d'un projet (voir le projet de richard, le formulaire devra retourner un tableau d'ids)
+x ne pas afficher de lien vers la page de connexion (car sert uniquement pour la connexion admin) path: portfolio/admin
 - écrire les commentaires et la doc en anglais
-- afficher une icone github sur le home
-- créer une classe picture pour les images
+x afficher une icone github sur le home
+x créer une classe imageController pour les images
 - ajouter un bouton suppression d'image et un bouton ajout d'image seulement
-- voir github de Srikahn (Richard) pour le portofolio orienté objet
 - utiliser le format de la date présente dans la class Project Model et le créer pour Message Model
 - var env pour les identifiants de la BDD
-- faire disparaitre le bouton de connexion
-- ajout d'un champ hidden_password pour camoufler le mot de passe non hashé (seulement les 2 derniers caractères sont visibles)
+x ajout d'un champ hidden_password pour camoufler le mot de passe non hashé (seulement les 2 derniers caractères sont visibles)
+- ajout champ update_date dans account (pour afficher la date de la dernière modification)
+- afficher le message d'alerte sous forme de popup
