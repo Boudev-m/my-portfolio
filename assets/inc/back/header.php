@@ -1,7 +1,6 @@
 <!-- Vérifie que le formulaire est soumis -->
 <?php
 if (isset($_POST['submit']) && $_POST['action'] === 'logout') {
-    // die(phpinfo());
     require_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/portfolio/core/accountController.php';
     (new AccountController)->logout();
 }
@@ -26,7 +25,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'logout') {
                                     <li><a class="dropdown-item" href="http://localhost/portfolio/admin/project">Réalisations</a></li>
                                     <li><a class="dropdown-item" href="http://localhost/portfolio/admin/skill">Compétences</a></li>
                                     <li><a class="dropdown-item" href="http://localhost/portfolio/admin/message">Messages</a></li>
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/user">Mon compte</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/account">Mon compte</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
