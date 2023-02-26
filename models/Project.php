@@ -5,14 +5,14 @@ class Project
 {
     public int $id_project;
     public string $title;
-    public ?string $text;
+    public ?string $description;
     public string $date_start;
     public ?string $date_end;
     public ?string $link;
     public ?string $image;
     public bool $active;
 
-    public function getImage()
+    public function getImage(): string
     {
         return $this->image ?? 'no-image.png';
     }
@@ -23,9 +23,17 @@ class Project
         return $datetime->format("d-m-Y");
     }
 
-    public function getDateEnd(): string
+    public function getDateEnd(): ?string
     {
-        $datetime = DateTime::createFromFormat("Y-m-d", $this->date_end);
-        return $datetime->format("d-m-Y");
+        if ($this->date_end) {
+            $datetime = DateTime::createFromFormat("Y-m-d", $this->date_end);
+            return $datetime->format("d-m-Y");
+        }
+        return null;
+    }
+
+    public function getStatut(): string
+    {
+        return $this->active ? 'Activé' : 'Désactivé';
     }
 }
