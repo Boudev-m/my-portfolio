@@ -35,24 +35,15 @@ $project = (new ProjectController())->readOne($_GET['id']);
                 };
                 ?>
                 <table class="table table-striped table-hover">
-
-                    <!-- AFFICHE LA COMPETENCE A MODIFIER -->
-                    <!-- Je place l'action (=update) et l'id de la réalisation dans un input caché -->
-                    <!-- il me serviront pour modifier la réalisation (dans projectController.php) -->
-
                     <input type='hidden' name='action' value='update'>
                     <input type='hidden' name='id' value='<?= $project->id_project ?>'>
-                    <tr class='align-middle vertical-align-center'>
-                        <th class='text-end align-middle col-3'>Id :</th>
-                        <td><?= $project->id_project ?></td>
-                    </tr>
                     <tr>
                         <th class='text-end align-middle col-3'>Titre :</th>
                         <td><input class='form-control' type='text' name='title' id='title' value='<?= $project->title ?>'></td>
                     </tr>
                     <tr>
                         <th class='text-end'>Description :</th>
-                        <td><textarea class='form-control' name='text' id='text' rows='3'><?= $project->text ?></textarea></td>
+                        <td><textarea class='form-control' name='description' id='description' rows='2'><?= $project->description ?></textarea></td>
                     </tr>
 
                     <!-- DATE -->
@@ -86,7 +77,7 @@ $project = (new ProjectController())->readOne($_GET['id']);
                 </table>
                 <div class='text-center'>
                     <button class='btn btn-success py-2 px-4 border border-dark' type='submit' name='submit'>Valider</button>
-                    <a href='./detailProject.php?id=<?= $project->id_project ?>' class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
+                    <a href='../<?= $project->id_project ?>' class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
         </div>

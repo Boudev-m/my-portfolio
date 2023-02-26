@@ -34,7 +34,7 @@ $skills = (new SkillController())->readAll();
 
             <!-- EN-TETES DU TABLEAU -->
             <tr>
-                <th class="col-1">Id</th>
+                <th class="col-1">N°</th>
                 <th class="col-1">Image</th>
                 <th class="col-2">Titre</th>
                 <th class="col-2">Type</th>
@@ -46,15 +46,13 @@ $skills = (new SkillController())->readAll();
             </tr>
 
             <!-- AFFICHE TOUTES LES COMPETENCES -->
-            <?php foreach ($skills as $skill) :
-                $image = !empty($skill->image) ? $skill->image : 'no-image.png';
-            ?>
+            <?php foreach ($skills as $skill) : ?>
 
                 <tr class='align-middle'>
 
                     <td><?= $skill->id_skill ?></td>
                     <td>
-                        <img src='../../assets/images/upload/<?= $image ?>' alt='image de <?= $skill->title ?>' width=70% class='rounded'>
+                        <img src='../../assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' width=70% class='rounded'>
                     </td>
                     <td class='text-break'><?= $skill->title ?></td>
                     <td>
@@ -65,17 +63,17 @@ $skills = (new SkillController())->readAll();
                     <td class='text-break'><?= $skill->description ?? '&#8211' ?></td>
                     <td><?= $skill->getStatut() ?></td>
                     <td class='text-center'>
-                        <a href='./detailSkill.php?id=<?= $skill->id_skill ?>' title='Voir'>
+                        <a href='./<?= $skill->id_skill ?>' title='Voir'>
                             <div class='btn btn-success fs-5 py-1 px-2 border border-dark'>&#128209;</div>
                         </a>
                     </td>
                     <td class='text-center'>
-                        <a href='./updateSkill.php?id=<?= $skill->id_skill ?>' title='Modifier'>
+                        <a href='./<?= $skill->id_skill ?>/update' title='Modifier'>
                             <div class='btn btn-info fs-5 py-1 px-2 border border-dark'>&#128394;</div>
                         </a>
                     </td>
                     <td class='text-center'>
-                        <a href='./confirmDeleteSkill.php?id=<?= $skill->id_skill ?>' title='Supprimer'>
+                        <a href='./<?= $skill->id_skill ?>/delete-confirmation' title='Supprimer'>
                             <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div>
                         </a>
                     </td>

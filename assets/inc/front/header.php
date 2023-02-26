@@ -11,8 +11,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="http://localhost/portfolio/contact.php">CONTACT</a>
+                                <a class="nav-link" href="http://localhost/portfolio/contact">CONTACT</a>
                             </li>
+                            <?php if (isset($_SESSION['isLog'], $_SESSION['role'])) : ?>
+                                <?php if ($_SESSION['isLog'] && $_SESSION['role'] === 'admin') : ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="http://localhost/portfolio/admin/dashboard">TABLEAU DE BORD</a>
+                                    </li>
+                                <?php endif ?>
+                            <?php endif ?>
                         </ul>
                         <div class="mx-1">
                             <a href="https://github.com/Bouimust" class="d-block rounded-circle">

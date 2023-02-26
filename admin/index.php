@@ -7,7 +7,7 @@
 <?php
 if (isset($_SESSION['isLog'], $_SESSION['role'])) {
     if ($_SESSION['isLog'] && $_SESSION['role'] === 'admin') {
-        exit(header('Location: http://localhost/portfolio/admin/dashboard.php'));
+        exit(header('Location: http://localhost/portfolio/admin/dashboard'));
     }
 }
 ?>

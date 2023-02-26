@@ -38,10 +38,6 @@ $skill = (new SkillController())->readOne($_GET['id']);
 
                     <input type='hidden' name='action' value='update'>
                     <input type='hidden' name='id' value='<?= $skill->id_skill ?>'>
-                    <tr class='align-middle vertical-align-center'>
-                        <th class='text-end align-middle col-3'>Id :</th>
-                        <td><?= $skill->id_skill ?></td>
-                    </tr>
                     <tr>
                         <th class='text-end align-middle col-3'>Titre :</th>
                         <td><input class='form-control' type='text' name='title' id='title' value='<?= $skill->title ?>'></td>
@@ -85,7 +81,7 @@ $skill = (new SkillController())->readOne($_GET['id']);
                 </table>
                 <div class='text-center'>
                     <button class='btn btn-success py-2 px-4 border border-dark' type='submit' name="submit">Valider</button>
-                    <a href='./detailSkill.php?id=<?= $skill->id_skill ?>' class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
+                    <a href='../<?= $skill->id_skill ?>' class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
         </div>

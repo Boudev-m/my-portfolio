@@ -11,8 +11,6 @@
 <?php
 require '../../core/messageController.php';
 $message = (new MessageController())->readOne($_GET['id']);
-$company = !empty($message->company) ? $message->company : '&#8211';
-$phone = !empty($message->phone) ? $message->phone : '&#8211';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -35,7 +33,7 @@ $phone = !empty($message->phone) ? $message->phone : '&#8211';
                 <table class='h-25 w-75 table table-striped table-hover text-center border border-secondary'>
 
                     <tr class='align-middle'>
-                        <th class='text-end col-3'>Id :</th>
+                        <th class='text-end col-3'>N° :</th>
                         <td><?= $message->id_message ?></td>
                     </tr>
 
@@ -56,26 +54,26 @@ $phone = !empty($message->phone) ? $message->phone : '&#8211';
 
                     <tr>
                         <th class='text-end col-3'>Société :</th>
-                        <td class='text-break'><?= $company ?></td>
+                        <td class='text-break'><?= $message->company ?? '&#8211' ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Téléphone :</th>
-                        <td class='text-break'><?= $phone ?></td>
+                        <td class='text-break'><?= $message->phone ?? '&#8211' ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Date d'envoi :</th>
-                        <td class='text-break'><?= $message->created_at ?></td>
+                        <td class='text-break'><?= $message->getDate() ?> à <?= $message->getTime() ?></td>
                     </tr>
 
                     <tr>
                         <th></th>
                         <td class='text-center'>
-                            <a href='./updateMessage.php?id=<?= $message->id_message ?>' title='Modifier le message'>
+                            <a href='./<?= $message->id_message ?>/update' title='Modifier le message'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./confirmDeleteMessage.php?id=<?= $message->id_message ?>' title='Supprimer le message'>
+                            <a href='./<?= $message->id_message ?>/delete-confirmation' title='Supprimer le message'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>
@@ -88,7 +86,7 @@ $phone = !empty($message->phone) ? $message->phone : '&#8211';
                         <th class='text-center'>Contenu du message :</th>
                     </tr>
                     <tr>
-                        <td class='text-break fw-bold h-100' style='text-align:justify'><?= nl2br($message->content) ?></td>
+                        <td class='text-break fw-bold h-100' style='text-align:justify'><?= $message->getContent() ?></td>
                     </tr>
                 </table>
 

@@ -4,7 +4,7 @@
 <title>Contact</title>
 
 <?php
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && $_POST['action'] === 'contact') {
     if (!($_POST['name'] && $_POST['email'] && $_POST['message'])) {
         $_SESSION["message"] = '<p class="alert alert-danger fs-5 text-center p-1 w-50 mx-auto">Veuillez remplir tous les champs.</p>';
     } else {
@@ -33,6 +33,7 @@ if (isset($_POST['submit'])) {
                 };
                 ?>
                 <form action="" method="post" style="width:40%" class="form-group mx-auto">
+                    <input type="hidden" name="action" value="contact">
                     <label for="name">Nom :</label>
                     <input class="form-control my-2 pointer border border-dark" type="text" name="name" id="name">
                     <label for="email">Adresse email :</label>

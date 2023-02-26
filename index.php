@@ -5,7 +5,7 @@ include './assets/inc/front/head.php' ?>
 <title>Portfolio</title>
 
 <!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
     require_once 'core/messageController.php';
     (new MessageController)->create();
 } ?>
@@ -45,7 +45,7 @@ $messages = (new MessageController())->readAll();
                             <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
                             <div class="card-body text-white" style="background:#170046;">
                                 <h5 class="card-title"><?= $project->title ?></h5>
-                                <p class="card-text"><?= $project->text ?></p>
+                                <p class="card-text"><?= $project->description ?></p>
                             </div>
                         </div>
                     </a>
@@ -109,7 +109,7 @@ $messages = (new MessageController())->readAll();
                             ?>
                         </div>
 
-                        <input type="hidden" name="action" value="create">
+                        <input type="hidden" name="action" value="newMessage">
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
 
                         <div class="col-6">

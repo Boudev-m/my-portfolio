@@ -114,7 +114,7 @@ class MessageController
         $statement->bindParam(':id', $id);
         $statement->execute();
 
-        GeneralController::redirectWithSuccess("detailMessage.php?id=$id", "Le message a été modifié.");
+        GeneralController::redirectWithSuccess("../$id", "Le message a été modifié.");
     }
 
     public function delete($id): void
@@ -129,7 +129,7 @@ class MessageController
         $statement->bindParam(":id", $id);
         $statement->execute();
 
-        GeneralController::redirectWithSuccess("../message", "Le message a été supprimé.");
+        GeneralController::redirectWithSuccess("../", "Le message a été supprimé.");
     }
 
     public function checkForm($redirectionPath): void

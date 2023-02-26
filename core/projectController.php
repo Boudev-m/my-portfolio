@@ -71,7 +71,7 @@ class ProjectController
 
         // On récupère toutes les données du formulaire
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
-        $text = $_POST['text'] ?: null;
+        $description = $_POST['description'] ?: null;
         $date_start = $_POST['date-start'];
         $date_end = $_POST['date-end'] ?: null;
         $image = $imageName ?? null;
@@ -80,14 +80,14 @@ class ProjectController
 
         // Création de la requête SQL avec les données ci-dessus
         $sql = "
-            INSERT INTO project (title, text, date_start, date_end, image, link, active)
-            VALUES (:title, :text, :date_start, :date_end, :image, :link, :active)
+            INSERT INTO project (title, description, date_start, date_end, image, link, active)
+            VALUES (:title, :description, :date_start, :date_end, :image, :link, :active)
         ";
 
         global $pdo;
         $statement = $pdo->prepare($sql);
         $statement->bindParam(":title", $title);
-        $statement->bindParam(":text", $text);
+        $statement->bindParam(":description", $description);
         $statement->bindParam(":date_start", $date_start);
         $statement->bindParam(":date_end", $date_end);
         $statement->bindParam(":image", $image);
@@ -138,7 +138,7 @@ class ProjectController
 
         // On récupère toutes les données du formulaire
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
-        $text = $_POST['text'] ?: null;
+        $description = $_POST['description'] ?: null;
         $date_start = $_POST['date-start'];
         $date_end = $_POST['date-end'] ?: null;
         $link = $_POST['link'] ?: null;
@@ -148,7 +148,7 @@ class ProjectController
         $sql = "
             UPDATE project SET
             title = :title,
-            text = :text,
+            description = :description,
             date_start = :date_start,
             date_end = :date_end,
             link = :link,
@@ -158,7 +158,7 @@ class ProjectController
 
         $statement = $pdo->prepare($sql);
         $statement->bindParam(":title", $title);
-        $statement->bindParam(":text", $text);
+        $statement->bindParam(":description", $description);
         $statement->bindParam(":date_start", $date_start);
         $statement->bindParam(":date_end", $date_end);
         $statement->bindParam(":link", $link);
@@ -166,7 +166,7 @@ class ProjectController
         $statement->bindParam(":id", $id);
         $statement->execute();
 
-        GeneralController::redirectWithSuccess("detailProject.php?id=$id", "La réalisation '$title' a été modifiée.");
+        GeneralController::redirectWithSuccess("../$id", "La réalisation '$title' a été modifiée.");
     }
 
     public function delete($id): void
@@ -183,7 +183,7 @@ class ProjectController
         $statement->bindParam(":id", $id);
         $statement->execute();
 
-        GeneralController::redirectWithSuccess("../project", "La réalisation n°$id a été supprimée.");
+        GeneralController::redirectWithSuccess("../", "La réalisation n°$id a été supprimée.");
     }
 
     public function checkForm($redirectionPath): void
@@ -196,8 +196,8 @@ class ProjectController
         if (strlen($_POST['title']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'Le titre ne doit pas dépasser 255 caractères.');
         }
-        if ($_POST['text'] && strlen($_POST['text']) > 255) {
-            GeneralController::redirectWithError($redirectionPath, 'Le texte ne doit pas dépasser 255 caractères.');
+        if ($_POST['description'] && strlen($_POST['description']) > 255) {
+            GeneralController::redirectWithError($redirectionPath, 'La description ne doit pas dépasser 255 caractères.');
         }
         if ($_POST['link'] && strlen($_POST['link']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'Le lien ne doit pas dépasser 255 caractères.');

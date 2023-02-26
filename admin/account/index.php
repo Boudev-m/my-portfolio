@@ -30,14 +30,14 @@ $myAccount = (new AccountController)->read();
                 <table class='table table-striped table-hover text-center border border-secondary'>
 
                     <tr class='align-middle'>
-                        <th class='text-end col-4'>Id :</th>
+                        <th class='text-end col-4'>N° identifiant :</th>
                         <td><?= $myAccount->id_account ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-4'>Email :</th>
                         <td class='text-break'><?= $myAccount->email ?>
-                            <a href='./updateEmail.php' title="Modifier l'email">
+                            <a href='./update-email' title="Modifier l'email">
                                 <div class='btn btn-info fs-6 py-1 px-2 border border-dark'>&#128394;</div>
                             </a>
                         </td>
@@ -46,7 +46,7 @@ $myAccount = (new AccountController)->read();
                     <tr>
                         <th class='text-end col-4'>Mot de passe :</th>
                         <td class='text-break'><?= $myAccount->hidden_password ?>
-                            <a href='./updatePassword.php' title="Modifier le mot de passe">
+                            <a href='./update-password' title="Modifier le mot de passe">
                                 <div class='btn btn-info fs-6 py-1 px-2 border border-dark'>&#128394;</div>
                             </a>
                         </td>
@@ -60,7 +60,7 @@ $myAccount = (new AccountController)->read();
                 </table>
             </div>
         </div>
-        <a href="../dashboard.php" class="btn btn-success border border-dark w-100">Retour au Tableau de bord</a>
+        <a href="../dashboard" class="btn btn-success border border-dark w-100">Retour au Tableau de bord</a>
     </div>
 </main>
 

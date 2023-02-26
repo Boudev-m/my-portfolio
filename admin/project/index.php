@@ -33,7 +33,7 @@ $projects = (new ProjectController())->readAll();
 
             <!-- EN-TETES DU TABLEAU -->
             <tr>
-                <th class="col-1">Id</th>
+                <th class="col-1">N°</th>
                 <th class="col-3">Image</th>
                 <th class="col-3">Titre</th>
                 <th class="col-4">Description</th>
@@ -46,31 +46,27 @@ $projects = (new ProjectController())->readAll();
             </tr>
 
             <!-- AFFICHE TOUTES LES COMPETENCES -->
-            <?php
-            foreach ($projects as $project) :
-                $image = !empty($project->image) ? $project->image : 'no-image.png';
-                $text = !empty($project->text) ? $project->text : '&#8211';
-                $date_start = $project->getDateStart();
-                $date_end = !is_null($project->date_end) ? $project->getDateEnd() : '&#8211';
-                $active = $project->active ? 'Activé' : 'Désactivé';
-                echo "
-                    <tr class='align-middle'>
-                    <td>{$project->id_project}</td>
-                    <td><img src='../../assets/images/upload/$image' alt='image de la competence' width=50% class='rounded'></td>
-                    <td class='text-break'>{$project->title}</td>
-                    <td class='text-break'>$text</td>
-                    <td>$date_start</td>
-                    <td>$date_end</td>
-                    <td>$active</td>
-                    <td class='text-center'><a href='./detailProject.php?id={$project->id_project}' title='Voir'>
-                    <div class='btn btn-success fs-5 py-1 px-2 border border-dark'>&#128209;</div></a></td>
-                    <td class='text-center'><a href='./updateProject.php?id={$project->id_project}' title='Modifier'>
-                    <div class='btn btn-info fs-5 py-1 px-2 border border-dark'>&#128394;</div></a></td>
-                    <td class='text-center'><a href='./confirmDeleteProject.php?id={$project->id_project}' title='Supprimer'>
-                    <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div></a></td>
-                    </tr>";
-            endforeach;
-            ?>
+            <?php foreach ($projects as $project) : ?>
+                <tr class='align-middle'>
+                    <td><?= $project->id_project ?></td>
+                    <td><img src='../../assets/images/upload/<?= $project->getImage() ?>' alt='image de <?= $project->title ?>' width=50% class='rounded'></td>
+                    <td class='text-break'><?= $project->title ?></td>
+                    <td class='text-break'><?= $project->description ?? '&#8211' ?></td>
+                    <td><?= $project->getDateStart() ?></td>
+                    <td><?= $project->getDateEnd() ?? '&#8211' ?></td>
+                    <td><?= $project->getStatut() ?></td>
+                    <td class='text-center'><a href='./<?= $project->id_project ?>' title='Voir'>
+                            <div class='btn btn-success fs-5 py-1 px-2 border border-dark'>&#128209;</div>
+                        </a></td>
+                    <td class='text-center'><a href='./<?= $project->id_project ?>/update' title='Modifier'>
+                            <div class='btn btn-info fs-5 py-1 px-2 border border-dark'>&#128394;</div>
+                        </a></td>
+                    <td class='text-center'><a href='./<?= $project->id_project ?>/delete-confirmation' title='Supprimer'>
+                            <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
         </table>
     </div>
 </main>

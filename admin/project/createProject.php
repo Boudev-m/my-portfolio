@@ -39,7 +39,7 @@
                 <!-- TEXT -->
                 <div class="my-2">
                     <label for="text">Description :</label>
-                    <textarea class="form-control pointer border border-dark" name="text" id="text" rows="é"></textarea>
+                    <textarea class="form-control pointer border border-dark" name="description" id="description" rows="1"></textarea>
                 </div>
 
                 <!-- DATE -->

@@ -16,12 +16,6 @@
 <?php
 require '../../core/projectController.php';
 $project = (new ProjectController())->readOne($_GET['id']);
-$text = !empty($project->text) ? $project->text : '&#8211';
-$image = !empty($project->image) ? $project->image : 'no-image.png';
-$date_start = implode('/', array_reverse(explode('-', $project->date_start)));
-$date_end = !is_null($project->date_end) ? implode('/', array_reverse(explode('-', $project->date_end))) : '&#8211';
-$link = !empty($project->link) ? "<a href='{$project->link}' class='fw-bold' target='_blank'>{$project->link}</a>" : '&#8211';
-$active = $project->active === '1' ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -38,10 +32,10 @@ $active = $project->active === '1' ? 'Activé' : 'Désactivé';
 
                 <!-- AFFICHE LA REALISATION RECUPERéE DANS LA BDD -->
                 <tr>
-                    <td class='text-center' colspan='2'><img src='../../assets/images/upload/<?= $image ?>' alt='image de la réalisation' width=20% class='rounded'></td>
+                    <td class='text-center' colspan='2'><img src='../../../assets/images/upload/<?= $project->getImage() ?>' alt='image de <?= $project->title ?>' width=20% class='rounded'></td>
                 </tr>
                 <tr>
-                    <th class='text-end col-6'>Id :</th>
+                    <th class='text-end col-6'>N° :</th>
                     <td class='col-6'><?= $project->id_project ?></td>
                 </tr>
                 <tr>
@@ -50,23 +44,29 @@ $active = $project->active === '1' ? 'Activé' : 'Désactivé';
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Description :</th>
-                    <td class='col-6 text-break'><?= $text ?></td>
+                    <td class='col-6 text-break'><?= $project->description ?? '&#8211' ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-3'>Date de début :</th>
-                    <td class='text-break'><?= $date_start ?></td>
+                    <td class='text-break'><?= $project->getDateStart() ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-3'>Date de fin :</th>
-                    <td class='text-break'><?= $date_end ?></td>
+                    <td class='text-break'><?= $project->getDateEnd() ?? '&#8211' ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Lien :</th>
-                    <td class='col-6 text-break'><?= $link ?></td>
+                    <td class='col-6 text-break'>
+                        <?php if ($project->link) : ?>
+                            <a href='<?= $project->link ?>' class='fw-bold' target='_blank'><?= $project->link ?></a>
+                        <?php else : ?>
+                            &#8211
+                        <?php endif ?>
+                    </td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Statut :</th>
-                    <td class='col-6'><?= $active ?></td>
+                    <td class='col-6'><?= $project->getStatut() ?></td>
                 </tr>
             </table>
             <form action="" method="post">
@@ -74,7 +74,7 @@ $active = $project->active === '1' ? 'Activé' : 'Désactivé';
                 <input type='hidden' name='id' value='<?= $project->id_project ?>'>
                 <div class="py-1 text-center">
                     <button type='submit' name='submit' class='btn btn-success py-2 px-4 border border-dark'>Valider</button>
-                    <a href="./detailProject.php?id=<?= $project->id_project ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
+                    <a href="../<?= $project->id_project ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
         </div>

@@ -16,11 +16,6 @@
 <?php
 require '../../core/skillController.php';
 $skill = (new SkillController())->readOne($_GET['id']);
-// $type = $skill->type === 1 ? '<span style="color:red;font-weight:bold;">Front-end</span>' : '<span style="color:blue;font-weight:bold;">Back-end</span>';
-// $text = !empty($skill->description) ? $skill->description : '&#8211';
-// $image = !empty($skill->image) ? $skill->image : 'no-image.png';
-// $link = !empty($skill->link) ? "<a href='$skill->link' class='fw-bold' target='_blank'>$skill->link</a>" : '&#8211';
-// $active = $skill->active ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -37,10 +32,10 @@ $skill = (new SkillController())->readOne($_GET['id']);
 
                 <!-- AFFICHE LA COMPETENCE RECUPERéE DANS LA BDD -->
                 <tr>
-                    <td class='text-center' colspan='2'><img src='../../assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' width=20% class='rounded'></td>
+                    <td class='text-center' colspan='2'><img src='../../../assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' width=20% class='rounded'></td>
                 </tr>
                 <tr>
-                    <th class='text-end col-6'>Id :</th>
+                    <th class='text-end col-6'>N° :</th>
                     <td class='col-6'><?= $skill->id_skill ?></td>
                 </tr>
                 <tr>
@@ -75,7 +70,7 @@ $skill = (new SkillController())->readOne($_GET['id']);
                 <input type='hidden' name='id' value='<?= $skill->id_skill ?>'>
                 <div class="py-1 text-center">
                     <button type='submit' name='submit' class='btn btn-success py-2 px-4 border border-dark'>Valider</button>
-                    <a href="./detailSkill.php?id=<?= $skill->id_skill ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
+                    <a href="../<?= $skill->id_skill ?>" class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
             </form>
         </div>

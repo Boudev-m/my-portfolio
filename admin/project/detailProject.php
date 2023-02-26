@@ -10,12 +10,6 @@
 <?php
 require '../../core/projectController.php';
 $project = (new ProjectController)->readOne($_GET['id']);
-$text = !empty($project->text) ? $project->text : '&#8211';
-$image = !empty($project->image) ? $project->image : 'no-image.png';
-$date_start = implode('/', array_reverse(explode('-', $project->date_start)));
-$date_end = !is_null($project->date_end) ? implode('/', array_reverse(explode('-', $project->date_end))) : '&#8211';
-$link = !empty($project->link) ? "<a href='{$project->link}' class='fw-bold' target='_blank'>{$project->link}</a>" : '&#8211';
-$active = $project->active === '1' ? 'Activé' : 'Désactivé';
 ?>
 
 <?php include '../../assets/inc/back/header.php' ?>
@@ -35,15 +29,15 @@ $active = $project->active === '1' ? 'Activé' : 'Désactivé';
             };
             ?>
             <div class='col-4 ps-4 my-auto text-center'>
-                <a href="http://localhost/portfolio/assets/images/upload/<?= $image ?>">
-                    <img class='rounded' src='http://localhost/portfolio/assets/images/upload/<?= $image ?>' alt='image de la réalisation' width=99%>
+                <a href="http://localhost/portfolio/assets/images/upload/<?= $project->getImage() ?>">
+                    <img class='rounded' src='http://localhost/portfolio/assets/images/upload/<?= $project->getImage() ?>' alt='image de la réalisation' width=99%>
                 </a>
             </div>
             <div class="col-8">
                 <table class='table table-striped table-hover text-center border border-secondary'>
 
                     <tr class='align-middle'>
-                        <th class='text-end col-3'>Id :</th>
+                        <th class='text-end col-3'>N° :</th>
                         <td><?= $project->id_project ?></td>
                     </tr>
 
@@ -54,36 +48,42 @@ $active = $project->active === '1' ? 'Activé' : 'Désactivé';
 
                     <tr>
                         <th class='text-end col-3'>Description :</th>
-                        <td class='text-break'><?= $text ?></td>
+                        <td class='text-break'><?= $project->description ?? '&#8211' ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Date de début :</th>
-                        <td class='text-break'><?= $date_start ?></td>
+                        <td class='text-break'><?= $project->getDateStart() ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Date de fin :</th>
-                        <td class='text-break'><?= $date_end ?></td>
+                        <td class='text-break'><?= $project->getDateEnd() ?? '&#8211' ?></td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Lien :</th>
-                        <td class='text-break'><?= $link ?></td>
+                        <td class='text-break'>
+                            <?php if ($project->link) : ?>
+                                <a href='<?= $project->link ?>' class='fw-bold' target='_blank'><?= $project->link ?></a>
+                            <?php else : ?>
+                                &#8211
+                            <?php endif ?>
+                        </td>
                     </tr>
 
                     <tr>
                         <th class='text-end col-3'>Statut :</th>
-                        <td><?= $active ?></td>
+                        <td><?= $project->getStatut() ?></td>
                     </tr>
 
                     <tr>
                         <th></th>
                         <td class='text-center'>
-                            <a href='./updateProject.php?id=<?= $project->id_project ?>' class="text-decoration-none" title='Modifier'>
+                            <a href='./<?= $project->id_project ?>/update' class="text-decoration-none" title='Modifier'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./confirmDeleteProject.php?id=<?= $project->id_project ?>' class="text-decoration-none" title='Supprimer'>
+                            <a href='./<?= $project->id_project ?>/delete-confirmation' class="text-decoration-none" title='Supprimer'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>

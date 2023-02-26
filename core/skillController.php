@@ -155,7 +155,7 @@ class SkillController
         $statement->bindParam(":id", $id);
         $statement->execute();
 
-        GeneralController::redirectWithSuccess("detailSkill.php?id=$id", "La compétence '$title' a été modifiée.");
+        GeneralController::redirectWithSuccess("../$id", "La compétence '$title' a été modifiée.");
     }
 
     public function delete($id): void
@@ -172,7 +172,7 @@ class SkillController
         $statement->bindParam(":id", $id);
         $statement->execute();
 
-        GeneralController::redirectWithSuccess("../skill", "La compétence n°$id a été supprimée.");
+        GeneralController::redirectWithSuccess("../", "La compétence n°$id a été supprimée.");
     }
 
     public function checkForm($redirectionPath): void

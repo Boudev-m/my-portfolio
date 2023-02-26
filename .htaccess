@@ -1,14 +1,34 @@
-# # Fichier Apache
-# # Ce fichier va permettre d'insérer des réglages pour le serveur Apache
-# # Conseil : éviter l'utilisation des chiffres dans l'URL
+## Fichier Apache
+## Ce fichier va permettre d'insérer des réglages pour le serveur Apache
+## Conseil : éviter l'utilisation des chiffres dans l'URL
 
-# # Active la réécriture d'URL
-# RewriteEngine On
+## Active la réécriture d'URL
+RewriteEngine On
 
-# # Réécriture d'URL pour la page de détail d'un élément
-# # Avoir '/project/1' au lieu de 'projectDetail.php?id=1'
-# # $1 est une variable
-# RewriteRule ^project/([0-9]+)/*$ projectDetail.php?id=$1 [L]
+## Réécriture d'URL pour la page de détail d'un élément
+## Avoir '/project/1' au lieu de '/project/projectDetail.php?id=1'
+## $1 est une variable
+RewriteRule admin/project/([0-9]+)/*$ admin/project/detailProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*$ admin/skill/detailSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*$ admin/message/detailMessage.php?id=$1 [L]
 
-# # Réécriture d'URL pour retirer l'extension du fichier (pour avoir une URL clean)
-# RewriteRule ^([a-zA-Z_]+)/*$ $1.php [L]
+## Réécriture des pages update
+RewriteRule admin/project/([0-9]+)/*/update admin/project/updateProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*/update admin/skill/updateSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*/update admin/message/updateMessage.php?id=$1 [L]
+
+## Réécriture des pages delete
+RewriteRule admin/project/([0-9]+)/*/delete-confirmation admin/project/confirmDeleteProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*/delete-confirmation admin/skill/confirmDeleteSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*/delete-confirmation admin/message/confirmDeleteMessage.php?id=$1 [L]
+
+## Réécriture des pages create
+RewriteRule admin/project/new admin/project/createProject.php
+RewriteRule admin/skill/new admin/skill/createSkill.php
+
+## Réécriture des pages account
+RewriteRule admin/account/update-email admin/account/updateEmail.php
+RewriteRule admin/account/update-password admin/account/updatePassword.php
+
+## Réécriture d'URL pour retirer l'extension du fichier (pour avoir une URL clean)
+## RewriteRule ^([a-zA-Z_]+)/*$ $1.php [L]

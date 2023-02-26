@@ -40,7 +40,7 @@ class AccountController
         // on sauvegarde des données dans la session (qui autorisent l'accès au back-office)
         $_SESSION['isLog'] = true;
         $_SESSION['role'] = 'admin';
-        GeneralController::redirectWithSuccess('../admin/dashboard.php', "Vous êtes connecté.");
+        GeneralController::redirectWithSuccess('../admin/dashboard', "Vous êtes connecté.");
     }
 
     // LOGOUT

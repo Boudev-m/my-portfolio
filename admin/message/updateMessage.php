@@ -73,7 +73,8 @@ $message = (new MessageController())->readOne($_GET['id']);
                 </div>
 
                 <div class="my-3">
-                    <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENREGISTRER</button>
+                    <button type="submit" name="submit" class="btn btn-success border border-dark">ENREGISTRER</button>
+                    <a href='../<?= $message->id_message ?>' class='btn btn-danger py-2 px-4 border border-dark'>Retour</a>
                 </div>
                 <p>* : champ obligatoire</p>
             </div>

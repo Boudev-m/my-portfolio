@@ -34,7 +34,7 @@ $messages = (new MessageController())->readAll();
 
             <!-- EN-TETES DU TABLEAU -->
             <tr class="text-center">
-                <th class="col-1">Id</th>
+                <th class="col-1">N°</th>
                 <th class="col-2">Prénom</th>
                 <th class="col-2">Nom</th>
                 <th class="col-2">Email</th>
@@ -46,23 +46,21 @@ $messages = (new MessageController())->readAll();
             </tr>
 
             <!-- AFFICHE TOUS LES MESSAGES -->
-            <?php foreach ($messages as $message) :
-                $company = !empty($message->company) ? $message->company : '&#8211';
-                $phone = !empty($message->phone) ? $message->phone : '&#8211'; ?>
+            <?php foreach ($messages as $message) : ?>
                 <tr class='align-middle text-center'>
                     <td><?= $message->id_message ?></td>
                     <td><?= $message->first_name ?></td>
                     <td><?= $message->last_name ?></td>
                     <td><?= $message->email ?></td>
-                    <td><?= $company ?></td>
-                    <td><?= $phone ?></td>
-                    <td class='text-center'><a href='./detailMessage.php?id=<?= $message->id_message ?>' title='Voir le message'>
+                    <td><?= $message->company ?? '&#8211' ?></td>
+                    <td><?= $message->phone ?? '&#8211' ?></td>
+                    <td class='text-center'><a href='./<?= $message->id_message ?>' title='Voir le message'>
                             <div class='btn btn-success fs-5 py-1 px-2'>&#128209;</div>
                         </a></td>
-                    <td class='text-center'><a href='./updateMessage.php?id=<?= $message->id_message ?>' title='Modifier le message'>
+                    <td class='text-center'><a href='./<?= $message->id_message ?>/update' title='Modifier le message'>
                             <div class='btn btn-info fs-5 py-1 px-2'>&#128394;</div>
                         </a></td>
-                    <td class='text-center'><a href='./confirmDeleteMessage.php?id=<?= $message->id_message ?>' title='Supprimer le message'>
+                    <td class='text-center'><a href='./<?= $message->id_message ?>/delete-confirmation' title='Supprimer le message'>
                             <div class='btn btn-danger fs-5 py-1 px-2'>&#128465;</div>
                         </a></td>
                 </tr>
