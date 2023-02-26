@@ -17,6 +17,33 @@ VSC - WAMP
 - front-office : 2 + page de connexion
 - back-office : 10+
 
+## ROUTES
+
+/ (home)
+/contact
+
+/admin
+/admin/dashboard
+/admin/account/update-email
+/admin/account/update-password
+
+/admin/project
+/admin/project/new
+/admin/project/{id}
+/admin/project/{id}/update
+/admin/project/{id}/confirm-delete
+
+/admin/skill
+/admin/skill/new
+/admin/skill/{id}
+/admin/skill/{id}/update
+/admin/skill/{id}/confirm-delete
+
+/admin/message
+/admin/message/{id}
+/admin/message/{id}/update
+/admin/message/{id}/confirm-delete
+
 ## SECURITE
 - DONNEES STOCKES EN SESSION
 - MDP HASHé DANS LA BDD
@@ -67,27 +94,27 @@ ____________________________________
 
 ## A FAIRE
 - mettre le site en MVC (x PDO, x class, namespace, autoloader)
+- optimiser les chemins de fichier ou utiliser un autoloader
 - connexion unique BDD (voir le projet MVC OCR)
+- var env pour les identifiants de la BDD
 - fonction ajout de commentaire au message
+- afficher le message d'alerte sous forme de popup
 - faire apparaitre l'image après la selection d'une image à uploader (avec js ?)
-x modification mdp avec ancien mdp et confirmation new mdp
 - ajouter la possibilité de mettre plusieurs images pour les projets
 - faire fonctionner l'envoi de mail vers ma boite (pour la page contact)
-- mettre un htaccess pour réécrire les urls (je l'ai ajouté mais ne fonctionne pas)
 - ajouter un champ level dans la table skill (mon niveau pour une compétence, basé sur 5 étoiles)
 - optimiser les requêtes SQL : recuperer seulement les champs necessaires
-- clean code, reduire le php dans le html et corriger les types (bool, null, ...), form (submit && action)
-- optimiser les chemins de fichier ou utiliser un autoloader
+- lier les skills aux projets (many to many), ajouter le choix multiple des compétences à la création/modification d'un projet (voir le projet de richard, le formulaire devra retourner un tableau d'ids)
+- écrire les commentaires et la doc en anglais
+- ajouter un bouton suppression d'image et un bouton ajout d'image seulement
+- ajout champ update_date dans account (pour afficher la date de la dernière modification)
+x mettre un htaccess pour réécrire les urls (clean url)
+x modification mdp avec ancien mdp et confirmation new mdp
+x clean code : reduire le php dans le html et corriger les types de variables (bool, null, ...), la soumission des form (submit && action)
 x Dans la BDD, les champs nullables doivent être NULL si ils sont vides
 x le chargement et la sauvegarde d'une nouvelle image supprime l'ancienne image du disque
-- lier les skills aux projets (many to many), ajouter le choix multiple des compétences à la création/modification d'un projet (voir le projet de richard, le formulaire devra retourner un tableau d'ids)
 x ne pas afficher de lien vers la page de connexion (car sert uniquement pour la connexion admin) path: portfolio/admin
-- écrire les commentaires et la doc en anglais
+x ajout de nouvelles methodes pour les modeles
 x afficher une icone github sur le home
 x créer une classe imageController pour les images
-- ajouter un bouton suppression d'image et un bouton ajout d'image seulement
-- utiliser le format de la date présente dans la class Project Model et le créer pour Message Model
-- var env pour les identifiants de la BDD
 x ajout d'un champ hidden_password pour camoufler le mot de passe non hashé (seulement les 2 derniers caractères sont visibles)
-- ajout champ update_date dans account (pour afficher la date de la dernière modification)
-- afficher le message d'alerte sous forme de popup
