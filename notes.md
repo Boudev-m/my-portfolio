@@ -17,15 +17,16 @@ VSC - WAMP
 - front-office : 2 + page de connexion
 - back-office : 10+
 
-## ROUTES
+## URLs
 
-/ (home)
-/contact
+/                                   : page d'accueil
+/contact                            : page de contact
 
-/admin
-/admin/dashboard
-/admin/account/update-email
-/admin/account/update-password
+/admin                              : page de connexion (pour l'admin)
+/admin/dashboard                    : tableau de bord
+/admin/account                      : detail du compte admin
+/admin/account/update-email         : modifier l'email du compte
+/admin/account/update-password      : modifier le mdp du compte
 
 /admin/project
 /admin/project/new
@@ -47,10 +48,10 @@ VSC - WAMP
 ## SECURITE
 - DONNEES STOCKES EN SESSION
 - MDP HASHé DANS LA BDD
-- DROIT D'ACCES AU BACK-OFFICE UNIQUEMENT RESERVé A L'ADMIN
+- ROLE ADMIN REQUIS POUR L'ACCES AU BACK-OFFICE
 (-VERIFICATION FORM)
-(-BIND PARAM)
-(-VAR ENV)
+(-PDO ET BIND PARAM)
+(-VAR ENV POUR LES DONNEES DE CONFIGURATION CONFIDENTIELLES)
 
 ## IDENTIFIANTS ADMIN
 - email : admin@gmail.com
@@ -118,3 +119,27 @@ x ajout de nouvelles methodes pour les modeles
 x afficher une icone github sur le home
 x créer une classe imageController pour les images
 x ajout d'un champ hidden_password pour camoufler le mot de passe non hashé (seulement les 2 derniers caractères sont visibles)
+
+________________________________
+VAR ENV :
+
+https://www.armandphilippot.com/article/dotenv-variables-environnement
+https://github.com/vlucas/phpdotenv
+
+
+// Déclarer une variable d’environnement
+putenv('NOM_VARIABLE=valeur');
+// ou
+$_ENV['NOM_VARIABLE'] = 'valeur';
+
+// Récupérer la valeur de la variable
+echo getenv('NOM_VARIABLE');
+// ou
+echo $_ENV['NOM_VARIABLE'];
+
+.env : fichier qui permettra de charger facilement des variables de configuration dont à besoin l'app sans modifier htaccess ou le serveur Apache.
+
+MYSQL_USER=nomUtilisateur
+MYSQL_PASSWORD=motDePasse
+MYSQL_DB=nomBaseDeDonnées
+MYSQL_HOST=localhost
