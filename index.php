@@ -43,7 +43,7 @@ $messages = (new MessageController())->readAll();
                     <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
                         <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
                             <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
-                            <div class="card-body text-white" style="background:#170046;">
+                            <div class="card-body text-white" style="background:<?= RANDOM_BACKGROUND ?>;">
                                 <h5 class="card-title"><?= $project->title ?></h5>
                                 <p class="card-text"><?= $project->description ?></p>
                             </div>
@@ -151,21 +151,24 @@ $messages = (new MessageController())->readAll();
     <!-- BLOC MESSAGES -->
     <div class="my-5 text-light bg-transparent w-50">
 
-        <?php foreach ($messages as $message) : ?>
-            <div class='p-2 mb-3' style="background-color: rgb(24, 0, 61, 0.5)">
-                <div class="border-bottom border-secondary d-flex pb-1">
-                    <div class="pe-3" style="width: max-content;">
-                        <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= $message->getRandomColor() ?>">
+        <?php if (!$messages) : ?>
+            <div class='p-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">Aucun commentaire n'a été publié ...</div>
+        <?php else : ?>
+            <?php foreach ($messages as $message) : ?>
+                <div class='p-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">
+                    <div class="border-bottom border-secondary d-flex pb-1">
+                        <div class="pe-3" style="width: max-content;">
+                            <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= $message->getRandomColor() ?>">
+                        </div>
+                        <div>
+                            <p class="m-0"><?= $message->first_name ?> <?= $message->last_name ?>,</p>
+                            <p class="m-0">le <?= $message->getDate() ?> à <?= $message->getTime() ?></p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="m-0"><?= $message->first_name ?> <?= $message->last_name ?>,</p>
-                        <p class="m-0">le <?= $message->getDate() ?> à <?= $message->getTime() ?></p>
-                    </div>
+                    <p><?= $message->getContent() ?></p>
                 </div>
-                <p><?= $message->getContent() ?></p>
-            </div>
-        <?php endforeach ?>
-
+            <?php endforeach ?>
+        <?php endif ?>
     </div>
 
 </main>
