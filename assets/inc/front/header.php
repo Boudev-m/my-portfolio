@@ -1,4 +1,7 @@
-<body>
+<?php define('BACKGROUND_COLOR', ['#410016', '#3c003f', '#120046', '#003346', '#003016', '#383000', '#333']) ?>
+<?php define('RANDOM_BACKGROUND', BACKGROUND_COLOR[mt_rand(0, count(BACKGROUND_COLOR) - 1)]) ?>
+
+<body style="background:<?= RANDOM_BACKGROUND ?>;">
     <div class="container">
 
         <header>

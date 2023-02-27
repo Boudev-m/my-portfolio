@@ -6,7 +6,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'logout') {
 }
 ?>
 
-<body>
+<body class="bg-dark">
     <div class="container">
         <header>
             <nav class="navbar navbar-expand-lg my-2" style="border: 2px solid #666;">

@@ -1,7 +1,7 @@
 body {
     max-width: 1200px;
     width: 100%;
-    background-image: url("../images/front-background.jpg");
+    background-image: url("../images/background.png") !important;
     margin: auto;
 }
 
