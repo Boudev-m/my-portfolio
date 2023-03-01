@@ -28,7 +28,7 @@ VSC - WAMP
 /admin/account/update-email         : modifier l'email du compte
 /admin/account/update-password      : modifier le mdp du compte
 
-/admin/project
+/admin/project                      : liste des projets
 /admin/project/new
 /admin/project/{id}
 /admin/project/{id}/update
@@ -87,17 +87,17 @@ Création de l'architecture (arborescence des dossiers et fichiers)
 Création de la table user dans la bdd portfolio
 Création du fichier help/createAdmin.php (qui va permettre de créer un Admin)
 L'Admin (ou webmaster) aura accès au back-office (tableau de bord ou paneau d'administration) pour gérer le site.
-Création d'une barre de nav dans inc/front/headerFront.php
+Création d'une barre de nav dans components/front/headerFront.php
 Création du formulaire dans admin/index.php pour se logger et accéder au back-office
-Création du fichier core/userController.php pour executer la fonction login de l'user
+Création du fichier Controllers/userController.php pour executer la fonction login de l'user
 
 ____________________________________
 
 ## A FAIRE
-- mettre le site en MVC (x PDO, x class, namespace, autoloader)
-- optimiser les chemins de fichier ou utiliser un autoloader
-- connexion unique BDD (voir le projet MVC OCR)
+- rendre l'authentification en class et l'invoquer dans chaque page du back office et chaque controller
 - var env pour les identifiants de la BDD
+- supprimer le code inutile et commenter proprement
+- connexion unique BDD (voir le projet MVC OCR)
 - fonction ajout de commentaire au message
 - afficher le message d'alerte sous forme de popup
 - faire apparaitre l'image après la selection d'une image à uploader (avec js ?)
@@ -109,6 +109,7 @@ ____________________________________
 - écrire les commentaires et la doc en anglais
 - ajouter un bouton suppression d'image et un bouton ajout d'image seulement
 - ajout champ update_date dans account (pour afficher la date de la dernière modification)
+x mettre le site en MVC (x PDO, x class, x namespace, x autoloader)
 x mettre un htaccess pour réécrire les urls (clean url)
 x modification mdp avec ancien mdp et confirmation new mdp
 x clean code : reduire le php dans le html et corriger les types de variables (bool, null, ...), la soumission des form (submit && action)
@@ -117,7 +118,7 @@ x le chargement et la sauvegarde d'une nouvelle image supprime l'ancienne image 
 x ne pas afficher de lien vers la page de connexion (car sert uniquement pour la connexion admin) path: portfolio/admin
 x ajout de nouvelles methodes pour les modeles
 x afficher une icone github sur le home
-x créer une classe imageController pour les images
+x créer une classe ImageController pour les images
 x ajout d'un champ hidden_password pour camoufler le mot de passe non hashé (seulement les 2 derniers caractères sont visibles)
 
 ________________________________
@@ -126,6 +127,7 @@ VAR ENV :
 https://www.armandphilippot.com/article/dotenv-variables-environnement
 https://github.com/vlucas/phpdotenv
 
+Il faut utiliser l'outil PHPDotenv pour exploiter les var env dans une app PHP
 
 // Déclarer une variable d’environnement
 putenv('NOM_VARIABLE=valeur');
@@ -137,9 +139,10 @@ echo getenv('NOM_VARIABLE');
 // ou
 echo $_ENV['NOM_VARIABLE'];
 
-.env : fichier qui permettra de charger facilement des variables de configuration dont à besoin l'app sans modifier htaccess ou le serveur Apache.
+.env : fichier qui permettra de charger facilement des variables de configuration dont à besoin l'app sans modifier htaccess ou le serveur Apache. La configuration doit être séparée du code.
 
 MYSQL_USER=nomUtilisateur
 MYSQL_PASSWORD=motDePasse
 MYSQL_DB=nomBaseDeDonnées
 MYSQL_HOST=localhost
+EMAIL=email
