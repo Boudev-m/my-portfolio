@@ -1,19 +1,23 @@
 <!-- MESSAGE DETAIL (ADMIN UNIQUEMENT) -->
 <!-- Page qui affiche les détails sur un message depuis l'id en parametre url-->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\MessageController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Détail message</title>
 
 <!-- Vérifie si l'message connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- GET ONE MESSAGE FROM DB -->
 <?php
-require '../../core/messageController.php';
+// require '../../Controllers/MessageController.php';
 $message = (new MessageController())->readOne($_GET['id']);
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -96,4 +100,4 @@ $message = (new MessageController())->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

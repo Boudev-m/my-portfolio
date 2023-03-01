@@ -1,23 +1,27 @@
 <!-- PAGE D'ACCUEIL DU PORTFOLIO -->
+<!-- Récupère et utilise l'autoloader -->
+
 <?php
 
-include './assets/inc/front/head.php' ?>
+use App\Controllers\ProjectController;
+use App\Controllers\SkillController;
+use App\Controllers\MessageController;
+?>
+
+<?php include './assets/components/front/head.php' ?>
 <title>Portfolio</title>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
-    require_once 'core/messageController.php';
+
+    // require_once 'Controllers/MessageController.php';
     (new MessageController)->create();
 } ?>
 
-<?php include './assets/inc/front/header.php' ?>
+<?php include './assets/components/front/header.php' ?>
 
 <?php
-// GET ALL PROJECTS FROM DB
-require 'core/projectController.php';
-require 'core/skillController.php';
-require 'core/messageController.php';
-$projects = (new ProjectController())->readAll('active');
+$projects = (new ProjectController)->readAll('active');
 $skills = (new SkillController())->readAll('active');
 $messages = (new MessageController())->readAll();
 ?>
@@ -83,7 +87,7 @@ $messages = (new MessageController())->readAll();
                 <h4 class="text-center pt-2">&#x1F3F2; MON PARCOURS DEVELOPPEUR &#x1F3F2;</h4>
             </div>
             <div class="p-2 text-center">
-                <h5 class="py-3">2023 : POEC Developpeur PHP</h5>
+                <h5 class="py-3">2023 : POEC Developpeur PHP - Symfony</h5>
                 <h5 class="py-3">2020 - 2022 : Apprentissage autodidacte</h5>
             </div>
         </div>
@@ -92,13 +96,13 @@ $messages = (new MessageController())->readAll();
     <!-- BLOC FORM MESSAGE -->
     <div id="messageForm" class="my-5 text-light bg-transparent">
         <div class="mb-4">
-            <h4 class="text-center pt-1">Laisser un commentaire</h4>
+            <h4 class="pt-1">Laisser un commentaire</h4>
         </div>
         <div>
-            <div class="col-6 mx-auto">
+            <div class="col-6">
                 <form action="" method="post">
 
-                    <div class="row justify-content-center mx-auto">
+                    <div class="row">
                         <div>
                             <?php
                             if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
@@ -138,7 +142,7 @@ $messages = (new MessageController())->readAll();
                         </div>
 
                         <div class="my-3 w-50">
-                            <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENREGISTRER</button>
+                            <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
                         </div>
                         <p class="py-0 my-0">* : champ obligatoire</p>
                     </div>
@@ -173,4 +177,4 @@ $messages = (new MessageController())->readAll();
 
 </main>
 
-<?php include './assets/inc/front/footer.php' ?>
+<?php include './assets/components/front/footer.php' ?>

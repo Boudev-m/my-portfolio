@@ -1,19 +1,22 @@
 <!-- INDEX PROJECTS (ADMIN UNIQUEMENT) -->
 <!-- Page qui affiche tous les projets réalisés -->
+<?php
 
-<?php include '../../assets/inc/back/head.php' ?>
+use App\Controllers\ProjectController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Gestion des Réalisations</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- GET ALL PROJECTS FROM DB -->
 <?php
-require '../../core/projectController.php';
+require '../../src/Controllers/ProjectController.php';
 $projects = (new ProjectController())->readAll();
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -71,4 +74,4 @@ $projects = (new ProjectController())->readAll();
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

@@ -1,18 +1,22 @@
 <!-- PAGE DETAIL ACCOUNT (BACK OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\AccountController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Détails du compte</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- GET ACCOUNT FROM DB -->
 <?php
-require '../../core/accountController.php';
+require '../../src/Controllers/AccountController.php';
 $myAccount = (new AccountController)->read();
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -54,7 +58,7 @@ $myAccount = (new AccountController)->read();
 
                     <tr>
                         <th class='text-end col-4'>Date de la dernière modification :</th>
-                        <td class='text-break'>le xx/XX/XX</td>
+                        <td class='text-break'>le XX/XX/XX à XX:XX</td>
                     </tr>
 
                 </table>
@@ -64,4 +68,4 @@ $myAccount = (new AccountController)->read();
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

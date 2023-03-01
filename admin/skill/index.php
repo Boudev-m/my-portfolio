@@ -1,19 +1,23 @@
 <!-- INDEX SKILLS (ADMIN UNIQUEMENT) -->
 <!-- Page qui affiche toutes les compétences -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\SkillController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Gestion des Compétences</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- GET ALL SKILLS FROM DB -->
 <?php
-require '../../core/skillController.php';
+// require '../../src/Controllers/SkillController.php';
 $skills = (new SkillController())->readAll();
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -83,4 +87,4 @@ $skills = (new SkillController())->readAll();
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

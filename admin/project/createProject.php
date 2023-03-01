@@ -1,18 +1,23 @@
-<!-- PAGE NOUVELLE PROJET (BACK-OFFICE) -->
+<!-- PAGE NOUVELLE REALISATION (BACK-OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\ProjectController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Nouvelle Réalisation</title>
 
 <!-- Vérifie si l'user est admin en analysant les données en session -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
-    require_once '../../core/projectController.php';
+    // require_once '../../Controllers/ProjectController.php';
+
     (new ProjectController)->create();
 } ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -86,4 +91,4 @@
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

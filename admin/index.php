@@ -1,12 +1,15 @@
 <!-- PAGE DE CONNEXION ADMIN -->
+<?php
 
-<?php include '../assets/inc/front/head.php' ?>
+use App\Controllers\AccountController;
+
+include '../assets/components/front/head.php' ?>
 <title>Connexion</title>
 
 <!-- Vérifie si l'admin est dejà connecté -->
 <?php
-if (isset($_SESSION['isLog'], $_SESSION['role'])) {
-    if ($_SESSION['isLog'] && $_SESSION['role'] === 'admin') {
+if (isset($_SESSION['isLogged'], $_SESSION['role'])) {
+    if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') {
         exit(header('Location: http://localhost/portfolio/admin/dashboard'));
     }
 }
@@ -14,11 +17,12 @@ if (isset($_SESSION['isLog'], $_SESSION['role'])) {
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'login') {
-    require_once '../core/accountController.php';
+    // require_once '../src/Controllers/AccountController.php';
+
     (new AccountController)->login($_POST['email'], $_POST['password']);
 } ?>
 
-<?php include '../assets/inc/front/header.php' ?>
+<?php include '../assets/components/front/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -44,4 +48,5 @@ if (isset($_SESSION['isLog'], $_SESSION['role'])) {
     </div>
 </main>
 
-<?php include '../assets/inc/front/footer.php' ?>
+<?php include '../assets/components/front/footer.php' ?>
+use App\Controllers\AccountController;

@@ -1,24 +1,28 @@
 <!-- PAGE SKILL UPDATE (BACK OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\SkillController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Détail compétence</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    require_once '../../core/skillController.php';
+    // require_once '../../Controllers/SkillController.php';
     (new SkillController)->update($_POST['id']);
 } ?>
 
 <!-- GET ONE SKILL FROM DB -->
 <?php
-require '../../core/skillController.php';
+// require '../../Controllers/SkillController.php';
 $skill = (new SkillController())->readOne($_GET['id']);
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -88,4 +92,5 @@ $skill = (new SkillController())->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>
+use App\Controllers\SkillController;

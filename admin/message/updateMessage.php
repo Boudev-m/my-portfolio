@@ -1,24 +1,28 @@
 <!-- PAGE MESSAGE UPDATE (BACK OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\MessageController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Modification Message</title>
 
 <!-- Vérifie si le message connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    require_once '../../core/messageController.php';
+    // require_once '../../Controllers/MessageController.php';
     (new MessageController)->update($_POST['id']);
 } ?>
 
 <!-- GET ONE SKILL FROM DB -->
 <?php
-require '../../core/messageController.php';
+// require '../../Controllers/MessageController.php';
 $message = (new MessageController())->readOne($_GET['id']);
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -82,4 +86,4 @@ $message = (new MessageController())->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

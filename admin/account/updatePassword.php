@@ -1,18 +1,22 @@
 <!-- PAGE UPDATE PASSWORD ACCOUNT (BACK OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\AccountController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Modifier mon compte</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    require_once '../../core/accountController.php';
+    // require_once '../../Controllers/AccountController.php';
     (new AccountController)->updatePassword();
 } ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -51,4 +55,4 @@
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

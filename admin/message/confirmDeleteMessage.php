@@ -1,25 +1,28 @@
 <!-- PAGE DE DEMANDE DE CONFIRMATION DE SUPPRESSION DE MESSAGE (BACK OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\MessageController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Confirmation de suppression</title>
 
 <!-- Vérifie si l'admin est connecté -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') {
-    require_once '../../core/messageController.php';
+    // require_once '../../Controllers/MessageController.php';
     (new MessageController)->delete($_POST['id']);
 } ?>
 
 <!-- GET ONE MESSAGE FROM DB -->
 <?php
-require '../../core/messageController.php';
+// require '../../Controllers/MessageController.php';
 $message = (new MessageController())->readOne($_GET['id']);
-
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -81,4 +84,4 @@ $message = (new MessageController())->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

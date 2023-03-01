@@ -1,24 +1,28 @@
 <!-- PAGE PROJECT UPDATE (BACK OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\ProjectController; ?>
+
+<?php include '../../assets/components/back/head.php' ?>
 <title>Détail réalisation</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
 <?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    require_once '../../core/projectController.php';
+
     (new ProjectController)->update($_POST['id']);
 } ?>
 
 <!-- GET ONE PROJECT FROM DB -->
 <?php
-require '../../core/ProjectController.php';
+// require '../../Controllers/ProjectController.php';
 $project = (new ProjectController())->readOne($_GET['id']);
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -84,4 +88,4 @@ $project = (new ProjectController())->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

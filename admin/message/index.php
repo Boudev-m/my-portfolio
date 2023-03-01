@@ -1,19 +1,23 @@
 <!-- INDEX MESSAGE (ACCES ADMIN UNIQUEMENT) -->
 <!-- Page qui affiche tous les messages -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\MessageController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Gestion des Messages</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- GET ALL MESSAGES FROM DB -->
 <?php
-require '../../core/messageController.php';
+// require '../../Controllers/MessageController.php';
 $messages = (new MessageController())->readAll();
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -69,4 +73,4 @@ $messages = (new MessageController())->readAll();
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

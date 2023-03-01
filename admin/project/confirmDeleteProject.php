@@ -1,24 +1,22 @@
 <!-- PAGE DE DEMANDE DE CONFIRMATION DE SUPPRESSION DE REALISATION (ACCES ADMIN UNIQUEMENT) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php
+
+use App\Controllers\ProjectController;
+
+include '../../assets/components/back/head.php' ?>
 <title>Confirmation de suppression</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<!-- Vérifie l'authentification -->
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') {
-    require_once '../../core/projectController.php';
-    (new ProjectController)->delete($_POST['id']);
-} ?>
+<?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') (new ProjectController)->delete($_POST['id']); ?>
 
 <!-- GET ONE PROJECT FROM DB -->
-<?php
-require '../../core/projectController.php';
-$project = (new ProjectController())->readOne($_GET['id']);
-?>
+<?php $project = (new ProjectController())->readOne($_GET['id']); ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -81,4 +79,4 @@ $project = (new ProjectController())->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

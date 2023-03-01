@@ -1,18 +1,20 @@
 <!-- PAGE DETAIL PROJECT (BACK-OFFICE) -->
 
-<?php include '../../assets/inc/back/head.php' ?>
+<?php include '../../assets/components/back/head.php' ?>
 <title>Détail réalisation</title>
 
 <!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../core/authentification.php' ?>
+<?php require '../../src/Controllers/Authentification.php' ?>
 
 <!-- GET ONE PROJECT FROM DB -->
 <?php
-require '../../core/projectController.php';
+
+use App\Controllers\ProjectController;
+
 $project = (new ProjectController)->readOne($_GET['id']);
 ?>
 
-<?php include '../../assets/inc/back/header.php' ?>
+<?php include '../../assets/components/back/header.php' ?>
 
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
@@ -95,4 +97,4 @@ $project = (new ProjectController)->readOne($_GET['id']);
     </div>
 </main>
 
-<?php include '../../assets/inc/back/footer.php' ?>
+<?php include '../../assets/components/back/footer.php' ?>

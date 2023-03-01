@@ -1,6 +1,6 @@
 <!-- PAGE DE CONTACT-->
 
-<?php include './assets/inc/front/head.php' ?>
+<?php include './assets/components/front/head.php' ?>
 <title>Contact</title>
 
 <?php
@@ -14,7 +14,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'contact') {
 }
 ?>
 
-<?php include './assets/inc/front/header.php' ?>
+<?php include './assets/components/front/header.php' ?>
 
 <main>
 
@@ -47,4 +47,4 @@ if (isset($_POST['submit']) && $_POST['action'] === 'contact') {
     </div>
 </main>
 
-<?php include './assets/inc/front/footer.php' ?>
+<?php include './assets/components/front/footer.php' ?>
