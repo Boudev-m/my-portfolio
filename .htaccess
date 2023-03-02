@@ -18,9 +18,9 @@ RewriteRule admin/skill/([0-9]+)/*/update admin/skill/updateSkill.php?id=$1 [L]
 RewriteRule admin/message/([0-9]+)/*/update admin/message/updateMessage.php?id=$1 [L]
 
 ## Réécriture des pages delete
-RewriteRule admin/project/([0-9]+)/*/delete-confirmation admin/project/confirmDeleteProject.php?id=$1 [L]
-RewriteRule admin/skill/([0-9]+)/*/delete-confirmation admin/skill/confirmDeleteSkill.php?id=$1 [L]
-RewriteRule admin/message/([0-9]+)/*/delete-confirmation admin/message/confirmDeleteMessage.php?id=$1 [L]
+RewriteRule admin/project/([0-9]+)/*/confirm-delete admin/project/confirmDeleteProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*/confirm-delete admin/skill/confirmDeleteSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*/confirm-delete admin/message/confirmDeleteMessage.php?id=$1 [L]
 
 ## Réécriture des pages create
 RewriteRule admin/project/new admin/project/createProject.php
