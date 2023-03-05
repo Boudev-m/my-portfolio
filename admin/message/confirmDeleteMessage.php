@@ -1,29 +1,28 @@
-<!-- PAGE DE DEMANDE DE CONFIRMATION DE SUPPRESSION DE MESSAGE (BACK OFFICE) -->
+<!-- CONFIRM DELETE MESSAGE PAGE (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\MessageController;
-
-include '../../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
 <title>Confirmation de suppression</title>
 
-<!-- Vérifie si l'admin est connecté -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') {
-    // require_once '../../Controllers/MessageController.php';
-    (new MessageController)->delete($_POST['id']);
-} ?>
-
-<!-- GET ONE MESSAGE FROM DB -->
 <?php
-// require '../../Controllers/MessageController.php';
+
+use App\Controllers\Authentication;
+use App\Controllers\MessageController;
+
+// CHECK AUTH
+Authentication::check();
+
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'delete') (new MessageController)->delete($_POST['id']);
+
+// GET MESSAGE FROM DB
 $message = (new MessageController())->readOne($_GET['id']);
 ?>
 
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Suppression du message n°<?= $message->id_message ?></h4>
@@ -32,6 +31,14 @@ $message = (new MessageController())->readOne($_GET['id']);
         <h5 class="text-center py-3">Voulez-vous vraiment supprimer ce message ?</h5>
         <h5 class="text-center text-danger fw-bold p-0">Attention, cette action est irréversible.</h5>
         <div class="col-6 mx-auto py-3">
+            <table class='table table-striped table-hover text-center border border-secondary'>
+                <tr>
+                    <th class='text-center'>Contenu du message :</th>
+                </tr>
+                <tr>
+                    <td class='text-break fw-bold text-justify' style='text-align:justify'><?= $message->getContent() ?></td>
+                </tr>
+            </table>
             <table class="table table-striped table-hover border border-secondary">
 
                 <!-- AFFICHE LE MESSAGE RECUPERé DANS LA BDD -->
@@ -60,16 +67,12 @@ $message = (new MessageController())->readOne($_GET['id']);
                     <td class='col-6'><?= $message->phone ?? '&#8211' ?></td>
                 </tr>
                 <tr>
+                    <th class='text-end col-6'>Visibilité :</th>
+                    <td class='col-6'><?= $message->getVisibility() ?? '&#8211' ?></td>
+                </tr>
+                <tr>
                     <th class='text-end col-6'>Date d'envoi :</th>
                     <td class='col-6'><?= $message->getDate() ?> à <?= $message->getTime() ?></td>
-                </tr>
-            </table>
-            <table class='table table-striped table-hover text-center border border-secondary'>
-                <tr>
-                    <th class='text-center'>Contenu du message :</th>
-                </tr>
-                <tr>
-                    <td class='text-break fw-bold text-justify' style='text-align:justify'><?= $message->getContent() ?></td>
                 </tr>
             </table>
             <form action="" method="post">
@@ -84,4 +87,5 @@ $message = (new MessageController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

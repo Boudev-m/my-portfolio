@@ -1,29 +1,28 @@
-<!-- PAGE MESSAGE UPDATE (BACK OFFICE) -->
+<!-- UPDATE MESSAGE PAGE (BACK OFFICE) -->
+
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
+<title>Modification de message</title>
 
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\MessageController;
 
-include '../../assets/components/back/head.php' ?>
-<title>Modification Message</title>
+// CHECK AUTH
+Authentication::check();
 
-<!-- Vérifie si le message connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'update') (new MessageController)->update($_POST['id']);
 
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    // require_once '../../Controllers/MessageController.php';
-    (new MessageController)->update($_POST['id']);
-} ?>
-
-<!-- GET ONE SKILL FROM DB -->
-<?php
-// require '../../Controllers/MessageController.php';
+// GET MESSAGE FROM DB
 $message = (new MessageController())->readOne($_GET['id']);
 ?>
 
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Modifier le message n°<?= $message->id_message ?></h4>
@@ -86,4 +85,5 @@ $message = (new MessageController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

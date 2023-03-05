@@ -1,24 +1,24 @@
-<!-- MESSAGE DETAIL (ADMIN UNIQUEMENT) -->
-<!-- Page qui affiche les détails sur un message depuis l'id en parametre url-->
+<!-- MESSAGE DETAILS PAGE (BACK OFFICE) -->
+
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
+<title>Détails du message</title>
 
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\MessageController;
 
-include '../../assets/components/back/head.php' ?>
-<title>Détail message</title>
+// CHECK AUTH
+Authentication::check();
 
-<!-- Vérifie si l'message connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
+// GET MESSAGE FROM DB 
+$message = (new MessageController())->readOne($_GET['id']) ?>
 
-<!-- GET ONE MESSAGE FROM DB -->
-<?php
-// require '../../Controllers/MessageController.php';
-$message = (new MessageController())->readOne($_GET['id']);
-?>
-
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Détails sur le message n°<?= $message->id_message ?></h4>
@@ -67,6 +67,11 @@ $message = (new MessageController())->readOne($_GET['id']);
                     </tr>
 
                     <tr>
+                        <th class='text-end col-3'>Visibilité :</th>
+                        <td class='text-break'><?= $message->getVisibility() ?? '&#8211' ?></td>
+                    </tr>
+
+                    <tr>
                         <th class='text-end col-3'>Date d'envoi :</th>
                         <td class='text-break'><?= $message->getDate() ?> à <?= $message->getTime() ?></td>
                     </tr>
@@ -77,7 +82,7 @@ $message = (new MessageController())->readOne($_GET['id']);
                             <a href='./<?= $message->id_message ?>/update' title='Modifier le message'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./<?= $message->id_message ?>/delete-confirmation' title='Supprimer le message'>
+                            <a href='./<?= $message->id_message ?>/confirm-delete' title='Supprimer le message'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>
@@ -100,4 +105,5 @@ $message = (new MessageController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>
