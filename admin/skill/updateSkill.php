@@ -1,29 +1,27 @@
-<!-- PAGE SKILL UPDATE (BACK OFFICE) -->
+<!-- UPDATE SKILL PAGE (BACK OFFICE) -->
+
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
+<title>Modification de compétence</title>
 
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\SkillController;
 
-include '../../assets/components/back/head.php' ?>
-<title>Détail compétence</title>
+// CHECK AUTH
+Authentication::check();
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'update') (new SkillController)->update($_POST['id']);
 
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    // require_once '../../Controllers/SkillController.php';
-    (new SkillController)->update($_POST['id']);
-} ?>
+// GET SKILL FROM DB
+$skill = (new SkillController())->readOne($_GET['id']) ?>
 
-<!-- GET ONE SKILL FROM DB -->
-<?php
-// require '../../Controllers/SkillController.php';
-$skill = (new SkillController())->readOne($_GET['id']);
-?>
-
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Modifier la compétence n°<?= $skill->id_skill ?></h4>
@@ -92,5 +90,5 @@ $skill = (new SkillController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>
-use App\Controllers\SkillController;

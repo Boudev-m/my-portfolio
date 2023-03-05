@@ -1,23 +1,24 @@
-<!-- INDEX PROJECTS (ADMIN UNIQUEMENT) -->
-<!-- Page qui affiche tous les projets réalisés -->
-<?php
+<!-- PROJECT LIST PAGE (BACK OFFICE) -->
 
-use App\Controllers\ProjectController;
-
-include '../../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
 <title>Gestion des Réalisations</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- GET ALL PROJECTS FROM DB -->
 <?php
-require '../../src/Controllers/ProjectController.php';
-$projects = (new ProjectController())->readAll();
-?>
 
+use App\Controllers\Authentication;
+use App\Controllers\ProjectController;
+
+// CHECK AUTH
+Authentication::check();
+
+// GET ALL PROJECTS FROM DB
+$projects = (new ProjectController())->readAll() ?>
+
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <a href="http://localhost/portfolio/admin/project/createProject.php">
@@ -64,7 +65,7 @@ $projects = (new ProjectController())->readAll();
                     <td class='text-center'><a href='./<?= $project->id_project ?>/update' title='Modifier'>
                             <div class='btn btn-info fs-5 py-1 px-2 border border-dark'>&#128394;</div>
                         </a></td>
-                    <td class='text-center'><a href='./<?= $project->id_project ?>/delete-confirmation' title='Supprimer'>
+                    <td class='text-center'><a href='./<?= $project->id_project ?>/confirm-delete' title='Supprimer'>
                             <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div>
                         </a>
                     </td>
@@ -74,4 +75,5 @@ $projects = (new ProjectController())->readAll();
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

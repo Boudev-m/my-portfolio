@@ -1,24 +1,24 @@
-<!-- INDEX SKILLS (ADMIN UNIQUEMENT) -->
-<!-- Page qui affiche toutes les compétences -->
+<!-- SKILL LIST PAGE (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\SkillController;
-
-include '../../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
 <title>Gestion des Compétences</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- GET ALL SKILLS FROM DB -->
 <?php
-// require '../../src/Controllers/SkillController.php';
-$skills = (new SkillController())->readAll();
-?>
 
+use App\Controllers\Authentication;
+use App\Controllers\SkillController;
+
+// CHECK AUTH
+Authentication::check();
+
+// GET ALL SKILLS FROM DB
+$skills = (new SkillController())->readAll() ?>
+
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <a href="http://localhost/portfolio/admin/skill/createSkill.php">
@@ -77,7 +77,7 @@ $skills = (new SkillController())->readAll();
                         </a>
                     </td>
                     <td class='text-center'>
-                        <a href='./<?= $skill->id_skill ?>/delete-confirmation' title='Supprimer'>
+                        <a href='./<?= $skill->id_skill ?>/confirm-delete' title='Supprimer'>
                             <div class='btn btn-danger fs-5 py-1 px-2 border border-dark'>&#128465;</div>
                         </a>
                     </td>
@@ -87,4 +87,5 @@ $skills = (new SkillController())->readAll();
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

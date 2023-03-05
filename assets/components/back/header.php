@@ -1,12 +1,9 @@
-<!-- Vérifie que le formulaire est soumis -->
 <?php
 
 use App\Controllers\AccountController;
 
-if (isset($_POST['submit']) && $_POST['action'] === 'logout') {
-    require_once $_SERVER['CONTEXT_DOCUMENT_ROOT'] . '/portfolio/src/Controllers/AccountController.php';
-    (new AccountController)->logout();
-}
+// CHECK IF LOGOUT FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'logout') (new AccountController)->logout();
 ?>
 
 <body class="bg-dark">

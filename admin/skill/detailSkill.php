@@ -1,25 +1,24 @@
-<!-- SKILL DETAIL (ACCES ADMIN UNIQUEMENT) -->
-<!-- Page qui affiche les détails sur une compétence (depuis l'id en parametre url)-->
+<!-- SKILL DETAILS PAGE (BACK OFFICE) -->
+
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
+<title>Détails de compétence</title>
 
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\SkillController;
 
-include '../../assets/components/back/head.php' ?>
-<title>Détail compétence</title>
+// CHECK AUTH
+Authentication::check();
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
+// GET SKILL FROM DB
+$skill = (new SkillController())->readOne($_GET['id']) ?>
 
-<!-- GET ONE SKILL FROM DB -->
-<?php
-// require '../../Controllers/SkillController.php';
-
-$skill = (new SkillController())->readOne($_GET['id']);
-?>
-
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Détails sur la compétence n°<?= $skill->id_skill ?></h4>
@@ -80,7 +79,7 @@ $skill = (new SkillController())->readOne($_GET['id']);
                             <a href='./<?= $skill->id_skill ?>/update' class="text-decoration-none" title='Modifier'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./<?= $skill->id_skill ?>/delete-confirmation' class="text-decoration-none" title='Supprimer'>
+                            <a href='./<?= $skill->id_skill ?>/confirm-delete' class="text-decoration-none" title='Supprimer'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>
@@ -92,4 +91,5 @@ $skill = (new SkillController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

@@ -1,31 +1,28 @@
-<!-- PAGE D'ACCUEIL DU PORTFOLIO -->
-<!-- Récupère et utilise l'autoloader -->
+<!-- HOME PAGE (FRONT OFFICE) -->
+
+<!-- HEAD -->
+<?php include './assets/components/front/head.php' ?>
+<title>Portfolio de BouiMust</title>
 
 <?php
 
 use App\Controllers\ProjectController;
 use App\Controllers\SkillController;
 use App\Controllers\MessageController;
-?>
 
-<?php include './assets/components/front/head.php' ?>
-<title>Portfolio</title>
+// CHECK IF FORM IS SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
 
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
-
-    // require_once 'Controllers/MessageController.php';
-    (new MessageController)->create();
-} ?>
-
-<?php include './assets/components/front/header.php' ?>
-
-<?php
+// GET DATAS FROM DB
 $projects = (new ProjectController)->readAll('active');
 $skills = (new SkillController())->readAll('active');
-$messages = (new MessageController())->readAll();
+$messages = array_reverse((new MessageController())->readAll('visible'));
 ?>
 
+<!-- HEADER -->
+<?php include './assets/components/front/header.php' ?>
+
+<!-- MAIN CONTENT -->
 <main>
     <?php
     if (isset($_SESSION['message']) && !isset($_SESSION['messageSection'])) {
@@ -35,7 +32,7 @@ $messages = (new MessageController())->readAll();
     ?>
     <div class="my-2">
 
-        <!-- BLOC PROJECTS -->
+        <!-- PROJECT LIST BLOCK -->
         <div class="border-bottom border-top border-dark">
             <h4 class="text-center pt-2">&#x1F4E3; MES REALISATIONS &#x1F4E3;</h4>
         </div>
@@ -58,7 +55,7 @@ $messages = (new MessageController())->readAll();
 
         </div>
 
-        <!-- BLOC SKILLS -->
+        <!-- SKILL LIST BLOCK -->
         <div class="my-2">
 
             <div class="border-bottom border-top border-dark">
@@ -81,7 +78,7 @@ $messages = (new MessageController())->readAll();
 
         </div>
 
-        <!-- BLOC PARCOURS -->
+        <!-- PARCOURS BLOCK -->
         <div class="my-2">
             <div class="border-bottom border-top border-dark">
                 <h4 class="text-center pt-2">&#x1F3F2; MON PARCOURS DEVELOPPEUR &#x1F3F2;</h4>
@@ -93,7 +90,8 @@ $messages = (new MessageController())->readAll();
         </div>
     </div>
 
-    <!-- BLOC FORM MESSAGE -->
+
+    <!-- FORM MESSAGE BLOCK-->
     <div id="messageForm" class="my-5 text-light bg-transparent">
         <div class="mb-4">
             <h4 class="pt-1">Laisser un commentaire</h4>
@@ -107,36 +105,26 @@ $messages = (new MessageController())->readAll();
                             <?php
                             if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
                                 echo $_SESSION['message'];
-                                unset($_SESSION['message']);
-                                unset($_SESSION['messageSection']);
+                                unset($_SESSION['message'], $_SESSION['messageSection']);
                             };
                             ?>
                         </div>
 
                         <input type="hidden" name="action" value="newMessage">
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
+                        <input type="hidden" name="isVisible" id="isVisible" value=1>
+                        <input type="hidden" name="first-name" id="first-name">
+                        <input type="hidden" name="company" id="company">
+                        <input type="hidden" name="phone" id="phone">
 
                         <div class="col-6">
                             <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" placeholder="Nom *">
                             </div>
                             <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="text" name="first-name" id="first-name" placeholder="Prénom *">
-                            </div>
-                            <div class="mb-2">
                                 <input class="form-control pointer border border-dark" type="email" name="email" id="email" placeholder="Adresse email *">
                             </div>
                         </div>
-
-                        <div class="col-6">
-                            <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="text" name="company" id="company" placeholder="Société">
-                            </div>
-                            <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="tel" name="phone" id="phone" placeholder="Téléphone">
-                            </div>
-                        </div>
-
                         <div class="mb-2">
                             <textarea class="form-control pointer border border-dark" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
                         </div>
@@ -152,7 +140,7 @@ $messages = (new MessageController())->readAll();
     </div>
 
 
-    <!-- BLOC MESSAGES -->
+    <!-- MESSAGE LIST BLOCK -->
     <div class="my-5 text-light bg-transparent w-50">
 
         <?php if (!$messages) : ?>
@@ -174,7 +162,7 @@ $messages = (new MessageController())->readAll();
             <?php endforeach ?>
         <?php endif ?>
     </div>
-
 </main>
 
+<!-- FOOTER -->
 <?php include './assets/components/front/footer.php' ?>

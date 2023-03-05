@@ -1,5 +1,6 @@
 <?php
 // SKILL MODEL
+
 namespace App\Models;
 
 class Skill

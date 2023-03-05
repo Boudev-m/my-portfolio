@@ -1,29 +1,27 @@
-<!-- PAGE PROJECT UPDATE (BACK OFFICE) -->
+<!-- UPDATE PROJECT PAGE (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\ProjectController; ?>
-
+<!-- HEAD -->
 <?php include '../../assets/components/back/head.php' ?>
-<title>Détail réalisation</title>
+<title>Modification de réalisation</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-
-    (new ProjectController)->update($_POST['id']);
-} ?>
-
-<!-- GET ONE PROJECT FROM DB -->
 <?php
-// require '../../Controllers/ProjectController.php';
-$project = (new ProjectController())->readOne($_GET['id']);
-?>
 
+use App\Controllers\Authentication;
+use App\Controllers\ProjectController;
+
+// CHECK AUTH
+Authentication::check();
+
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'update') (new ProjectController)->update($_POST['id']);
+
+// GET PROJECT FROM DB
+$project = (new ProjectController())->readOne($_GET['id']) ?>
+
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Modifier la réalisation n°<?= $project->id_project ?></h4>
@@ -88,4 +86,5 @@ $project = (new ProjectController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

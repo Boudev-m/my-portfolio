@@ -1,24 +1,24 @@
-<!-- PAGE NOUVELLE REALISATION (BACK-OFFICE) -->
+<!-- NEW PROJECT PAGE (BACK OFFICE) -->
+
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
+<title>Nouvelle réalisation</title>
 
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\ProjectController;
 
-include '../../assets/components/back/head.php' ?>
-<title>Nouvelle Réalisation</title>
+// CHECK AUTH
+Authentication::check();
 
-<!-- Vérifie si l'user est admin en analysant les données en session -->
-<?php require '../../src/Controllers/Authentification.php' ?>
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'create') (new ProjectController)->create() ?>
 
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
-    // require_once '../../Controllers/ProjectController.php';
-
-    (new ProjectController)->create();
-} ?>
-
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Ajouter une réalisation</h4>
@@ -91,4 +91,5 @@ include '../../assets/components/back/head.php' ?>
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

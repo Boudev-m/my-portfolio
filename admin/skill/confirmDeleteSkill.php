@@ -1,29 +1,27 @@
-<!-- PAGE CONFIRMATION AVANT SUPPRESSION DE COMPETENCE (BACK OFFICE) -->
+<!-- CONFIRM DELETE SKILL PAGE (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\SkillController;
-
-include '../../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
 <title>Confirmation de suppression</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'delete') {
-    // require_once '../../src/Controllers/SkillController.php';
-    (new SkillController)->delete($_POST['id']);
-} ?>
-
-<!-- GET ONE SKILL FROM DB -->
 <?php
-// require '../../Controllers/SkillController.php';
-$skill = (new SkillController())->readOne($_GET['id']);
-?>
 
+use App\Controllers\Authentication;
+use App\Controllers\SkillController;
+
+// CHECK AUTH
+Authentication::check();
+
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'delete') (new SkillController)->delete($_POST['id']);
+
+// GET SKILL FROM DB
+$skill = (new SkillController())->readOne($_GET['id']) ?>
+
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Suppression de la compétence n°<?= $skill->id_skill ?></h4>
@@ -81,5 +79,5 @@ $skill = (new SkillController())->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>
-use App\Controllers\SkillController;

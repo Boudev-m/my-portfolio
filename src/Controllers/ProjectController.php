@@ -1,37 +1,31 @@
 <?php
-// MANAGE PROJECT
+// PROJECT CONTROLLER
+
 namespace App\Controllers;
 
 use PDO;
 use App\Models\Project;
 
-if (session_status() === 1) session_start();
-
 class ProjectController
 {
+    // GET ALL PROJECTS FROM DATABASE
     public function readAll(string $statut = null): array
     {
-        // Récupère seulement les compétences actives
-        if ($statut === 'active') {
-            $sql = "SELECT * FROM project WHERE `active` = 1";
-        } else {
-            $sql = "SELECT * FROM project";
-        }
-
-        // require_once(__DIR__ . "/DatabaseConnection.php");  // Sert à récupérer $pdo. Il faut changer ce fichier en class
-        // // global $pdo;
+        // get only active projects if 'active' is in arg, or get all projects
+        $sql = $statut === 'active' ? "SELECT * FROM project WHERE `active` = 1" : "SELECT * FROM project";
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_CLASS, Project::class);  // ou "App\\Models\\Project" au lieu de Project::class
-        return $result;
+        $projects = $statement->fetchAll(PDO::FETCH_CLASS, Project::class);  // or "App\\Models\\Project" instead of Project::class
+        return $projects;
 
-        // foreach ($result as $project) {
+        // foreach ($projects as $project) {
         //     $this->loadSkillsFromProject($project);
         // }
 
     }
 
-    public function readOne($id): Project
+    // GET ONE PROJECT
+    public function readOne(int $id): Project
     {
         $sql = "SELECT * FROM project WHERE id_project = :id";
 
@@ -39,37 +33,36 @@ class ProjectController
         $statement->bindParam(":id", $id);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Project::class);
-        $result = $statement->fetch();
+        $project = $statement->fetch();
 
-        return $result;
+        if (!$project) GeneralController::redirectWithError('../', 'La ressource que vous recherchez n\'existe pas.');
 
-        // Requête de récupération des compétences (skills)
-        // $this->loadSkillsFromProject($result);
+        return $project;
 
+        // Requête de récupération des compétences pour ce projet
+        // $this->loadSkillsFromProject($project);
     }
 
+    // CREATE PROJECT
     public function create(): void
     {
-        // Récupère les fonctions générales
-        // require_once 'GeneralController.php';
-
-        // Vérifie les données du formulaire
+        // check if form valid
         $this->checkForm($_SERVER['SCRIPT_NAME']);
 
-        // Vérifie si l'utilisateur a chargé un fichier
+        // check if file uploaded
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
 
-            // Vérifie si le fichier chargé est une image
+            // check if the file uploaded is an image
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
-                require_once 'ImageController.php';
+                // create name for the image and save to disk
                 $imageName = ImageController::createName();
                 ImageController::saveToDisk($imageName);
             }
         }
 
-        // On récupère toutes les données du formulaire
+        // formatting datas
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
         $description = $_POST['description'] ?: null;
         $date_start = $_POST['date-start'];
@@ -78,7 +71,7 @@ class ProjectController
         $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
-        // Création de la requête SQL avec les données ci-dessus
+        // save project in DB
         $sql = "
             INSERT INTO project (title, description, date_start, date_end, image, link, active)
             VALUES (:title, :description, :date_start, :date_end, :image, :link, :active)
@@ -97,37 +90,28 @@ class ProjectController
         GeneralController::redirectWithSuccess('../project', "La réalisation '$title' a été ajoutée.");
     }
 
-    public function update($id): void
+    // UPDATE PROJECT
+    public function update(int $id): void
     {
-        // Récupère les fonctions générales
-        // require_once 'GeneralController.php';
-
-        // Vérifie les données du formulaire
+        // check if form valid
         $this->checkForm($_SERVER['REQUEST_URI']);
 
-        // Connexion
-        // global $pdo;
-
-        // Vérifie si l'utilisateur a chargé un fichier
+        // check if file uploaded
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
 
-            // Vérifie si le fichier chargé est une image
+            // check if the file uploaded is an image
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
-                // require_once 'ImageController.php';
-                // Sauvegarde l'image dans le disque
+                // create name for the image and save to disk
                 $imageName = ImageController::createName();
                 ImageController::saveToDisk($imageName);
 
-                // Supprime l'ancienne image du disque (s'il y en a une)
+                // remove the old image (if there is one)
                 ImageController::removeFromDisk($id, 'project');
 
-                // Met à jour l'image dans la BDD
-                $sql = "
-                    UPDATE project SET image = :image
-                    WHERE id_project = :id
-                ";
+                // update image in DB
+                $sql = "UPDATE project SET image = :image WHERE id_project = :id";
                 $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
                 $statement->bindParam(":id", $id);
                 $statement->bindParam(":image", $imageName);
@@ -135,7 +119,7 @@ class ProjectController
             }
         }
 
-        // On récupère toutes les données du formulaire
+        // formatting datas
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
         $description = $_POST['description'] ?: null;
         $date_start = $_POST['date-start'];
@@ -143,7 +127,7 @@ class ProjectController
         $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
-        // Création de la requête SQL avec les données ci-dessus
+        // Update project in DB
         $sql = "
             UPDATE project SET
             title = :title,
@@ -154,7 +138,6 @@ class ProjectController
             active = :active
             WHERE id_project = :id
         ";
-
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":description", $description);
@@ -168,16 +151,14 @@ class ProjectController
         GeneralController::redirectWithSuccess("../$id", "La réalisation '$title' a été modifiée.");
     }
 
-    public function delete($id): void
+    // DELETE PROJECT
+    public function delete(int $id): void
     {
-        // require_once 'GeneralController.php';
-        // require_once 'ImageController.php';
-        // global $pdo;
+        // remove the old image (if there is one)
         ImageController::removeFromDisk($id, 'project');
-        $sql = "
-            DELETE FROM project
-            WHERE id_project = :id
-        ";
+
+        // delete project in DB
+        $sql = "DELETE FROM project WHERE id_project = :id";
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
@@ -185,13 +166,14 @@ class ProjectController
         GeneralController::redirectWithSuccess("../", "La réalisation n°$id a été supprimée.");
     }
 
-    public function checkForm($redirectionPath): void
+    // CHECK FORM
+    public function checkForm(string $redirectionPath): void
     {
-        // Vérifie si les champs obligatoires sont remplis
+        // check if required fields are filled
         if (!$_POST['title']) GeneralController::redirectWithError($redirectionPath, 'Le titre est obligatoire.');
         if (!$_POST['date-start']) GeneralController::redirectWithError($redirectionPath, 'La date de début est obligatoire.');
 
-        // Vérifie la longueur des caractères saisies
+        // check character length
         if (strlen($_POST['title']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'Le titre ne doit pas dépasser 255 caractères.');
         }
@@ -202,14 +184,14 @@ class ProjectController
             GeneralController::redirectWithError($redirectionPath, 'Le lien ne doit pas dépasser 255 caractères.');
         }
 
-        // Vérifie si le statut est bien défini
+        // check if statut is set
         if ($_POST['isActive'] !== '0' && $_POST['isActive'] !== '1') {
             GeneralController::redirectWithError($redirectionPath, 'Le statut n\'est pas défini.');
         }
 
-        // Vérifie si date de fin saisie
+        // check if date end is set
         if ($_POST['date-end']) {
-            // Vérifie si date de fin > date de début
+            // check if date start < date end
             if (strtotime($_POST['date-start']) > strtotime($_POST['date-end'])) {
                 GeneralController::redirectWithError($redirectionPath, 'La date de fin ne peut être situé avant la date de début.');
             }

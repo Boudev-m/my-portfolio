@@ -1,23 +1,24 @@
-<!-- PAGE NOUVELLE COMPETENCE (BACK-OFFICE) -->
+<!-- NEW SKILL PAGE (BACK OFFICE) -->
+
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
+<title>Nouvelle compétence</title>
 
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\SkillController;
 
-include '../../assets/components/back/head.php' ?>
-<title>Nouvelle compétence</title>
+// CHECK AUTH
+Authentication::check();
 
-<!-- Vérifie si l'user est admin en analysant les données en session -->
-<?php require '../../src/Controllers/Authentification.php' ?>
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'create') (new SkillController)->create() ?>
 
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'create') {
-    // require_once '../../src/Controllers/SkillController.php';
-    (new SkillController)->create();
-} ?>
-
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Ajouter une compétence</h4>
@@ -89,4 +90,5 @@ include '../../assets/components/back/head.php' ?>
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

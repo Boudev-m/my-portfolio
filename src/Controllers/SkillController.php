@@ -1,71 +1,60 @@
 <?php
-// MANAGE SKILL
+// SKILL CONTROLLER
+
 namespace App\Controllers;
 
 use PDO;
 use App\Models\Skill;
 
-if (session_status() === 1) session_start();
-
 class SkillController
 {
-
+    // GET ALL SKILLS FROM DATABASE
     public function readAll(string $statut = null): array
     {
-        // Récupère seulement les compétences actives
-        if ($statut === 'active') {
-            $sql = "SELECT * FROM skill WHERE `active` = 1";
-        } else {
-            $sql = "SELECT * FROM skill";
-        }
-
-        // Database connection
-        // include(__DIR__ . "/DatabaseConnection.php");
-        // global $pdo;
-        // die(var_dump($pdo));
+        // get only active skills if 'active' is in arg, or get all skills
+        $sql = $statut === 'active' ? "SELECT * FROM skill WHERE `active` = 1" : "SELECT * FROM skill";
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_CLASS, Skill::class);
-        return $result;
+        $skills = $statement->fetchAll(PDO::FETCH_CLASS, Skill::class);
+        return $skills;
     }
 
-    public function readOne($id): Skill
+    // GET ONE SKILL
+    public function readOne(int $id): Skill
     {
-
         $sql = "SELECT * FROM skill WHERE id_skill = :id";
 
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Skill::class);
-        $result = $statement->fetch();
+        $skill = $statement->fetch();
 
-        return $result;
+        if (!$skill) GeneralController::redirectWithError('../', 'La ressource que vous recherchez n\'existe pas.');
+
+        return $skill;
     }
 
+    // CREATE SKILL
     public function create(): void
     {
-        // Récupère les fonctions générales
-        // require_once 'GeneralController.php';
-
-        // Vérifie les données du formulaire
+        // check if form valid
         $this->checkForm($_SERVER['SCRIPT_NAME']);
 
-        // Vérifie si l'utilisateur a chargé un fichier
+        // check if file uploaded
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
 
-            // Vérifie si le fichier chargé est une image
+            // check if the file uploaded is an image
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
-                // require_once 'ImageController.php';
-                // Sauvegarde l'image dans le disque
+                // create name for the image and save to disk
                 $imageName = ImageController::createName();
                 ImageController::saveToDisk($imageName);
             }
         }
 
-        // On récupère toutes les données du formulaire
+        // formatting datas
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
         $type = (int)$_POST['type'];
         $description = $_POST['description'] ?: null;
@@ -73,7 +62,7 @@ class SkillController
         $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
-        // Création de la requête SQL avec les données ci-dessus
+        // save skill in DB
         $sql = "
             INSERT INTO skill (title, type, description, image, link, active)
             VALUES (:title, :type, :description, :image, :link, :active)
@@ -91,37 +80,28 @@ class SkillController
         GeneralController::redirectWithSuccess('../skill', "La compétence '$title' a été ajoutée.");
     }
 
-    public function update($id): void
+    // UPDATE SKILL
+    public function update(int $id): void
     {
-        // Récupère les fonctions générales
-        // require_once 'GeneralController.php';
-
-        // Vérifie les données du formulaire
+        // check if form valid
         $this->checkForm($_SERVER['REQUEST_URI']);
 
-        // Connexion
-        // global $pdo;
-
-        // Vérifie si l'utilisateur a chargé un fichier
+        // check if file uploaded
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
 
-            // Vérifie si le fichier chargé est une image
+            // check if the file uploaded is an image
             if (strtolower(explode("/", $_FILES['image']['type'])[0]) !== 'image') {
                 GeneralController::redirectWithError($_SERVER['SCRIPT_NAME'], 'Erreur de fichier.');
             } else {
-                // require_once 'ImageController.php';
-                // Sauvegarde l'image dans le disque
+                // create name for the image and save to disk
                 $imageName = ImageController::createName();
                 ImageController::saveToDisk($imageName);
 
-                // Supprime l'ancienne image du disque (s'il y en a une)
+                // remove the old image (if there is one)
                 ImageController::removeFromDisk($id, 'skill');
 
-                // Met à jour l'image dans la BDD
-                $sql = "
-                    UPDATE skill SET image = :image
-                    WHERE id_skill = :id
-                ";
+                // update image in DB
+                $sql = "UPDATE skill SET image = :image WHERE id_skill = :id";
                 $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
                 $statement->bindParam(":id", $id);
                 $statement->bindParam(":image", $imageName);
@@ -129,14 +109,14 @@ class SkillController
             }
         }
 
-        // On récupère toutes les données du formulaire
+        // formatting datas
         $title = strip_tags(ucwords(strtolower($_POST['title'])));
         $type = (int)$_POST['type'];
         $description = $_POST['description'] ?: null;
         $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
-        // Création de la requête SQL avec les données ci-dessus
+        // Update skill in DB
         $sql = "
             UPDATE skill SET
             title = :title,
@@ -159,16 +139,14 @@ class SkillController
         GeneralController::redirectWithSuccess("../$id", "La compétence '$title' a été modifiée.");
     }
 
-    public function delete($id): void
+    // DELETE SKILL
+    public function delete(int $id): void
     {
-        // require_once 'GeneralController.php';
-        // require_once 'ImageController.php';
-        // global $pdo;
+        // remove the old image (if there is one)
         ImageController::removeFromDisk($id, 'skill');
-        $sql = "
-            DELETE FROM skill
-            WHERE id_skill = :id
-        ";
+
+        // delete skill in DB
+        $sql = "DELETE FROM skill WHERE id_skill = :id";
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
@@ -176,13 +154,14 @@ class SkillController
         GeneralController::redirectWithSuccess("../", "La compétence n°$id a été supprimée.");
     }
 
-    public function checkForm($redirectionPath): void
+    // CHECK FORM
+    public function checkForm(string $redirectionPath): void
     {
-        // Vérifie si les champs obligatoires sont remplis
+        // check if required fields are filled
         if (!$_POST['title']) GeneralController::redirectWithError($redirectionPath, 'Le titre est obligatoire.');
         if (!$_POST['type']) GeneralController::redirectWithError($redirectionPath, 'Le type est obligatoire.');
 
-        // Vérifie la longueur des caractères saisies
+        // check character length
         if (strlen($_POST['title']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'Le titre ne doit pas dépasser 255 caractères.');
         }
@@ -193,12 +172,12 @@ class SkillController
             GeneralController::redirectWithError($redirectionPath, 'Le lien ne doit pas dépasser 255 caractères.');
         }
 
-        // Vérifie la valeur du type
+        // check if type is set
         if ($_POST['type'] !== '1' && $_POST['type'] !== '2') {
             GeneralController::redirectWithError($redirectionPath, 'Le type n\'est pas défini.');
         }
 
-        // Vérifie si le statut est bien défini
+        // check if statut is set
         if ($_POST['isActive'] !== '0' && $_POST['isActive'] !== '1') {
             GeneralController::redirectWithError($redirectionPath, 'Le statut n\'est pas défini.');
         }

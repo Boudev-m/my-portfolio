@@ -1,29 +1,28 @@
-<!-- PAGE UPDATE EMAIL ACCOUNT (BACK OFFICE) -->
+<!-- UPDATE ACCOUNT EMAIL PAGE (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\AccountController;
-
-include '../../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
 <title>Modifier mon compte</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- Vérifie que le formulaire est soumis -->
-<?php if (isset($_POST['submit']) && $_POST['action'] === 'update') {
-    // require_once '../../Controllers/AccountController.php';
-    (new AccountController)->updateEmail();
-} ?>
-
-<!-- GET ACCOUNT FROM DB -->
 <?php
-// require '../../Controllers/AccountController.php';
+
+use App\Controllers\Authentication;
+use App\Controllers\AccountController;
+
+// CHECK AUTH
+Authentication::check();
+
+// CHECK IF FORM SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'update') (new AccountController)->updateEmail();
+
+// GET ACCOUNT FROM DB
 $myAccount = (new AccountController)->read();
 ?>
 
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Modifier mon adresse email</h4>
@@ -64,4 +63,5 @@ $myAccount = (new AccountController)->read();
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

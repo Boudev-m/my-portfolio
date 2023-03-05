@@ -1,5 +1,6 @@
 <?php
 // PROJECT MODEL
+
 namespace App\Models;
 
 use DateTime;

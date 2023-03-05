@@ -1,21 +1,24 @@
-<!-- PAGE DETAIL PROJECT (BACK-OFFICE) -->
+<!-- PROJECT DETAILS PAGE (BACK OFFICE) -->
 
+<!-- HEAD -->
 <?php include '../../assets/components/back/head.php' ?>
-<title>Détail réalisation</title>
+<title>Détails de réalisation</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- GET ONE PROJECT FROM DB -->
 <?php
 
+use App\Controllers\Authentication;
 use App\Controllers\ProjectController;
 
-$project = (new ProjectController)->readOne($_GET['id']);
-?>
+// CHECK AUTH
+Authentication::check();
 
+// GET PROJECT FROM DB
+$project = (new ProjectController)->readOne($_GET['id']); ?>
+
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Détails sur la réalisation n°<?= $project->id_project ?></h4>
@@ -85,7 +88,7 @@ $project = (new ProjectController)->readOne($_GET['id']);
                             <a href='./<?= $project->id_project ?>/update' class="text-decoration-none" title='Modifier'>
                                 <div class='btn btn-info fs-5 py-1 px-3 border border-dark'>&#128394;</div>
                             </a>
-                            <a href='./<?= $project->id_project ?>/delete-confirmation' class="text-decoration-none" title='Supprimer'>
+                            <a href='./<?= $project->id_project ?>/confirm-delete' class="text-decoration-none" title='Supprimer'>
                                 <div class='btn btn-danger fs-5 py-1 px-3 border border-dark'>&#128465;</div>
                             </a>
                         </td>
@@ -97,4 +100,5 @@ $project = (new ProjectController)->readOne($_GET['id']);
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>

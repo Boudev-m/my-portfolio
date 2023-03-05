@@ -1,23 +1,23 @@
-<!-- PAGE DE CONTACT-->
+<!-- CONTACT PAGE (FRONT OFFICE) -->
 
-<?php include './assets/components/front/head.php' ?>
+<!-- HEAD -->
+<?php
+
+use App\Controllers\MessageController;
+
+include './assets/components/front/head.php' ?>
 <title>Contact</title>
 
 <?php
-if (isset($_POST['submit']) && $_POST['action'] === 'contact') {
-    if (!($_POST['name'] && $_POST['email'] && $_POST['message'])) {
-        $_SESSION["message"] = '<p class="alert alert-danger fs-5 text-center p-1 w-50 mx-auto">Veuillez remplir tous les champs.</p>';
-    } else {
-        $_SESSION["message"] = '<p class="alert alert-success fs-5 text-center p-1 w-50 mx-auto">Votre formulaire a été envoyé.</p>';
-    }
-    exit(header('Location: ./contact.php'));
-}
+// CHECK IF FORM IS SUBMITTED
+if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
 ?>
 
+<!-- HEADER -->
 <?php include './assets/components/front/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
-
     <div class="my-2">
         <div class="border-bottom border-top border-dark">
             <h4 class="text-center pt-2">&#x260E; CONTACT &#x260E;</h4>
@@ -26,25 +26,63 @@ if (isset($_POST['submit']) && $_POST['action'] === 'contact') {
         <div class="mx-auto py-4">
             <div class="card-body">
                 <p class="card-text text-center">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
-                <?php
-                if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                };
-                ?>
-                <form action="" method="post" style="width:40%" class="form-group mx-auto">
-                    <input type="hidden" name="action" value="contact">
-                    <label for="name">Nom :</label>
-                    <input class="form-control my-2 pointer border border-dark" type="text" name="name" id="name">
-                    <label for="email">Adresse email :</label>
-                    <input class="form-control my-2 pointer border border-dark" type="email" name="email" id="email">
-                    <label for="message">Message :</label>
-                    <textarea class="form-control my-2 pointer border border-dark" name="message" id="message" rows="4" placeholder="Votre message"></textarea>
-                    <button type="submit" name="submit" class="btn btn-success border border-dark w-100 my-2">ENVOYER</button>
+
+                <form action="" method="post" style="max-width:100%; width:50%;" class="form-group mx-auto">
+
+                    <div class="row">
+                        <input type="hidden" name="action" value="newMessage">
+                        <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
+                        <input type="hidden" name="isVisible" id="isVisible" value=0>
+
+                        <div class="col-6">
+                            <div>
+                                <label for="last-name">Nom * :</label>
+                                <input class="form-control pointer border border-dark my-1" type="text" name="last-name" id="last-name">
+                            </div>
+                            <div>
+                                <label for="first-name">Prénom :</label>
+                                <input class="form-control pointer border border-dark my-1" type="text" name="first-name" id="first-name">
+                            </div>
+                            <div>
+                                <label for="email">Adresse email * :</label>
+                                <input class="form-control pointer border border-dark my-1" type="email" name="email" id="email">
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div>
+                                <label for="company">Société :</label>
+                                <input class="form-control pointer border border-dark my-1" type="text" name="company" id="company">
+                            </div>
+                            <div>
+                                <label for="phone">Téléphone :</label>
+                                <input class="form-control pointer border border-dark my-1" type="tel" name="phone" id="phone">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="content">Message * :</label>
+                            <textarea class="form-control pointer border border-dark my-1" name="content" id="content" rows="3"></textarea>
+                        </div>
+
+                        <div class="my-3 w-50 mx-auto">
+                            <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
+                        </div>
+                        <p class="py-0 my-0">* : champ obligatoire</p>
+                    </div>
+                    <?php
+                    if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message'], $_SESSION['messageSection']);
+                    };
+                    ?>
                 </form>
+                <div>
+                </div>
             </div>
         </div>
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include './assets/components/front/footer.php' ?>

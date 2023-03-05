@@ -1,24 +1,27 @@
-<!-- TABLEAU DE BORD (ACCES ADMIN UNIQUEMENT) -->
+<!-- DASHBOARD (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\GeneralController;
-
-include '../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../assets/components/back/head.php' ?>
 <title>Tableau de bord</title>
 
-<?php require '../src/Controllers/Authentification.php' ?>
-
 <?php
+
+use App\Controllers\Authentication;
+use App\Controllers\GeneralController;
+
+// CHECK AUTH
+Authentication::check();
+
 // COUNT DATAS FROM DB
-// require '../Controllers/GeneralController.php';
 $skillsCount = GeneralController::countAllDatas('skill');
 $projectsCount = GeneralController::countAllDatas('project');
 $messagesCount = GeneralController::countAllDatas('message');
 ?>
 
+<!-- HEADER -->
 <?php include '../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">TABLEAU DE BORD</h4>
@@ -66,4 +69,5 @@ $messagesCount = GeneralController::countAllDatas('message');
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../assets/components/back/footer.php' ?>
