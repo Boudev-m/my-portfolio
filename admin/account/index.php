@@ -1,23 +1,24 @@
-<!-- PAGE DETAIL ACCOUNT (BACK OFFICE) -->
+<!-- ACCOUNT DETAILS PAGE (BACK OFFICE) -->
 
-<?php
-
-use App\Controllers\AccountController;
-
-include '../../assets/components/back/head.php' ?>
+<!-- HEAD -->
+<?php include '../../assets/components/back/head.php' ?>
 <title>Détails du compte</title>
 
-<!-- Vérifie si l'utilisateur connecté est Admin -->
-<?php require '../../src/Controllers/Authentification.php' ?>
-
-<!-- GET ACCOUNT FROM DB -->
 <?php
-require '../../src/Controllers/AccountController.php';
-$myAccount = (new AccountController)->read();
-?>
 
+use App\Controllers\Authentication;
+use App\Controllers\AccountController;
+
+// CHECK AUTH
+Authentication::check();
+
+// GET ACCOUNT FROM DB
+$myAccount = (new AccountController)->read() ?>
+
+<!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
 
+<!-- MAIN CONTENT -->
 <main>
     <div class="mb-2" style="border: 2px solid #666;">
         <h4 class="text-center pt-1">Détails de mon compte</h4>
@@ -46,7 +47,6 @@ $myAccount = (new AccountController)->read();
                             </a>
                         </td>
                     </tr>
-
                     <tr>
                         <th class='text-end col-4'>Mot de passe :</th>
                         <td class='text-break'><?= $myAccount->hidden_password ?>
@@ -58,7 +58,7 @@ $myAccount = (new AccountController)->read();
 
                     <tr>
                         <th class='text-end col-4'>Date de la dernière modification :</th>
-                        <td class='text-break'>le XX/XX/XX à XX:XX</td>
+                        <td class='text-break'>le <?= $myAccount->getDate() ?> à <?= $myAccount->getTime() ?></td>
                     </tr>
 
                 </table>
@@ -68,4 +68,5 @@ $myAccount = (new AccountController)->read();
     </div>
 </main>
 
+<!-- FOOTER -->
 <?php include '../../assets/components/back/footer.php' ?>
