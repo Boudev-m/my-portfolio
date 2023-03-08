@@ -103,38 +103,38 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                 <form action="" method="post">
 
                     <div class="row">
-                        <div>
-                            <?php
-                            if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
-                                echo $_SESSION['message'];
-                                unset($_SESSION['message'], $_SESSION['messageSection']);
-                            };
-                            ?>
-                        </div>
+                    </div>
 
-                        <input type="hidden" name="action" value="newMessage">
-                        <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
-                        <input type="hidden" name="isVisible" id="isVisible" value=1>
-                        <input type="hidden" name="first-name" id="first-name">
-                        <input type="hidden" name="company" id="company">
-                        <input type="hidden" name="phone" id="phone">
+                    <input type="hidden" name="action" value="newMessage">
+                    <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
+                    <input type="hidden" name="isVisible" id="isVisible" value=1>
+                    <input type="hidden" name="first-name" id="first-name">
+                    <input type="hidden" name="company" id="company">
+                    <input type="hidden" name="phone" id="phone">
 
-                        <div class="col-6">
-                            <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" placeholder="Nom *">
-                            </div>
-                            <div class="mb-2">
-                                <input class="form-control pointer border border-dark" type="email" name="email" id="email" placeholder="Adresse email *">
-                            </div>
+                    <div class="col-6">
+                        <div class="mb-2">
+                            <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" placeholder="Nom *">
                         </div>
                         <div class="mb-2">
-                            <textarea class="form-control pointer border border-dark" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
+                            <input class="form-control pointer border border-dark" type="email" name="email" id="email" placeholder="Adresse email *">
                         </div>
+                    </div>
+                    <div class="mb-2">
+                        <textarea class="form-control pointer border border-dark" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
+                    </div>
 
-                        <div class="my-3 w-50">
-                            <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
-                        </div>
-                        <p class="py-0 my-0">* : champ obligatoire</p>
+                    <div class="my-3 w-50">
+                        <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
+                    </div>
+                    <p class="py-0 my-0">* : champ obligatoire</p>
+                    <div>
+                        <?php
+                        if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
+                            echo $_SESSION['message'];
+                            unset($_SESSION['message'], $_SESSION['messageSection']);
+                        };
+                        ?>
                     </div>
                 </form>
             </div>

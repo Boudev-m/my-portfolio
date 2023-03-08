@@ -27,12 +27,6 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                 <p class="card-text text-center text-warning">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
 
                 <form action="" method="post" style="max-width:100%; width:40%;" class="form-group mx-auto">
-                    <?php
-                    if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
-                        echo $_SESSION['message'];
-                        unset($_SESSION['message'], $_SESSION['messageSection']);
-                    };
-                    ?>
                     <div class="row">
                         <input type="hidden" name="action" value="newMessage">
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
@@ -75,6 +69,12 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                         <p class="py-0 my-0">* : champ obligatoire</p>
                     </div>
                 </form>
+                <?php
+                if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message'], $_SESSION['messageSection']);
+                };
+                ?>
                 <div>
                 </div>
             </div>
