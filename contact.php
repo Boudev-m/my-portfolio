@@ -1,14 +1,13 @@
 <!-- CONTACT PAGE (FRONT OFFICE) -->
 
 <!-- HEAD -->
+<?php include './assets/components/front/head.php' ?>
+<title>Contact</title>
+
 <?php
 
 use App\Controllers\MessageController;
 
-include './assets/components/front/head.php' ?>
-<title>Contact</title>
-
-<?php
 // CHECK IF FORM IS SUBMITTED
 if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
 ?>
@@ -18,17 +17,22 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="my-2">
-        <div class="border-bottom border-top border-dark">
-            <h4 class="text-center pt-2">&#x260E; CONTACT &#x260E;</h4>
+    <div class="my-2 text-light">
+        <div>
+            <h1 class="text-center"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MESSAGE PRIVÉ <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
 
-        <div class="mx-auto py-4">
+        <div class="mx-auto py-4" style="background-color: rgb(0, 0, 0, 0.3)">
             <div class="card-body">
-                <p class="card-text text-center">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
+                <p class="card-text text-center text-warning">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
 
-                <form action="" method="post" style="max-width:100%; width:50%;" class="form-group mx-auto">
-
+                <form action="" method="post" style="max-width:100%; width:40%;" class="form-group mx-auto">
+                    <?php
+                    if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message'], $_SESSION['messageSection']);
+                    };
+                    ?>
                     <div class="row">
                         <input type="hidden" name="action" value="newMessage">
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
@@ -62,7 +66,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 
                         <div>
                             <label for="content">Message * :</label>
-                            <textarea class="form-control pointer border border-dark my-1" name="content" id="content" rows="3"></textarea>
+                            <textarea class="form-control pointer border border-dark my-1" name="content" id="content" rows="4"></textarea>
                         </div>
 
                         <div class="my-3 w-50 mx-auto">
@@ -70,12 +74,6 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                         </div>
                         <p class="py-0 my-0">* : champ obligatoire</p>
                     </div>
-                    <?php
-                    if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
-                        echo $_SESSION['message'];
-                        unset($_SESSION['message'], $_SESSION['messageSection']);
-                    };
-                    ?>
                 </form>
                 <div>
                 </div>
