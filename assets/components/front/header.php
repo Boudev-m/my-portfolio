@@ -23,7 +23,7 @@
                             <?php if (isset($_SESSION['isLogged'], $_SESSION['role'])) : ?>
                                 <?php if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') : ?>
                                     <li class="nav-item">
-                                        <a class="nav-link text-danger" href="http://localhost/portfolio/admin/dashboard">TABLEAU DE BORD</a>
+                                        <a class="nav-link text-danger" href="http://localhost/portfolio/admin/dashboard">Tableau de bord</a>
                                     </li>
                                 <?php endif ?>
                             <?php endif ?>
