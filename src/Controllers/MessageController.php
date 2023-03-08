@@ -67,8 +67,8 @@ class MessageController
         $statement->bindParam(":visible", $visible);
         $statement->execute();
 
-        $verb = (int)$visible === 1 ? 'ajouté' : 'envoyé';
-        GeneralController::redirectWithSuccess($_POST['path'], "Votre message a été $verb.");
+        $sentence = (int)$visible === 1 ? 'Message publié.' : 'Votre message a été envoyé.';
+        GeneralController::redirectWithSuccess($_POST['path'], $sentence);
     }
 
     // UPDATE MESSAGE
