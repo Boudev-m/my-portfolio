@@ -1,20 +1,7 @@
 body {
-    max-width: 1200px;
-    width: 100%;
     background-image: url("../images/background.png") !important;
     margin: auto;
-}
-
-.alert-success {
-    background-color: #2aa46b;
-    color: #FFF;
-    font-style: italic !important;
-}
-
-.alert-danger {
-    background-color: #dc3545;
-    color: #FFF;
-    font-style: italic !important;
+    font-family: sans-serif;
 }
 
 main {
@@ -22,9 +9,28 @@ main {
     min-height: 82vh;
 }
 
-header,
-main>div {
-    background: #EEE;
+.success-message {
+    color: #19e284;
+    font-style: italic;
+    padding: 0;
+    margin: 0.5em auto;
+}
+
+.error-message {
+    color: #ff0000;
+    font-style: italic;
+    padding: 0;
+    margin: 0.5em auto;
+}
+
+.arrow-icon {
+    width: 20px;
+    filter: invert(90%);
+    transform: rotate(-90deg);
+}
+
+.reverse {
+    transform: scaleX(-1) rotate(-90deg);
 }
 
 .pointer {

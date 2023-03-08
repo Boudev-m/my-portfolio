@@ -5,18 +5,6 @@ body {
     margin: auto;
 }
 
-.alert-success {
-    background-color: #2aa46b;
-    color: #FFF;
-    font-style: italic !important;
-}
-
-.alert-danger {
-    background-color: #dc3545;
-    color: #FFF;
-    font-style: italic !important;
-}
-
 main {
     /* Pour fixer le footer si le main n'est pas assez grand */
     min-height: 82vh;
@@ -26,6 +14,21 @@ header,
 main>div {
     background: #EEE;
 }
+
+.success-message {
+    color: #19e284;
+    font-style: italic;
+    padding: 0;
+    margin: 0.5em auto;
+}
+
+.error-message {
+    color: #ff0000;
+    font-style: italic;
+    padding: 0;
+    margin: 0.5em auto;
+}
+
 
 .pointer {
     cursor: pointer;
