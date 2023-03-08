@@ -21,25 +21,28 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountControl
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-2">ESPACE DE CONNEXION</h4>
-    </div>
-    <div style="border: 2px solid #666;">
-        <div class="col-4 mx-auto py-4">
-            <?php
-            if (isset($_SESSION['message'])) {
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-            };
-            ?>
-            <form class="form-group" action="" method="post">
-                <input type="hidden" name="action" value="login">
-                <label for="email">Adresse email :</label>
-                <input type="email" class="form-control my-2 border border-dark" name="email" id="email">
-                <label for="password">Mot de passe :</label>
-                <input type="password" class="form-control my-2 border border-dark" name="password" id="password">
-                <button class="btn btn-success border border-dark w-100 my-4" type="submit" name="submit">CONNEXION</button>
-            </form>
+    <div class="my-2 text-light">
+        <div>
+            <h1 class="text-center"><img src="../assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> ESPACE DE CONNEXION <img src="../assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+        </div>
+        <div style="background-color: rgb(0, 0, 0, 0.3)">
+            <div class="col-3 mx-auto py-4">
+                <p class="card-text text-center text-warning">Veuillez vous identifier.</p>
+                <form class="form-group" action="" method="post">
+                    <input type="hidden" name="action" value="login">
+                    <label for="email">Adresse email :</label>
+                    <input type="email" class="form-control my-2 border border-dark" name="email" id="email">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" class="form-control my-2 border border-dark" name="password" id="password">
+                    <button class="d-block btn btn-success border border-dark w-50 my-4 mx-auto" type="submit" name="submit">CONNEXION</button>
+                </form>
+                <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                };
+                ?>
+            </div>
         </div>
     </div>
 </main>
