@@ -55,7 +55,7 @@ $messages = (new MessageController())->readAll();
             <?php foreach ($messages as $message) : ?>
                 <tr class='align-middle text-center'>
                     <td><?= $message->id_message ?></td>
-                    <td><?= $message->first_name ?></td>
+                    <td><?= $message->first_name ?? '&#8211' ?></td>
                     <td><?= $message->last_name ?></td>
                     <td><?= $message->email ?></td>
                     <td><?= $message->company ?? '&#8211' ?></td>

@@ -48,7 +48,7 @@ $message = (new MessageController())->readOne($_GET['id']);
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Prénom :</th>
-                    <td class='col-6'><?= $message->first_name ?></td>
+                    <td class='col-6'><?= $message->first_name ?? '&#8211' ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Nom :</th>
