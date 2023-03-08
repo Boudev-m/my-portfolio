@@ -33,68 +33,70 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
     <div class="my-2">
 
         <!-- PROJECT LIST BLOCK -->
-        <div class="border-bottom border-top border-dark">
-            <h4 class="text-center pt-2">&#x1F4E3; MES REALISATIONS &#x1F4E3;</h4>
+        <div>
+            <h1 class="text-center text-light"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES RÉALISATIONS <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 p-3 justify-content-center">
-
-            <?php foreach ($projects as $project) : ?>
-                <div class="col" style="max-width:250px;">
-                    <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
-                        <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
-                            <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
-                            <div class="card-body text-white" style="background:<?= RANDOM_BACKGROUND ?>;">
-                                <h5 class="card-title"><?= $project->title ?></h5>
-                                <p class="card-text"><?= $project->description ?></p>
+        <div style="background-color: rgb(0, 0, 0, 0.3)">
+            <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
+                <?php foreach ($projects as $project) : ?>
+                    <div class="col mx-auto my-1" style="width:250px;">
+                        <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
+                            <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
+                                <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
+                                <div class="card-body text-white" style="background:<?= RANDOM_BACKGROUND ?>;">
+                                    <h5 class="card-title"><?= $project->title ?></h5>
+                                    <p class="card-text"><?= $project->description ?></p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            <?php endforeach ?>
+                        </a>
+                    </div>
+                <?php endforeach ?>
+
+            </div>
 
         </div>
 
         <!-- SKILL LIST BLOCK -->
-        <div class="my-2">
-
-            <div class="border-bottom border-top border-dark">
-                <h4 class="text-center pt-2">&#x1F3AF; MES COMPETENCES &#x1F3AF;</h4>
+        <div>
+            <div>
+                <h1 class="text-center text-light mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES COMPÉTENCES <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
             </div>
-
-            <div class="row row-cols-1 row-cols-md-3 g-4 p-5 justify-content-center">
-                <?php foreach ($skills as $skill) : ?>
-                    <div class="col-sm-4 " style="max-width:150px;max-height:150px;">
-                        <div class="card border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent pointer" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
-                            <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
-                                <div class="icon-box icon-box--success">
-                                    <img src="./assets/images/upload/<?= $skill->getImage() ?>" alt="image de <?= $skill->title ?>" width="100%">
+            <div style="background-color: rgb(0, 0, 0, 0.3)">
+                <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
+                    <?php foreach ($skills as $skill) : ?>
+                        <div class="col-sm-4 " style="max-width:150px;max-height:150px;">
+                            <div class="card border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
+                                <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
+                                    <div class="icon-box icon-box--success">
+                                        <img src="./assets/images/upload/<?= $skill->getImage() ?>" alt="logo de <?= $skill->title ?>" width="100%">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach ?>
+                    <?php endforeach ?>
+                </div>
             </div>
-
         </div>
 
         <!-- PARCOURS BLOCK -->
-        <div class="my-2">
-            <div class="border-bottom border-top border-dark">
-                <h4 class="text-center pt-2">&#x1F3F2; MON PARCOURS DEVELOPPEUR &#x1F3F2;</h4>
+        <div>
+            <div>
+                <h1 class="text-center text-light mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MON PARCOURS DEVELOPPEUR <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
             </div>
-            <div class="p-2 text-center">
-                <h5 class="py-3">2023 : POEC Developpeur PHP - Symfony</h5>
-                <h5 class="py-3">2020 - 2022 : Apprentissage autodidacte</h5>
+            <div class="py-4 text-center text-light" style="background-color: rgb(0, 0, 0, 0.3)">
+                <h5 class="py-3"><span class='text-warning'>2023</span> : POEC Developpeur PHP - Symfony</h5>
+                <h5 class="py-3"><span class='text-warning'>2022</span> : Titre RNCP Niveau 5 Developpeur Web</h5>
+                <h5 class="py-3"><span class='text-warning'>2020 - 2022</span> : Apprentissage autodidacte</h5>
             </div>
         </div>
     </div>
 
 
     <!-- FORM MESSAGE BLOCK-->
-    <div id="messageForm" class="my-5 text-light bg-transparent">
+    <div id="messageForm" class="container w-75 my-5 text-light bg-transparent">
         <div class="mb-4">
-            <h4 class="pt-1">Laisser un commentaire</h4>
+            <h1 class="pt-1">Laisser un commentaire</h1>
         </div>
         <div>
             <div class="col-6">
@@ -141,7 +143,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
 
     <!-- MESSAGE LIST BLOCK -->
-    <div class="my-5 text-light bg-transparent w-50">
+    <div class="container w-75 my-5 text-light bg-transparent w-50">
 
         <?php if (!$messages) : ?>
             <div class='p-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">Aucun commentaire n'a été publié ...</div>
