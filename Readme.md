@@ -1,5 +1,5 @@
 ## MY PORTFOLIO
-Il s'agit d'une application qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.
+Il s'agit d'une application qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.  
 Crée à partir de l'ancienne version de mon portfolio : https://github.com/BouiMust/my-portfolio-old-version
 
 ### FONCTIONNALITES GLOBALES
@@ -12,11 +12,11 @@ Crée à partir de l'ancienne version de mon portfolio : https://github.com/Boui
 - Connexion et authentification utilisateur
 
 ### TECHNOS UTILISEES
-HTML - CSS - BOOTSTRAP - PHP OOP - MYSQL
+```HTML - CSS - BOOTSTRAP - PHP - MYSQL```  
 Programmation orienté objet avec l'utilisation des class, des namespaces et de PDO.
 
 ### SGBDR
-MYSQL
+```MYSQL```
 
 ### MODELES EN BASE DE DONNEES
 - PROJECT (projet ou réalisation)
@@ -25,18 +25,20 @@ MYSQL
 - ACCOUNT (compte utilisateur)
 
 ### ENVIRONNEMENT DE DEVELOPPEMENT
-Visual studio code - WAMP server
+```Visual studio code - WAMP server```
 
 ### COMPOSITION DU PROJET
-src/            : contient les controllers et modèles
-admin/          : contient la partie back office
-assets/         : contient les composants (head/header/footer), images, styles, js, etc...
-vendor/         : contient les dépendances du projet et l'autoloader
-index.php       : page d'accueil (front office)
-contact.php     : page de contact (front office)
-.htaccess       : fichier de config Apache
-.env.example    : exemplaire du fichier .env (sans les données sensibles)
-composer.json   : infos sur le projet
+admin/          : contient la partie back office  
+assets/         : contient les composants (head/header/footer), images, styles, js, etc...  
+src/            : contient les controllers et modèles  
+vendor/         : contient les dépendances du projet et l'autoloader  
+index.php       : page d'accueil (front office)  
+contact.php     : page de contact (front office)  
+.htaccess       : fichier de config Apache  
+.env.example    : exemplaire du fichier .env (sans les données sensibles)  
+composer.json   : infos sur le projet  
+composer.lock   : infos sur la version des dépendances du projet  
+composer.phar   : l'executable de composer
   
 Pour des raisons de sécurité, le fichier .env d'origine n'est pas disponible.
 
@@ -44,31 +46,31 @@ Pour des raisons de sécurité, le fichier .env d'origine n'est pas disponible.
 Composer a été installé dans ce projet pour permettre le chargement automatique des classes avec l'autoloader et l'exploitation des variables d'environnements avec le paquet phpdotenv (https://github.com/vlucas/phpdotenv).
 
 ### PAGES / URLs DE L'APPLICATION
-/                                   : page d'accueil
-/contact                            : page de contact
+``/``                               : page d'accueil  
+``/contact``                            : page de contact  
 
-/admin                              : page de connexion (pour l'authentification admin)
-/admin/dashboard                    : tableau de bord
-/admin/account                      : details du compte admin
-/admin/account/update-email         : modifier l'email du compte
-/admin/account/update-password      : modifier le mdp du compte
+``/admin``                              : page de connexion (pour l'authentification admin)  
+``/admin/dashboard``                    : tableau de bord  
+``/admin/account``                      : details du compte admin  
+``/admin/account/update-email``         : modifier l'email du compte  
+``/admin/account/update-password``      : modifier le mdp du compte  
 
-/admin/project                      : liste des projets
-/admin/project/new                  : créer un projet
-/admin/project/{id}                 : détails d'un projet
-/admin/project/{id}/update          : modifier un projet
-/admin/project/{id}/confirm-delete  : confirmer la suppression d'un projet
+``/admin/project``                      : liste des projets  
+``/admin/project/new``                  : créer un projet  
+``/admin/project/{id}``                 : détails d'un projet  
+``/admin/project/{id}/update``          : modifier un projet  
+``/admin/project/{id}/confirm-delete``  : confirmer la suppression d'un projet  
 
-/admin/skill                        : liste des compétences
-/admin/skill/new                    : créer une compétence
-/admin/skill/{id}                   : détails d'une compétence
-/admin/skill/{id}/update            : modifier une compétence
-/admin/skill/{id}/confirm-delete    : confirmer la suppression d'une compétence
+``/admin/skill``                        : liste des compétences  
+``/admin/skill/new``                    : créer une compétence  
+``/admin/skill/{id}``                   : détails d'une compétence  
+``/admin/skill/{id}/update``            : modifier une compétence  
+``/admin/skill/{id}/confirm-delete``    : confirmer la suppression d'une compétence  
 
-/admin/message                      : liste des messages
-/admin/message/{id}                 : détails d'un message
-/admin/message/{id}/update          : modifier un message
-/admin/message/{id}/confirm-delete  : confirmer la suppression d'un message
+``/admin/message``                      : liste des messages  
+``/admin/message/{id}``                 : détails d'un message  
+``/admin/message/{id}/update``          : modifier un message  
+``/admin/message/{id}/confirm-delete``  : confirmer la suppression d'un message  
 
 ### SECURITE
 Pour éviter les failles de sécurité et renforcer l'application, les méthodes ci-dessous ont été appliqués :
@@ -88,7 +90,6 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 - Faire apparaitre l'image après la selection d'une image à uploader (en utilisant javascript côté front)
 - Ajouter la possibilité de mettre plusieurs images pour un projet (une seule image actuellement)
 - Ajouter une page 'A propos' pour me presenter
-- Design de l'application
 - Design responsiv
 
 ### RENDU VISUEL FRONT-OFFICE
@@ -101,7 +102,7 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 
 ___
 ### RENDU VISUEL BACK-OFFICE
-#### Tableau de bord admin :
+#### Tableau de bord :
 <img src="https://i.ibb.co/ZNTC81j/portfolio-dashboard.webp" width="50%px">
 
 #### Liste des compétences :
