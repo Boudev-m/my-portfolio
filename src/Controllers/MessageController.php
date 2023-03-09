@@ -16,6 +16,7 @@ class MessageController
         $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
         $statement->execute();
         $messages = $statement->fetchAll(PDO::FETCH_CLASS, Message::class);
+        // die(var_dump($messages));
         return $messages;
     }
 
@@ -78,8 +79,8 @@ class MessageController
         $this->checkForm($_SERVER['REQUEST_URI']);
 
         // formatting datas
-        $firstName = htmlspecialchars(addslashes(trim(ucfirst($_POST['first-name']))));
         $lastName = htmlspecialchars(addslashes(trim(ucfirst($_POST['last-name']))));
+        $firstName = htmlspecialchars(addslashes(trim(ucfirst($_POST['first-name']))))  ?: null;
         $email = htmlspecialchars(trim(strtolower($_POST['email'])));
         $company = htmlspecialchars(addslashes(trim(ucfirst($_POST['company'])))) ?: null;
         $phone = htmlspecialchars(addslashes(trim($_POST['phone']))) ?: null;
@@ -126,7 +127,7 @@ class MessageController
         // check if required fields are filled
         if (!$_POST['last-name']) GeneralController::redirectWithError($redirectionPath, 'Le nom est obligatoire.');
         if (!$_POST['email']) GeneralController::redirectWithError($redirectionPath, 'L\'adresse email est obligatoire.');
-        if (!$_POST['content']) GeneralController::redirectWithError($redirectionPath, 'Le message est obligatoire.');
+        if (!$_POST['content']) GeneralController::redirectWithError($redirectionPath, 'Le message ne peut être vide.');
 
         // check if visibility is set
         if ($_POST['isVisible'] !== '0' && $_POST['isVisible'] !== '1') {
