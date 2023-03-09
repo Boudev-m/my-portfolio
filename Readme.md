@@ -28,17 +28,17 @@ Programmation orienté objet avec l'utilisation des class, des namespaces et de 
 ```Visual studio code - WAMP server```
 
 ### COMPOSITION DU PROJET
-admin/          : contient la partie back office  
-assets/         : contient les composants (head/header/footer), images, styles, js, etc...  
-src/            : contient les controllers et modèles  
-vendor/         : contient les dépendances du projet et l'autoloader  
-index.php       : page d'accueil (front office)  
-contact.php     : page de contact (front office)  
-.htaccess       : fichier de config Apache  
-.env.example    : exemplaire du fichier .env (sans les données sensibles)  
-composer.json   : infos sur le projet  
-composer.lock   : infos sur la version des dépendances du projet  
-composer.phar   : l'executable de composer
+```admin/```          : contient la partie back office  
+```assets/```         : contient les composants (head/header/footer), images, styles, js, etc...  
+```src/```            : contient les controllers et modèles  
+```vendor/```         : contient les dépendances du projet et l'autoloader  
+```index.php```       : page d'accueil (front office)  
+```contact.php```     : page de contact (front office)  
+```.htaccess```       : fichier de config Apache  
+```.env.example```    : exemplaire du fichier .env (sans les données sensibles)  
+```composer.json```   : infos sur le projet  
+```composer.lock```   : infos sur la version des dépendances du projet  
+```composer.phar```   : l'executable de composer
   
 Pour des raisons de sécurité, le fichier .env d'origine n'est pas disponible.
 
