@@ -24,23 +24,23 @@ $message = (new MessageController())->readOne($_GET['id']);
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Modifier le message n°<?= $message->id_message ?></h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Modifier le message n°<?= $message->id_message ?></h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="py-2" style="border: 2px solid #666;">
-
+    <div class="content py-2" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
         <form action="" method="post">
 
             <div class="row col-8 justify-content-center mx-auto">
 
                 <input type='hidden' name='action' value='update'>
                 <input type='hidden' name='id' value='<?= $message->id_message ?>'>
+                <input type='hidden' name='isVisible' value='<?= $message->visible ? '1' : '0' ?>'>
                 <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '?id=' . $message->id_message ?>>
 
                 <div class="col-6">

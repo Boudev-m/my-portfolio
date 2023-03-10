@@ -23,16 +23,16 @@ $messagesCount = GeneralController::countAllDatas('message');
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">TABLEAU DE BORD</h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">TABLEAU DE BORD</h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="row mx-auto text-center justify-content-center py-4" style="border: 2px solid #666;">
+    <div class="content row mx-auto text-center justify-content-center py-4" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
 
         <div class="col-5 p-0 m-3 shadow text-decoration-none text-danger" style="background:#EEF;max-width:400px;transition:300ms" onmouseout="this.style.transform='scale(1)'" onmouseover="this.style.transform='scale(1.05)'">
             <a href="./project" class="text-decoration-none text-dark d-block border border-secondary h-100 w-100 pt-4 pb-3 rounded" style="background:#EFF;">

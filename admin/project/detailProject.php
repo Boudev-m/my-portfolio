@@ -20,19 +20,18 @@ $project = (new ProjectController)->readOne($_GET['id']); ?>
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Détails sur la réalisation n°<?= $project->id_project ?></h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Détails sur la réalisation n°<?= $project->id_project ?></h4>
     </div>
-    <div class="pb-0" style="border: 2px solid #666;">
-
+    <div class="content" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
         <div class="row w-100 mx-auto my-2">
 
-            <?php
-            if (isset($_SESSION['message'])) {
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-            };
-            ?>
             <div class='col-4 ps-4 my-auto text-center'>
                 <a href="http://localhost/portfolio/assets/images/upload/<?= $project->getImage() ?>">
                     <img class='rounded' src='http://localhost/portfolio/assets/images/upload/<?= $project->getImage() ?>' alt='image de la réalisation' width=99%>

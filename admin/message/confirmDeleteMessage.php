@@ -24,10 +24,10 @@ $message = (new MessageController())->readOne($_GET['id']);
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Suppression du message n°<?= $message->id_message ?></h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Suppression du message n°<?= $message->id_message ?></h4>
     </div>
-    <div class="pb-0" style="border: 2px solid #666;">
+    <div class="content" style="border: 2px solid #666;">
         <h5 class="text-center py-3">Voulez-vous vraiment supprimer ce message ?</h5>
         <h5 class="text-center text-danger fw-bold p-0">Attention, cette action est irréversible.</h5>
         <div class="col-6 mx-auto py-3">
@@ -47,12 +47,12 @@ $message = (new MessageController())->readOne($_GET['id']);
                     <td class='col-6'><?= $message->id_message ?></td>
                 </tr>
                 <tr>
-                    <th class='text-end col-6'>Prénom :</th>
-                    <td class='col-6'><?= $message->first_name ?? '&#8211' ?></td>
-                </tr>
-                <tr>
                     <th class='text-end col-6'>Nom :</th>
                     <td class='col-6'><?= $message->last_name ?></td>
+                </tr>
+                <tr>
+                    <th class='text-end col-6'>Prénom :</th>
+                    <td class='col-6'><?= $message->first_name ?? '&#8211' ?></td>
                 </tr>
                 <tr>
                     <th class='text-end col-6'>Email :</th>

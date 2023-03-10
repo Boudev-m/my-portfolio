@@ -20,17 +20,16 @@ $skill = (new SkillController())->readOne($_GET['id']) ?>
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Détails sur la compétence n°<?= $skill->id_skill ?></h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Détails sur la compétence n°<?= $skill->id_skill ?></h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="pb-0" style="border: 2px solid #666;">
-
+    <div class="content" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
         <div class="row w-100 mx-auto my-2">
 
             <div class='col-4 ps-4 d-flex justify-content-center align-items-center'><img class='rounded' src='../../assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' width=80%></div>

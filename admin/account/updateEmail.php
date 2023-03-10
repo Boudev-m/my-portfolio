@@ -24,10 +24,10 @@ $myAccount = (new AccountController)->read();
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Modifier mon adresse email</h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Modifier mon adresse email</h4>
     </div>
-    <div class="pb-0" style="border: 2px solid #666;">
+    <div class="content" style="border: 2px solid #666;">
         <div class="row w-100 mx-auto my-2">
             <div class="col-7 mx-auto py-3">
                 <form action='' method='post'>

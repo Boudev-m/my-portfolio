@@ -20,10 +20,10 @@ if (isset($_POST['submit']) && $_POST['action'] === 'create') (new SkillControll
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Ajouter une compétence</h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Ajouter une compétence</h4>
     </div>
-    <div style="border: 2px solid #666;">
+    <div class='content' style="border: 2px solid #666;">
         <div class="col-5 mx-auto py-3">
             <?php
             if (isset($_SESSION['message'])) {

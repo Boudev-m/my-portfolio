@@ -20,16 +20,16 @@ $message = (new MessageController())->readOne($_GET['id']) ?>
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Détails sur le message n°<?= $message->id_message ?></h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Détails sur le message n°<?= $message->id_message ?></h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="pb-0" style="border: 2px solid #666;">
+    <div class="content" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
         <div class="row w-100 mx-auto my-2">
 
             <div class="d-flex">
@@ -42,13 +42,13 @@ $message = (new MessageController())->readOne($_GET['id']) ?>
                     </tr>
 
                     <tr>
-                        <th class='text-end col-3'>Prénom :</th>
-                        <td class='text-break'><?= $message->first_name ?? '&#8211' ?></td>
+                        <th class='text-end col-3'>Nom :</th>
+                        <td><?= $message->last_name ?></td>
                     </tr>
 
                     <tr>
-                        <th class='text-end col-3'>Nom :</th>
-                        <td><?= $message->last_name ?></td>
+                        <th class='text-end col-3'>Prénom :</th>
+                        <td class='text-break'><?= $message->first_name ?? '&#8211' ?></td>
                     </tr>
 
                     <tr>

@@ -20,20 +20,19 @@ $skills = (new SkillController())->readAll() ?>
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
+    <div class="mb-2">
         <a href="http://localhost/portfolio/admin/skill/createSkill.php">
             <img src="../../assets/images/icons/add-button.svg" alt="ajouter un nouvel élément" title='Ajouter une réalisation' width=3% style='border-radius:50%;position:fixed; left:17vh;'>
         </a>
-        <h4 class="text-center pt-1">Gestion des Compétences</h4>
+        <h4 class="text-center text-light py-2">Gestion des Compétences</h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="pb-0" style="border: 2px solid #666;">
-
+    <div class="content" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
         <table class="table table-striped table-hover text-center">
 
             <!-- EN-TETES DU TABLEAU -->

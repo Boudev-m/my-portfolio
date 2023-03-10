@@ -20,18 +20,18 @@ $myAccount = (new AccountController)->read() ?>
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <h4 class="text-center pt-1">Détails de mon compte</h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Détails de mon compte</h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="pb-0" style="border: 2px solid #666;">
+    <div class="content" style="border: 2px solid #666;">
         <div class="row w-100 mx-auto my-2">
             <div class="col-6 mx-auto py-3">
+                <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                };
+                ?>
                 <table class='table table-striped table-hover text-center border border-secondary'>
 
                     <tr class='align-middle'>

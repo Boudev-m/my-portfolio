@@ -21,27 +21,23 @@ $messages = (new MessageController())->readAll();
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="mb-2" style="border: 2px solid #666;">
-        <a href="http://localhost/portfolio/admin/message/createMessage.php">
-            <img src="../../assets/images/icons/add-button.svg" alt="ajouter un nouvel élément" title='Ajouter une réalisation' width=3% style='border-radius:50%;position:fixed; left:17vh;'>
-        </a>
-        <h4 class="text-center pt-1">Gestion des Messages</h4>
+    <div class="mb-2">
+        <h4 class="text-center text-light py-2">Gestion des Messages</h4>
     </div>
-    <?php
-    if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-    };
-    ?>
-    <div class="pb-0" style="border: 2px solid #666;">
-
+    <div class="content" style="border: 2px solid #666;">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        };
+        ?>
         <table class="table table-striped table-hover">
 
             <!-- EN-TETES DU TABLEAU -->
             <tr class="text-center">
                 <th class="col-1">N°</th>
-                <th class="col-2">Prénom</th>
                 <th class="col-2">Nom</th>
+                <th class="col-2">Prénom</th>
                 <th class="col-2">Email</th>
                 <th class="col-2">Société</th>
                 <th class="col-2">Téléphone</th>
@@ -55,8 +51,8 @@ $messages = (new MessageController())->readAll();
             <?php foreach ($messages as $message) : ?>
                 <tr class='align-middle text-center'>
                     <td><?= $message->id_message ?></td>
-                    <td><?= $message->first_name ?? '&#8211' ?></td>
                     <td><?= $message->last_name ?></td>
+                    <td><?= $message->first_name ?? '&#8211' ?></td>
                     <td><?= $message->email ?></td>
                     <td><?= $message->company ?? '&#8211' ?></td>
                     <td><?= $message->phone ?? '&#8211' ?></td>
