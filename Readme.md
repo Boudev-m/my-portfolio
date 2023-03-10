@@ -11,6 +11,23 @@ Crée à partir de l'ancienne version de mon portfolio : https://github.com/Boui
 - Gestion du compte admin (afficher les informations du compte, modifier)
 - Connexion et authentification utilisateur
 
+### INSTALLATION
+Vous devez installer Wamp (ou Xamp ou Mamp ou autre environnement contenant un serveur Apache, MySQL et PHP). Un dossier Wamp devrait se créer à la racine du disque C:/.  
+Ensuite clonez ce dépôt et placez-le dans le dossier 'www' (ou 'htdoc' selon l'environnement) du dossier Wamp.  
+  
+Il vous faudra générer le dossier vendor/ qui contient les dépendances du projet : placez-vous à la racine du dépôt en ligne de commande et taper la commande ```php composer.phar install```.  
+
+Il vous faudra créer la base de donnée : lancez le serveur Wamp puis allez sur PhpMyAdmin depuis votre navigateur. Créez une nouvelle base de donnée et importez-y le script SQL database.sql. Votre BDD contiendra toutes les tables et champs nécessaires, ainsi qu'un compte Administrateur pour se connecter dans l'application et accéder au back-office.  
+Les identifiants du compte sont :  
+- email : ```admin@gmail.com```  
+- mot de passe : ```ADMIN729```  
+Vous pourrez modifier l'email et le mot de passe du compte dans la section 'Mon compte' du tableau de bord.  
+  
+Il vous faudra ajouter vos identifiants de base de données dans les variables d'environnement : accédez au fichier .env.example, retirez '.example' dans le nom du fichier, puis ouvrez ce fichier et mettez vos propres identifiants de BDD (nom, hôte, utilisateur et mot de passe).  
+  
+Une fois tout ceci accompli, allez à l'adresse http://localhost
+
+
 ### TECHNOS UTILISEES
 ```HTML - CSS - BOOTSTRAP - PHP - MYSQL```  
 Programmation orienté objet avec l'utilisation des class, des namespaces et de PDO.
@@ -84,12 +101,12 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 
 ### AXES D'AMELIORATION
 - Ajouter la possibilité de commenter un message posté en public
-- Faire fonctionner l'envoi de message privé vers ma boite mail (pour la page contact)
+- Faire fonctionner l'envoi de message privé vers la boite mail
 - Ajouter le champ 'level' dans la table 'skill' (pour indiquer le niveau d'une compétence, basé sur une échelle de 5 par exemple)
-- Afficher les messages d'alerte sous forme de fenêtre pop-up
+- Afficher les messages d'alerte sous forme de fenêtre qui apparait et disparait 
 - Faire apparaitre l'image après la selection d'une image à uploader (en utilisant javascript côté front)
 - Ajouter la possibilité de mettre plusieurs images pour un projet (une seule image actuellement)
-- Ajouter une page 'A propos' pour me presenter
+- Ajouter une page 'A propos' pour afficher une brève presentation du developpeur
 - Design responsiv
 
 ### RENDU VISUEL FRONT-OFFICE
