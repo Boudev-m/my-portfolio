@@ -12,8 +12,8 @@ Crée à partir de l'ancienne version de mon portfolio : https://github.com/Boui
 - Connexion et authentification utilisateur
 
 ### INSTALLATION
-Vous devez installer Wamp (ou Xamp ou Mamp ou autre environnement contenant un serveur Apache, MySQL et PHP). Un dossier Wamp devrait se créer à la racine du disque C:/.  
-Ensuite clonez ce dépôt et placez-le dans le dossier 'www' (ou 'htdoc' selon l'environnement) du dossier Wamp.  
+Dans un premier temps, vous devez installer Wamp (ou Xamp ou Mamp ou autre environnement contenant un serveur Apache, MySQL et PHP). Un dossier wamp/ devrait se créer à la racine du disque C:/.  
+Ensuite clonez ce dépôt et placez-le dans le dossier 'www' (ou 'htdoc' selon l'environnement) qui se trouve dans le dossier wamp/.  
   
 Il vous faudra générer le dossier vendor/ qui contient les dépendances du projet : placez-vous à la racine du dépôt en ligne de commande et taper la commande ```php composer.phar install```.  
 
@@ -56,6 +56,7 @@ Programmation orienté objet avec l'utilisation des class, des namespaces et de 
 ```composer.json```   : infos sur le projet  
 ```composer.lock```   : infos sur la version des dépendances du projet  
 ```composer.phar```   : l'executable de composer
+```database.sql```    : script de création de la BDD
   
 Pour des raisons de sécurité, le fichier .env d'origine n'est pas disponible.
 
