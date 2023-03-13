@@ -1,7 +1,7 @@
 <!-- LOGIN PAGE (TO ACCESS THE BACK OFFICE) -->
 
 <!-- HEAD -->
-<?php include '../assets/components/front/head.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'head.php']) ?>
 <title>Connexion</title>
 
 <?php
@@ -10,20 +10,20 @@ use App\Controllers\AccountController;
 
 // CHECK IF USER LOGGED
 if (isset($_SESSION['isLogged'], $_SESSION['role'])) {
-    if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') exit(header('Location: http://bouimust.com/admin/dashboard'));
+    if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') exit(header('Location: /admin/dashboard'));
 };
 
 // CHECK IF FORM SUBMITTED
 if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountController)->login($_POST['email'], $_POST['password']) ?>
 
 <!-- HEADER -->
-<?php include '../assets/components/front/header.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'header.php']) ?>
 
 <!-- MAIN CONTENT -->
 <main>
     <div class="my-2 text-light">
         <div>
-            <h1 class="text-center"><img src="../assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> ESPACE DE CONNEXION <img src="../assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center"><img src="/assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> ESPACE DE CONNEXION <img src="/assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
         <div class='py-4' style="background-color: rgb(0, 0, 0, 0.3)">
             <div class="col-3 mx-auto">
@@ -48,4 +48,4 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountControl
 </main>
 
 <!-- FOOTER -->
-<?php include '../assets/components/front/footer.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'footer.php']) ?>
