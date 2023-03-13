@@ -20,7 +20,7 @@ class DatabaseConnection
 
     public function __construct()
     {
-        $this->dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'portfolio');
+        $this->dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
         $this->dotenv->load();
         $this->DB_HOST = $_ENV['DB_HOST'];
         $this->DB_NAME = $_ENV['DB_NAME'];

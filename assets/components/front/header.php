@@ -15,15 +15,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="bouimust.com">Accueil</a>
+                                <a class="nav-link text-light" href="/">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="bouimust.com/contact">Contact</a>
+                                <a class="nav-link text-light" href="/contact">Contact</a>
                             </li>
                             <?php if (isset($_SESSION['isLogged'], $_SESSION['role'])) : ?>
                                 <?php if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') : ?>
                                     <li class="nav-item">
-                                        <a class="nav-link text-danger" href="bouimust.com/admin/dashboard">Tableau de bord</a>
+                                        <a class="nav-link text-danger" href="/admin/dashboard">Tableau de bord</a>
                                     </li>
                                 <?php endif ?>
                             <?php endif ?>
