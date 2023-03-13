@@ -1,7 +1,7 @@
 <!-- DASHBOARD (BACK OFFICE) -->
 
 <!-- HEAD -->
-<?php include '../assets/components/back/head.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'back', 'head.php']) ?>
 <title>Tableau de bord</title>
 
 <?php
@@ -19,7 +19,7 @@ $messagesCount = GeneralController::countAllDatas('message');
 ?>
 
 <!-- HEADER -->
-<?php include '../assets/components/back/header.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'back', 'header.php']) ?>
 
 <!-- MAIN CONTENT -->
 <main>
@@ -70,4 +70,4 @@ $messagesCount = GeneralController::countAllDatas('message');
 </main>
 
 <!-- FOOTER -->
-<?php include '../assets/components/back/footer.php' ?>
+<?php include join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'back', 'footer.php']) ?>
