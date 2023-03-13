@@ -162,7 +162,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                             <p class="m-0">le <?= $message->getDate() ?> à <?= $message->getTime() ?></p>
                         </div>
                     </div>
-                    <p><?= $message->getContent() ?></p>
+                    <p class='text-break'><?= $message->getContent() ?></p>
                 </div>
             <?php endforeach ?>
         <?php endif ?>
