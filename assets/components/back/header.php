@@ -11,7 +11,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'logout') (new AccountContro
         <header>
             <nav class="navbar navbar-expand-lg my-2" style="border: 2px solid #666;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="http://localhost/portfolio/admin/dashboard">&#128451; Tableau de bord</a>
+                    <a class="navbar-brand" href="/admin/dashboard">&#128451; Tableau de bord</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -22,10 +22,10 @@ if (isset($_POST['submit']) && $_POST['action'] === 'logout') (new AccountContro
                                     Gestion
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/project">Réalisations</a></li>
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/skill">Compétences</a></li>
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/message">Messages</a></li>
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/account">Mon compte</a></li>
+                                    <li><a class="dropdown-item" href="/admin/project">Réalisations</a></li>
+                                    <li><a class="dropdown-item" href="/admin/skill">Compétences</a></li>
+                                    <li><a class="dropdown-item" href="/admin/message">Messages</a></li>
+                                    <li><a class="dropdown-item" href="/admin/account">Mon compte</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -33,12 +33,12 @@ if (isset($_POST['submit']) && $_POST['action'] === 'logout') (new AccountContro
                                     Ajouter
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/project/new">une réalisation</a></li>
-                                    <li><a class="dropdown-item" href="http://localhost/portfolio/admin/skill/new">une compétence</a></li>
+                                    <li><a class="dropdown-item" href="/admin/project/new">une réalisation</a></li>
+                                    <li><a class="dropdown-item" href="/admin/skill/new">une compétence</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="http://localhost/portfolio">&#127962; Retour à l'accueil</a>
+                                <a class="nav-link" aria-current="page" href="/">&#127962; Retour à l'accueil</a>
                             </li>
                         </ul>
                         <form action="" method="post">

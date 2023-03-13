@@ -25,8 +25,8 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountControl
         <div>
             <h1 class="text-center"><img src="../assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> ESPACE DE CONNEXION <img src="../assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
-        <div style="background-color: rgb(0, 0, 0, 0.3)">
-            <div class="col-3 mx-auto py-4">
+        <div class='py-4' style="background-color: rgb(0, 0, 0, 0.3)">
+            <div class="col-3 mx-auto">
                 <p class="card-text text-center text-warning">Veuillez vous identifier.</p>
                 <form class="form-group" action="" method="post">
                     <input type="hidden" name="action" value="login">
@@ -36,13 +36,13 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountControl
                     <input type="password" class="form-control my-2 border border-dark" name="password" id="password">
                     <button class="d-block btn btn-success border border-dark w-50 my-4 mx-auto" type="submit" name="submit">CONNEXION</button>
                 </form>
-                <?php
-                if (isset($_SESSION['message'])) {
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                };
-                ?>
             </div>
+            <?php
+            if (isset($_SESSION['message'])) {
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+            };
+            ?>
         </div>
     </div>
 </main>
