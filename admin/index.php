@@ -10,7 +10,7 @@ use App\Controllers\AccountController;
 
 // CHECK IF USER LOGGED
 if (isset($_SESSION['isLogged'], $_SESSION['role'])) {
-    if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') exit(header('Location: http://localhost/portfolio/admin/dashboard'));
+    if ($_SESSION['isLogged'] && $_SESSION['role'] === 'admin') exit(header('Location: http://bouimust.com/admin/dashboard'));
 };
 
 // CHECK IF FORM SUBMITTED

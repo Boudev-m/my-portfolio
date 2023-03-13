@@ -1,7 +1,7 @@
 <!-- HOME PAGE (FRONT OFFICE) -->
 
 <!-- HEAD -->
-<?php include './assets/components/front/head.php' ?>
+<?php require_once __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'front' . DIRECTORY_SEPARATOR . 'head.php' ?>
 <title>Portfolio de BouiMust</title>
 
 <?php
@@ -14,13 +14,13 @@ use App\Controllers\MessageController;
 if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
 
 // GET DATAS FROM DB
-$projects = (new ProjectController)->readAll('active');
-$skills = (new SkillController())->readAll('active');
-$messages = array_reverse((new MessageController())->readAll('visible'));
+// $projects = (new ProjectController)->readAll('active');
+// $skills = (new SkillController())->readAll('active');
+// $messages = array_reverse((new MessageController())->readAll('visible'));
 ?>
 
 <!-- HEADER -->
-<?php include './assets/components/front/header.php' ?>
+<?php require_once __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'front' . DIRECTORY_SEPARATOR . 'header.php' ?>
 
 <!-- MAIN CONTENT -->
 <main>
