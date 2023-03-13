@@ -21,8 +21,8 @@ $projects = (new ProjectController())->readAll() ?>
 <!-- MAIN CONTENT -->
 <main>
     <div class="mb-2">
-        <a href="http://localhost/portfolio/admin/project/createProject.php">
-            <img src="../../assets/images/icons/add-button.svg" alt="ajouter un nouvel élément" title='Ajouter une réalisation' width=3% style='border-radius:50%;position:fixed; left:17vh;'>
+        <a href="/admin/project/createProject.php">
+            <img src="/assets/images/icons/add-button.svg" alt="ajouter un nouvel élément" title='Ajouter une réalisation' width=3% style='border-radius:50%;position:fixed; left:17vh;'>
         </a>
         <h4 class="text-center text-light py-2">Gestion des Réalisations</h4>
     </div>

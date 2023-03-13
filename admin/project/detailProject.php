@@ -33,8 +33,8 @@ $project = (new ProjectController)->readOne($_GET['id']); ?>
         <div class="row w-100 mx-auto my-2">
 
             <div class='col-4 ps-4 my-auto text-center'>
-                <a href="http://localhost/portfolio/assets/images/upload/<?= $project->getImage() ?>">
-                    <img class='rounded' src='http://localhost/portfolio/assets/images/upload/<?= $project->getImage() ?>' alt='image de la réalisation' width=99%>
+                <a href="/assets/images/upload/<?= $project->getImage() ?>">
+                    <img class='rounded' src='/assets/images/upload/<?= $project->getImage() ?>' alt='image de <?= $project->title ?>' width=99%>
                 </a>
             </div>
             <div class="col-8">

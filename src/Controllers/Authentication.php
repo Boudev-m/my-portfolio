@@ -9,7 +9,7 @@ class Authentication
     public static function check(): void
     {
         if (!(isset($_SESSION['isLogged']) && $_SESSION['isLogged'] && $_SESSION['role'] === 'admin')) {
-            GeneralController::redirectWithError($_SERVER['DOCUMENT_ROOT'], 'Accès refusé.');
+            GeneralController::redirectWithError('/', 'Accès refusé.');
         }
     }
 }
