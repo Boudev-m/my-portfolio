@@ -1,7 +1,7 @@
 <!-- HOME PAGE (FRONT OFFICE) -->
 
 <!-- HEAD -->
-<?php require_once __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'front' . DIRECTORY_SEPARATOR . 'head.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'head.php']) ?>
 <title>Portfolio de BouiMust</title>
 
 <?php
@@ -20,7 +20,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 ?>
 
 <!-- HEADER -->
-<?php require_once __DIR__ . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'front' . DIRECTORY_SEPARATOR . 'header.php' ?>
+<?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'header.php']) ?>
 
 <!-- MAIN CONTENT -->
 <main>
@@ -170,4 +170,4 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 </main>
 
 <!-- FOOTER -->
-<?php include './assets/components/front/footer.php' ?>
+<?php include join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'footer.php']) ?>

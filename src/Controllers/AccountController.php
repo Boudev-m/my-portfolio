@@ -43,7 +43,7 @@ class AccountController
         // remove datas in session to log out user
         session_destroy();
         session_start();
-        GeneralController::redirectWithSuccess('http://localhost/portfolio', 'Vous êtes déconnecté.');
+        GeneralController::redirectWithSuccess($_SERVER['DOCUMENT_ROOT'], 'Vous êtes déconnecté.');
     }
 
     // GET ACCOUNT FROM DATABASE
