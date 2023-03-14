@@ -155,7 +155,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                 <div class='p-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">
                     <div class="border-bottom border-secondary d-flex pb-1">
                         <div class="pe-3" style="width: max-content;">
-                            <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= $message->getRandomColor() ?>">
+                            <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:#888">
                         </div>
                         <div>
                             <p class="m-0"><?= $message->first_name ?> <?= $message->last_name ?>,</p>
