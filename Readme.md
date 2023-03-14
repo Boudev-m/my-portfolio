@@ -1,5 +1,5 @@
 ## Mon Portfolio
-__https://www.bouimust.com__  
+__https://bouimust.com__  
   
 Il s'agit d'une application qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.  
 Crée à partir de l'ancienne version de mon portfolio (https://github.com/BouiMust/my-portfolio-old-version)
