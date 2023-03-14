@@ -14,7 +14,7 @@ class Message
     public ?string $phone;
     public string $created_at;
     public bool $visible;
-    public const PROFILE_COLOR = ['#379', '#397', '#739', '#793', '#937', '#973', '#888'];
+    // public const PROFILE_COLOR = ['#379', '#397', '#739', '#793', '#937', '#973', '#888'];
 
     public function getContent(): string
     {
@@ -39,8 +39,8 @@ class Message
     }
 
     // RANDOM COLOR FOR IMAGE PROFILE
-    public function getRandomColor(): string
-    {
-        return $this::PROFILE_COLOR[mt_rand(0, count($this::PROFILE_COLOR) - 1)];
-    }
+    // public function getRandomColor(): string
+    // {
+    //     return $this::PROFILE_COLOR[mt_rand(0, count($this::PROFILE_COLOR) - 1)];
+    // }
 }
