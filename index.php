@@ -34,7 +34,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
         <!-- PROJECT LIST BLOCK -->
         <div>
-            <h1 class="text-center text-light mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES RÉALISATIONS <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center text-light mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES RÉALISATIONS <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
         <div style="background-color: rgb(0, 0, 0, 0.3)">
             <?php if (!$projects) : ?>
@@ -97,12 +97,12 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
 
     <!-- FORM MESSAGE BLOCK-->
-    <div id="messageForm" class="container w-75 my-5 text-light bg-transparent">
+    <div id="messageForm" class="container w-100 w-sm-75 my-5 text-light bg-transparent">
         <div class="mb-4">
-            <h1 class="pt-1">Laisser un commentaire</h1>
+            <h1 class="text-center text-sm-start pt-1">Laisser un commentaire</h1>
         </div>
         <div>
-            <div class="col-6">
+            <div class="col col-sm-10 col-md-8 col-lg-6">
                 <form action="" method="post">
 
                     <div class="row">
@@ -115,7 +115,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                     <input type="hidden" name="company" id="company">
                     <input type="hidden" name="phone" id="phone">
 
-                    <div class="col-6">
+                    <div class="col col-sm-9 col-md-6">
                         <div class="mb-2">
                             <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" placeholder="Nom *">
                         </div>
@@ -127,10 +127,11 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                         <textarea class="form-control pointer border border-dark" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
                     </div>
 
-                    <div class="my-3 w-50">
+
+                    <div class="mx-auto mx-sm-0 my-3 w-50">
                         <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
                     </div>
-                    <p class="py-0 my-0">* : champ obligatoire</p>
+                    <p class="text-center text-sm-start py-0 my-0">* : champ obligatoire</p>
                     <div>
                         <?php
                         if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
@@ -146,7 +147,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
 
     <!-- MESSAGE LIST BLOCK -->
-    <div class="container w-75 my-5 text-light bg-transparent w-50">
+    <div class="container w-100 w-sm-75 my-5 text-light bg-transparent w-50">
 
         <?php if (!$messages) : ?>
             <div class='py-3 px-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">Aucun commentaire n'a été publié ...</div>

@@ -19,7 +19,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 <main>
     <div class="my-2 text-light">
         <div>
-            <h1 class="text-center"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MESSAGE PRIVÉ <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MESSAGE PRIVÉ <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
 
         <div class="mx-auto py-4" style="background-color: rgb(0, 0, 0, 0.3)">
@@ -31,13 +31,13 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                     unset($_SESSION['message'], $_SESSION['messageSection']);
                 };
                 ?>
-                <form action="" method="post" style="max-width:100%; width:40%;" class="form-group mx-auto">
-                    <div class="row">
+                <form action="" method="post" class="form-group mx-auto">
+                    <div class="mx-auto row col-9 col-sm-8 col-md-6 col-xl-5">
                         <input type="hidden" name="action" value="newMessage">
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
                         <input type="hidden" name="isVisible" id="isVisible" value=0>
 
-                        <div class="col-6">
+                        <div class="col-lg-6">
                             <div>
                                 <label for="last-name">Nom * :</label>
                                 <input class="form-control pointer border border-dark my-1" type="text" name="last-name" id="last-name">
@@ -52,7 +52,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-lg-6">
                             <div>
                                 <label for="company">Société :</label>
                                 <input class="form-control pointer border border-dark my-1" type="text" name="company" id="company">
@@ -71,7 +71,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                         <div class="my-3 w-50 mx-auto">
                             <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
                         </div>
-                        <p class="py-0 my-0">* : champ obligatoire</p>
+                        <p class="text-center text-sm-start py-0 my-0">* : champ obligatoire</p>
                     </div>
                 </form>
                 <div>
