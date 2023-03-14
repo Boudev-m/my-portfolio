@@ -4,6 +4,18 @@
 ## Enable rewritting
 RewriteEngine On
 
+## Block access to a Specific File (.env here)
+# <Files .env>
+# Order allow,deny
+# Deny from all
+# </Files>
+
+## Block access to dot file
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
 ## Rewritting for detail pages
 ## Get '/project/1' instead of '/project/projectDetail.php?id=1'
 ## $1 is a variable
