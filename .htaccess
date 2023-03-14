@@ -4,6 +4,9 @@
 ## Enable rewritting
 RewriteEngine On
 
+# Redirect all non-existent file to home
+# RewriteRule ^ index.php [QSA,L]
+
 ## Block access to a Specific File (.env here)
 # <Files .env>
 # Order allow,deny
