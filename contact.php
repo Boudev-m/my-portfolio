@@ -48,7 +48,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                             </div>
                             <div>
                                 <label for="email">Adresse email * :</label>
-                                <input class="form-control pointer border border-dark my-1" type="email" name="email" id="email">
+                                <input class="form-control pointer border border-dark my-1" type="text" name="email" id="email">
                             </div>
                         </div>
 

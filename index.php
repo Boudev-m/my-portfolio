@@ -120,7 +120,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                             <input class="form-control pointer border border-dark" type="text" name="last-name" id="last-name" placeholder="Nom *">
                         </div>
                         <div class="mb-2">
-                            <input class="form-control pointer border border-dark" type="email" name="email" id="email" placeholder="Adresse email *">
+                            <input class="form-control pointer border border-dark" type="text" name="email" id="email" placeholder="Adresse email *">
                         </div>
                     </div>
                     <div class="mb-2">
