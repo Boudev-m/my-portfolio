@@ -156,7 +156,7 @@ class MessageController
 
         // check email format
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            GeneralController::redirectWithError($redirectionPath, 'Email non valide.');
+            GeneralController::redirectWithError($redirectionPath, 'Format de l\'email non valide.');
         }
     }
 }
