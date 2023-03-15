@@ -110,38 +110,37 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 - Faire apparaitre l'image après la selection d'une image à uploader (en utilisant javascript côté front)
 - Ajouter la possibilité de mettre plusieurs images pour un projet (une seule image actuellement)
 - Ajouter une page 'A propos' pour afficher une brève presentation du developpeur
-- Design responsiv
 
 ### RENDU VISUEL FRONT-OFFICE
 
 #### Accueil :  
-<img src="https://i.ibb.co/09YYDcH/portfolio-webp.webp" width="50%px">
+<img src="https://i.ibb.co/09YYDcH/portfolio-webp.webp" width="500px">
 
 #### Contact :
-<img src="https://i.ibb.co/q5xmKWh/portfolio-contact.webp" width="50%px">
+<img src="https://i.ibb.co/q5xmKWh/portfolio-contact.webp" width="500px">
 
 ___
 ### RENDU VISUEL BACK-OFFICE
 #### Tableau de bord :
-<img src="https://i.ibb.co/ZNTC81j/portfolio-dashboard.webp" width="50%px">
+<img src="https://i.ibb.co/ZNTC81j/portfolio-dashboard.webp" width="500px">
 
 #### Liste des compétences :
-<img src="https://i.ibb.co/JmpX1hS/portfolio-skills.webp" width="50%px">
+<img src="https://i.ibb.co/JmpX1hS/portfolio-skills.webp" width="500px">
 
 #### Liste des réalisations :
-<img src="https://i.ibb.co/6JZqFwS/portfolio-projects.webp" width="50%px">
+<img src="https://i.ibb.co/6JZqFwS/portfolio-projects.webp" width="500px">
 
 #### Détail d'une réalisation :
-<img src="https://i.ibb.co/dQw5dDw/portfolio-detail.webp" width="50%px">
+<img src="https://i.ibb.co/dQw5dDw/portfolio-detail.webp" width="500px">
 
 #### Confirmation de suppression d'une réalisation :
-<img src="https://i.ibb.co/khPDNB2/portfolio-delete.webp" width="50%px">
+<img src="https://i.ibb.co/khPDNB2/portfolio-delete.webp" width="500px">
 
 #### Création d'une réalisation :
-<img src="https://i.ibb.co/7GyJ3LS/portfolio-new.webp" width="50%px">
+<img src="https://i.ibb.co/7GyJ3LS/portfolio-new.webp" width="500px">
 
 #### Détails du compte utilisateur :
-<img src="https://i.ibb.co/vZBr9vf/portfolio-account.webp" width="50%px">
+<img src="https://i.ibb.co/vZBr9vf/portfolio-account.webp" width="500px">
 
 #### Modification de mot de passe du compte :
-<img src="https://i.ibb.co/vdpRt4k/portfolio-password.webp" width="50%px">
+<img src="https://i.ibb.co/vdpRt4k/portfolio-password.webp" width="500px">
