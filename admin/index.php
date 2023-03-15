@@ -31,7 +31,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountControl
                 <form class="form-group" action="" method="post">
                     <input type="hidden" name="action" value="login">
                     <label for="email">Adresse email :</label>
-                    <input type="email" class="form-control my-2 border border-dark" name="email" id="email">
+                    <input type="text" class="form-control my-2 border border-dark" name="email" id="email">
                     <label for="password">Mot de passe :</label>
                     <input type="password" class="form-control my-2 border border-dark" name="password" id="password">
                     <button class="d-block btn btn-success border border-dark w-50 my-4 mx-auto" type="submit" name="submit">CONNEXION</button>
