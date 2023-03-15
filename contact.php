@@ -32,7 +32,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                 };
                 ?>
                 <form action="" method="post" class="form-group mx-auto">
-                    <div class="mx-auto row col-9 col-sm-8 col-md-6 col-xl-5">
+                    <div class="mx-auto row col-10 col-sm-8 col-md-6 col-xl-5">
                         <input type="hidden" name="action" value="newMessage">
                         <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
                         <input type="hidden" name="isVisible" id="isVisible" value=0>
