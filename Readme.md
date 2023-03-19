@@ -1,7 +1,7 @@
 ## Mon Portfolio
 __https://bouimust.com__  
   
-Il s'agit d'une application qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.  
+Il s'agit d'un site qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.  
 Crée à partir de l'ancienne version de mon portfolio (https://github.com/BouiMust/my-portfolio-old-version)
 
 ### FONCTIONNALITES GLOBALES
@@ -93,7 +93,7 @@ Composer a été installé dans ce projet pour permettre le chargement automatiq
 ``/admin/message/{id}/confirm-delete``  : confirmer la suppression d'un message  
 
 ### SECURITE
-Pour éviter les failles de sécurité et renforcer l'application, les méthodes ci-dessous ont été appliqués :
+Pour éviter les failles de sécurité et renforcer le site, les méthodes ci-dessous ont été appliqués :
 - Données de login stockés temporairement en session
 - Authentification requise pour l'accès au back office (en analysant les données en session)
 - Mot de passe du compte haché : la vérification se fait pendant le loggin en comparant l'origine du mdp haché avec le mdp saisi par l'utilisateur
@@ -101,6 +101,7 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 - Vérification des formulaires avant validation ('Never Trust User Input')
 - Utilisation des paramètres nommés (PDO Bind param) dans les requêtes SQL pour contrer les injections malveillantes
 - Utilisation des variables d'environement pour les données de configuration sensibles
+- Certificat SSL installé pour crypter les données qui transitent entre le site web et le navigateur
 
 ### AXES D'AMELIORATION
 - Ajouter la possibilité de commenter un message posté en public sur la page d'accueil
