@@ -113,7 +113,7 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 ### RENDU VISUEL FRONT-OFFICE
 
 #### Accueil :  
-<img src="https://i.ibb.co/09YYDcH/portfolio-webp.webp" width="500px">
+<img src="https://i.ibb.co/SX2mjys/portfolio-home.webp" width="500px">
 
 #### Contact :
 <img src="https://i.ibb.co/q5xmKWh/portfolio-contact.webp" width="500px">
