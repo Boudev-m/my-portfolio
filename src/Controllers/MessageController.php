@@ -53,6 +53,18 @@ class MessageController
         $content = htmlspecialchars(trim($_POST['content']));
         $visible = (int)$_POST['isVisible'];
 
+        // Send private message to mailbox
+        if ($visible === 0) {
+            $to      = 'bouibrine@laposte.net';
+            $subject = "Message de $lastName $firstName";
+            $message = $content . "\r\n" . "Société : $company" . "\r\n" . "Téléphone : $phone";
+            $headers = array(
+                'Reply-To' => $email,
+                'Content-type' => 'text/plain; charset=utf8'
+            );
+            mail($to, $subject, $message, $headers);
+        }
+
         // save message in DB
         $sql = "
         INSERT INTO message (first_name, last_name, email, company, phone, content, created_at, visible)
