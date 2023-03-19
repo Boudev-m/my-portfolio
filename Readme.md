@@ -8,7 +8,7 @@ Crée à partir de l'ancienne version de mon portfolio (https://github.com/BouiM
 - Gestion des réalisations (afficher les informations, créer, modifier, supprimer)
 - Gestion des compétences (afficher les informations, créer, modifier, supprimer)
 - Publier un message sur la page d'accueil
-- Contacter le propriétaire de l'application en privé
+- Contacter le propriétaire de l'application en privé par mail
 - Gestion des messages publics et privés (afficher, modifier, supprimer)
 - Gestion du compte admin (afficher les informations du compte, modifier)
 - Connexion et authentification utilisateur
@@ -103,8 +103,7 @@ Pour éviter les failles de sécurité et renforcer l'application, les méthodes
 - Utilisation des variables d'environement pour les données de configuration sensibles
 
 ### AXES D'AMELIORATION
-- Ajouter la possibilité de commenter un message posté en public
-- Faire fonctionner l'envoi de message privé vers la boite mail
+- Ajouter la possibilité de commenter un message posté en public sur la page d'accueil
 - Ajouter le champ 'level' dans la table 'skill' (pour indiquer le niveau d'une compétence, basé sur une échelle de 5 par exemple)
 - Afficher les messages d'alerte sous forme de fenêtre qui apparait et disparait 
 - Faire apparaitre l'image après la selection d'une image à uploader (en utilisant javascript côté front)
