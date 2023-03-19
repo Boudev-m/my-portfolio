@@ -95,7 +95,7 @@ Composer a été installé dans ce projet pour permettre le chargement automatiq
 ### SECURITE
 Pour éviter les failles de sécurité et renforcer le site, les méthodes ci-dessous ont été appliqués :
 - Données de login stockés temporairement en session
-- Authentification requise pour l'accès au back office (en analysant les données en session)
+- Authentification requise pour l'accès au back office (en analysant les données en session) et pour chaque action importante
 - Mot de passe du compte haché : la vérification se fait pendant le loggin en comparant l'origine du mdp haché avec le mdp saisi par l'utilisateur
 - Utilisation de la fonction 'htmlspecialchar' avant l'enregistrement des données pour contrer les failles XSS
 - Vérification des formulaires avant validation ('Never Trust User Input')
