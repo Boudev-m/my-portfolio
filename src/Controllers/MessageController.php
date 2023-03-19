@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use PDO;
 use App\Models\Message;
+use Dotenv\Dotenv;
 
 class MessageController
 {
@@ -55,10 +56,13 @@ class MessageController
 
         // Send private message to mailbox
         if ($visible === 0) {
-            $to      = 'bouibrine@laposte.net';
+            $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+            $dotenv->load();
+            $to      =  $_ENV['MY_MAILBOX'];
             $subject = "Message de $lastName $firstName";
             $message = $content . "\r\n" . "Société : $company" . "\r\n" . "Téléphone : $phone";
             $headers = array(
+                'From' => $email,
                 'Reply-To' => $email,
                 'Content-type' => 'text/plain; charset=utf8'
             );
