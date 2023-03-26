@@ -24,7 +24,7 @@ class ImageController
     // SAVE IMAGE FILE TO DISK (in 'assets/images/upload' directory)
     public static function saveToDisk(string $imageName): void
     {
-        $uploadDirectory = join(DIRECTORY_SEPARATOR, [dirname(dirname(__DIR__)), 'assets', 'images', 'upload']);
+        $uploadDirectory = join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'images', 'upload']);
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadDirectory . DIRECTORY_SEPARATOR . $imageName);
         // takes 2 args : source file path, and directory path + image name to save
     }
@@ -42,7 +42,7 @@ class ImageController
 
         // check if the old image exist
         if (!is_null($oldImageName)) {
-            $uploadDirectory = join(DIRECTORY_SEPARATOR, [dirname(dirname(__DIR__)), 'assets', 'images', 'upload']);
+            $uploadDirectory = join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'images', 'upload']);
             unlink($uploadDirectory . DIRECTORY_SEPARATOR . $oldImageName);
         }
     }
