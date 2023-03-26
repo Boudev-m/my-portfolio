@@ -20,7 +20,7 @@ class DatabaseConnection
         if (!self::$pdo) {
             // Try to connect to DB
             try {
-                $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+                $dotenv = Dotenv::createImmutable(dirname($_SERVER['DOCUMENT_ROOT']));
                 $dotenv->load();
                 self::$pdo = new PDO("mysql:host={$_ENV['DB_HOST']};charset=utf8mb4;dbname={$_ENV['DB_NAME']}", $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
