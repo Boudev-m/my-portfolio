@@ -7,6 +7,9 @@ RewriteEngine On
 # Redirect all non-existent file to home
 # RewriteRule ^ index.php [QSA,L]
 
+# Prevent contents to be listing
+Options -Indexes
+
 ## Block access to a Specific File (.env here)
 # <Files .env>
 # Order allow,deny
