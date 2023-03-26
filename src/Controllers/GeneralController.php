@@ -25,7 +25,7 @@ class GeneralController
     {
         $table = trim($table);
         $sql = "SELECT * FROM $table";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         return $statement->rowCount();
     }

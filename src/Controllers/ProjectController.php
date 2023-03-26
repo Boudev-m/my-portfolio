@@ -13,7 +13,7 @@ class ProjectController
     {
         // get only active projects if 'active' is in arg, or get all projects
         $sql = $statut === 'active' ? "SELECT * FROM project WHERE `active` = 1" : "SELECT * FROM project";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         $projects = $statement->fetchAll(PDO::FETCH_CLASS, Project::class);  // or "App\\Models\\Project" instead of Project::class
         return $projects;
@@ -29,7 +29,7 @@ class ProjectController
     {
         $sql = "SELECT * FROM project WHERE id_project = :id";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Project::class);
@@ -77,7 +77,7 @@ class ProjectController
             VALUES (:title, :description, :date_start, :date_end, :image, :link, :active)
         ";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":description", $description);
         $statement->bindParam(":date_start", $date_start);
@@ -112,7 +112,7 @@ class ProjectController
 
                 // update image in DB
                 $sql = "UPDATE project SET image = :image WHERE id_project = :id";
-                $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+                $statement = DatabaseConnection::getConnection()->prepare($sql);
                 $statement->bindParam(":id", $id);
                 $statement->bindParam(":image", $imageName);
                 $statement->execute();
@@ -138,7 +138,7 @@ class ProjectController
             active = :active
             WHERE id_project = :id
         ";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":description", $description);
         $statement->bindParam(":date_start", $date_start);
@@ -159,7 +159,7 @@ class ProjectController
 
         // delete project in DB
         $sql = "DELETE FROM project WHERE id_project = :id";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
 

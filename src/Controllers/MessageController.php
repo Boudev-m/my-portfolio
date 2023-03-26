@@ -14,7 +14,7 @@ class MessageController
     {
         // get only visible messages if 'visible' is in arg, or get all messages
         $sql = $statut === 'visible' ? "SELECT * FROM message WHERE `visible` = 1" : "SELECT * FROM message";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         $messages = $statement->fetchAll(PDO::FETCH_CLASS, Message::class);
         // die(var_dump($messages));
@@ -25,7 +25,7 @@ class MessageController
     public function readOne(int $id): Message
     {
         $sql = "SELECT * FROM message WHERE id_message = :id";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Message::class);
@@ -74,7 +74,7 @@ class MessageController
         INSERT INTO message (first_name, last_name, email, company, phone, content, created_at, visible)
         VALUES (:first_name, :last_name, :email, :company, :phone, :content, NOW(), :visible)
         ";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":first_name", $firstName);
         $statement->bindParam(":last_name", $lastName);
         $statement->bindParam(":email", $email);
@@ -114,7 +114,7 @@ class MessageController
             WHERE id_message = :id
         ";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":first_name", $firstName);
         $statement->bindParam(":last_name", $lastName);
         $statement->bindParam(":email", $email);
@@ -131,7 +131,7 @@ class MessageController
     public function delete(int $id): void
     {
         $sql = "DELETE FROM message WHERE id_message = :id";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
         GeneralController::redirectWithSuccess("../", "Le message a été supprimé.");

@@ -13,7 +13,7 @@ class SkillController
     {
         // get only active skills if 'active' is in arg, or get all skills
         $sql = $statut === 'active' ? "SELECT * FROM skill WHERE `active` = 1" : "SELECT * FROM skill";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         $skills = $statement->fetchAll(PDO::FETCH_CLASS, Skill::class);
         return $skills;
@@ -24,7 +24,7 @@ class SkillController
     {
         $sql = "SELECT * FROM skill WHERE id_skill = :id";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Skill::class);
@@ -68,7 +68,7 @@ class SkillController
             VALUES (:title, :type, :description, :image, :link, :active)
         ";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":type", $type);
         $statement->bindParam(":description", $description);
@@ -102,7 +102,7 @@ class SkillController
 
                 // update image in DB
                 $sql = "UPDATE skill SET image = :image WHERE id_skill = :id";
-                $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+                $statement = DatabaseConnection::getConnection()->prepare($sql);
                 $statement->bindParam(":id", $id);
                 $statement->bindParam(":image", $imageName);
                 $statement->execute();
@@ -127,7 +127,7 @@ class SkillController
             WHERE id_skill = :id
         ";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":type", $type);
         $statement->bindParam(":description", $description);
@@ -147,7 +147,7 @@ class SkillController
 
         // delete skill in DB
         $sql = "DELETE FROM skill WHERE id_skill = :id";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":id", $id);
         $statement->execute();
 

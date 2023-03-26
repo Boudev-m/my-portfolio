@@ -19,7 +19,7 @@ class AccountController
 
         // get user account (the email field has unique key in database)
         $sql = " SELECT email, password FROM account WHERE email = :email";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":email", $email);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Account::class);
@@ -51,7 +51,7 @@ class AccountController
     {
         // get user account
         $sql = "SELECT id_account, email, hidden_password, updated_at FROM account";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Account::class);
         $account = $statement->fetch();
@@ -70,7 +70,7 @@ class AccountController
         // get user account
         $sql = "SELECT * FROM account WHERE email = :email";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":email", $_POST['email']);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Account::class);
@@ -83,7 +83,7 @@ class AccountController
 
         // update user email in DB
         $sql = "UPDATE account SET email = :email, updated_at = CURRENT_TIMESTAMP()";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":email", $email);
         $statement->execute();
         GeneralController::redirectWithSuccess('./', 'L\'email a été modifié.');
@@ -98,7 +98,7 @@ class AccountController
         // Vérifie le mdp
         $sql = "SELECT * FROM account";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Account::class);
         $account = $statement->fetch();
@@ -119,7 +119,7 @@ class AccountController
             updated_at = CURRENT_TIMESTAMP()
         ";
 
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":password", $password);
         $statement->bindParam(":hidden_password", $hiddenPassword);
         $statement->execute();

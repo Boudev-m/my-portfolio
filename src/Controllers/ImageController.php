@@ -34,7 +34,7 @@ class ImageController
     {
         // get the old image name from DB
         $sql = "SELECT image FROM $table WHERE `id_$table` = :id";
-        $statement = (new DatabaseConnection)->getConnection()->prepare($sql);
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(':id', $id);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_OBJ);
