@@ -1,5 +1,6 @@
 ## Apache file
 ## This file is used to insert some configurations for Apache server.
+## This file must be into root folder
 
 ## Enable rewritting
 RewriteEngine On
