@@ -9,10 +9,11 @@ use App\Models\Project;
 class ProjectController
 {
     // GET ALL PROJECTS FROM DATABASE
-    public function readAll(string $statut = null): array
+    public function readAll(string $statut = null, string $orderByIdDesc = null): array
     {
         // get only active projects if 'active' is in arg, or get all projects
         $sql = $statut === 'active' ? "SELECT * FROM project WHERE `active` = 1" : "SELECT * FROM project";
+        !$orderByIdDesc ?: $sql .= " $orderByIdDesc";
         $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->execute();
         $projects = $statement->fetchAll(PDO::FETCH_CLASS, Project::class);  // or "App\\Models\\Project" instead of Project::class

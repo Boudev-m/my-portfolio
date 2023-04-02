@@ -14,7 +14,7 @@ use App\Controllers\MessageController;
 if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
 
 // GET DATAS FROM DB
-$projects = (new ProjectController)->readAll('active');
+$projects = (new ProjectController)->readAll('active', 'ORDER BY id_project DESC');
 $skills = (new SkillController())->readAll('active');
 $messages = array_reverse((new MessageController())->readAll('visible'));
 ?>
