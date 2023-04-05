@@ -56,7 +56,7 @@ class MessageController
 
         // Send private message to mailbox
         if ($visible === 0) {
-            $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+            $dotenv = Dotenv::createImmutable(dirname($_SERVER['DOCUMENT_ROOT']));
             $dotenv->load();
             $to      =  $_ENV['MY_MAILBOX'];
             $subject = "Message de $lastName $firstName";
