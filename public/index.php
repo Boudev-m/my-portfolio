@@ -90,7 +90,6 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
         <div class="py-4 text-center text-light" style="background-color: rgb(0, 0, 0, 0.3)">
             <h6 class="py-3"><span class='text-warning'>2023</span> : POEC Developpeur PHP - Symfony</h6>
             <h6 class="py-3"><span class='text-warning'>2022</span> : Titre RNCP Niveau 5 Developpeur Web</h6>
-            <h6 class="py-3"><span class='text-warning'>2020 - 2022</span> : Apprentissage autodidacte</h6>
         </div>
 
     </div>
