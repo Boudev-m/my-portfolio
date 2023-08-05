@@ -21,13 +21,13 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountControl
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="my-2 text-light">
+    <div class="my-2">
         <div>
             <h1 class="text-center mt-4"><img src="/assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> ESPACE DE CONNEXION <img src="/assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
-        <div class='py-4' style="background-color: rgb(0, 0, 0, 0.3)">
+        <div class='py-4' style="background-color: rgb(0, 0, 0, 0.1)">
             <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 mx-auto">
-                <p class="card-text text-center text-warning">Veuillez vous identifier.</p>
+                <p class="card-text text-center text-primary">Veuillez vous identifier.</p>
                 <form class="form-group" action="" method="post">
                     <input type="hidden" name="action" value="login">
                     <label for="email">Adresse email :</label>

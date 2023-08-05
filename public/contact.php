@@ -17,14 +17,14 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 
 <!-- MAIN CONTENT -->
 <main>
-    <div class="my-2 text-light">
+    <div class="my-2">
         <div>
             <h1 class="text-center mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MESSAGE PRIVÉ <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
 
-        <div class="mx-auto py-4" style="background-color: rgb(0, 0, 0, 0.3)">
+        <div class="mx-auto py-4" style="background-color: rgb(0, 0, 0, 0.1)">
             <div class="card-body">
-                <p class="card-text text-center text-warning">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
+                <p class="card-text text-center text-primary">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
                 <?php
                 if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
                     echo $_SESSION['message'];

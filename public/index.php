@@ -34,9 +34,9 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
         <!-- PROJECT LIST BLOCK -->
         <div>
-            <h1 class="text-center text-light mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES RÉALISATIONS <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES RÉALISATIONS <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
-        <div style="background-color: rgb(0, 0, 0, 0.3)">
+        <div style="background-color: rgb(0, 0, 0, 0.1)">
             <?php if (!$projects) : ?>
                 <div class='w-75 py-5 text-center text-warning mx-auto'>Aucune réalisation n'a été publiée ...</div>
             <?php else : ?>
@@ -45,8 +45,8 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                         <div class="col mx-auto my-1" style="width:250px;">
                             <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
                                 <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
-                                    <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top" alt="image de <?= $project->title ?>" style="max-height:200px;">
-                                    <div class="card-body text-light" style="background:<?= RANDOM_BACKGROUND ?>;">
+                                    <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top border-bottom border-secondary" alt="image de <?= $project->title ?>" style="max-height:200px;">
+                                    <div class="card-body text-dark">
                                         <h5 class="card-title"><?= $project->title ?></h5>
                                         <p class="card-text"><?= $project->description ?></p>
                                     </div>
@@ -60,9 +60,9 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
         <!-- SKILL LIST BLOCK -->
         <div>
-            <h1 class="text-center text-light mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES COMPÉTENCES <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MES COMPÉTENCES <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
-        <div style="background-color: rgb(0, 0, 0, 0.3)">
+        <div style="background-color: rgb(0, 0, 0, 0.1)">
             <?php if (!$skills) : ?>
                 <div class='w-75 py-5 text-center text-warning mx-auto'>Aucune compétence n'a été publiée ...</div>
             <?php else : ?>
@@ -85,18 +85,18 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
         <!-- PARCOURS BLOCK -->
         <div>
-            <h1 class="text-center text-light mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MON PARCOURS DEVELOPPEUR <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MON PARCOURS DEVELOPPEUR <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
-        <div class="py-4 text-center text-light" style="background-color: rgb(0, 0, 0, 0.3)">
-            <h6 class="py-3"><span class='text-warning'>2023</span> : POEC Developpeur PHP - Symfony</h6>
-            <h6 class="py-3"><span class='text-warning'>2022</span> : Titre RNCP Niveau 5 Developpeur Web</h6>
+        <div class="py-4 text-center" style="background-color: rgb(0, 0, 0, 0.1)">
+            <h6 class="py-3"><span class='text-primary'>2023</span> : POEC Developpeur PHP - Symfony</h6>
+            <h6 class="py-3"><span class='text-primary'>2022</span> : Titre RNCP Niveau 5 Developpeur Web</h6>
         </div>
 
     </div>
 
 
     <!-- FORM MESSAGE BLOCK-->
-    <div id="messageForm" class="container w-100 w-sm-75 my-5 text-light bg-transparent">
+    <div id="messageForm" class="container w-100 w-sm-75 my-5 bg-transparent">
         <div class="mb-4">
             <h1 class="text-center text-sm-start pt-1">Laisser un commentaire</h1>
         </div>
@@ -146,16 +146,18 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
 
     <!-- MESSAGE LIST BLOCK -->
-    <div class="container w-100 w-sm-75 my-5 text-light bg-transparent w-50">
+    <div class="container w-100 w-sm-75 my-5 bg-transparent w-50">
 
         <?php if (!$messages) : ?>
             <div class='py-3 px-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">Aucun commentaire n'a été publié ...</div>
         <?php else : ?>
+            <?php define('PROFIL_COLORS', ['#0099cc', '#9933ff', '#cc0000', '#ff9933', '#009933', '#777']) ?>
             <?php foreach ($messages as $message) : ?>
+                <?php $randomColor = PROFIL_COLORS[mt_rand(0, count(PROFIL_COLORS) - 1)] ?>
                 <div class='p-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">
                     <div class="border-bottom border-secondary d-flex pb-1">
                         <div class="pe-3" style="width: max-content;">
-                            <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:#888">
+                            <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= $randomColor ?>;">
                         </div>
                         <div>
                             <p class="m-0"><?= $message->first_name ?> <?= $message->last_name ?>,</p>

@@ -114,10 +114,10 @@ Pour éviter les failles de sécurité et renforcer le site, les méthodes ci-de
 ### RENDU VISUEL FRONT-OFFICE
 
 #### Accueil :  
-<img src="https://i.ibb.co/SX2mjys/portfolio-home.webp" width="500px">
+<img src="https://i.ibb.co/9vt8kbk/portfolio-home.webp" width="500px">
 
 #### Contact :
-<img src="https://i.ibb.co/q5xmKWh/portfolio-contact.webp" width="500px">
+<img src="https://i.ibb.co/XDtcK88/portfolio-contact.webp" width="500px">
 
 ___
 ### RENDU VISUEL BACK-OFFICE
