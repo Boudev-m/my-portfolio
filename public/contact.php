@@ -40,32 +40,32 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                         <div class="col-lg-6">
                             <div>
                                 <label for="last-name">Nom * :</label>
-                                <input class="form-control pointer border border-dark my-1" type="text" name="last-name" id="last-name">
+                                <input class="form-control pointer border border-dark my-1" type="text" name="last-name" id="last-name" style="background: #EEE">
                             </div>
                             <div>
                                 <label for="first-name">Prénom :</label>
-                                <input class="form-control pointer border border-dark my-1" type="text" name="first-name" id="first-name">
+                                <input class="form-control pointer border border-dark my-1" type="text" name="first-name" id="first-name" style="background: #EEE">
                             </div>
                             <div>
                                 <label for="email">Adresse email * :</label>
-                                <input class="form-control pointer border border-dark my-1" type="text" name="email" id="email">
+                                <input class="form-control pointer border border-dark my-1" type="text" name="email" id="email" style="background: #EEE">
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div>
                                 <label for="company">Société :</label>
-                                <input class="form-control pointer border border-dark my-1" type="text" name="company" id="company">
+                                <input class="form-control pointer border border-dark my-1" type="text" name="company" id="company" style="background: #EEE">
                             </div>
                             <div>
                                 <label for="phone">Téléphone :</label>
-                                <input class="form-control pointer border border-dark my-1" type="tel" name="phone" id="phone">
+                                <input class="form-control pointer border border-dark my-1" type="tel" name="phone" id="phone" style="background: #EEE">
                             </div>
                         </div>
 
                         <div>
                             <label for="content">Message * :</label>
-                            <textarea class="form-control pointer border border-dark my-1" name="content" id="content" rows="4"></textarea>
+                            <textarea class="form-control pointer border border-dark my-1" name="content" id="content" rows="4" style="background: #EEE"></textarea>
                         </div>
 
                         <div class="my-3 w-50 mx-auto">
