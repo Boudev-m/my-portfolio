@@ -24,7 +24,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 
         <div class="mx-auto py-4" style="background-color: rgb(0, 0, 0, 0.1)">
             <div class="card-body">
-                <p class="card-text text-center text-primary">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
+                <p class="card-text text-center">Vous avez des questions ou vous souhaitez simplement me contacter en privé ? Remplissez ce formulaire.</p>
                 <?php
                 if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
                     echo $_SESSION['message'];

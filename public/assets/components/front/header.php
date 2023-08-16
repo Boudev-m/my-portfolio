@@ -31,6 +31,9 @@
                                     <a class="nav-link text-dark" href="/">Accueil</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/about">À propos</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" href="/contact">Contact</a>
                                 </li>
                                 <?php if (isset($_SESSION['isLogged'], $_SESSION['role'])) : ?>

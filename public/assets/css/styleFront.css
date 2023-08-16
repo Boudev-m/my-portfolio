@@ -53,7 +53,7 @@ nav ul a:focus::before {
 
 main {
     /* Pour fixer le footer si le main n'est pas assez grand */
-    min-height: 82vh;
+    min-height: 80vh;
 }
 
 /* div container of img */
