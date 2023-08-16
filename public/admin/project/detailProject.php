@@ -12,8 +12,9 @@ use App\Controllers\ProjectController;
 // CHECK AUTH
 Authentication::check();
 
-// GET PROJECT FROM DB
-$project = (new ProjectController)->readOne($_GET['id']); ?>
+// GET PROJECT AND ASSOCIATED SKILLS FROM DB
+$project = (new ProjectController)->readOne($_GET['id']);
+$skills =  (new ProjectController)->loadSkillsFromProject($project) ?>
 
 <!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
@@ -53,6 +54,15 @@ $project = (new ProjectController)->readOne($_GET['id']); ?>
                     <tr>
                         <th class='text-end col-3'>Description :</th>
                         <td class='text-break'><?= $project->description ?? '&#8211' ?></td>
+                    </tr>
+
+                    <tr>
+                        <th class='text-end col-3'>Langage(s) utilisé(s)</th>
+                        <td class='text-break'>
+                            <?php foreach ($skills as $skill) : ?>
+                                <img src='/assets/images/upload/<?= $skill->image ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=40px class='rounded'>
+                            <?php endforeach ?>
+                        </td>
                     </tr>
 
                     <tr>

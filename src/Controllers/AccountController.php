@@ -18,18 +18,17 @@ class AccountController
         $email = strip_tags(trim(strtolower($email)));
 
         // get user account (the email field has unique key in database)
-        $sql = " SELECT email, password FROM account WHERE email = :email";
+        $sql = "SELECT email, password FROM account WHERE email = :email";
         $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":email", $email);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_CLASS, Account::class);
         $account = $statement->fetch();
 
-        // check if user account exist
-        $account ?: GeneralController::redirectWithError($_SERVER['REQUEST_URI'], 'Aucun compte ne correspond à cette email.');
-
-        // check user password
-        password_verify(trim($password), $account->password) ?: GeneralController::redirectWithError($_SERVER['REQUEST_URI'], 'Mot de passe incorrect.');
+        // check if user account exist and password valid
+        if (!$account || !password_verify(trim($password), $account->password)) {
+            GeneralController::redirectWithError($_SERVER['REQUEST_URI'], 'Email et/ou mot de passe incorrect(s).');
+        }
 
         // login success, saving datas in session (to access back office)
         $_SESSION['isLogged'] = true;

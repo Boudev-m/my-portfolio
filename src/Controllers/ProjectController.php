@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use PDO;
 use App\Models\Project;
+use App\Models\Skill;
 
 class ProjectController
 {
@@ -75,7 +76,8 @@ class ProjectController
         // save project in DB
         $sql = "
             INSERT INTO project (title, description, date_start, date_end, image, link, active)
-            VALUES (:title, :description, :date_start, :date_end, :image, :link, :active)
+            VALUES (:title, :description, :date_start, :date_end, :image, :link, :active);
+            SELECT LAST_INSERT_ID();
         ";
 
         $statement = DatabaseConnection::getConnection()->prepare($sql);
@@ -88,12 +90,63 @@ class ProjectController
         $statement->bindParam(":active", $active);
         $statement->execute();
 
+        // ADD SKILLS ASSOCIATED WITH THE PROJECT IN DB
+        // GET THE LAST INSERTED PROJECT
+        $sql = "
+            SELECT LAST_INSERT_ID() as id;
+        ";
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_CLASS, Project::class);
+        $idProject = $statement->fetch()->id;
+
+        // For each skills, insert a link with the project 
+        foreach ($_POST['skills'] as $idSkill) {
+
+            // Insert in project_skill table in DB
+            $sql = "
+                INSERT INTO project_skill (id_project, id_skill)
+                VALUES (:id_project, :id_skill)
+            ";
+            $statement = DatabaseConnection::getConnection()->prepare($sql);
+            $statement->bindParam(":id_project", $idProject);
+            $statement->bindParam(":id_skill", $idSkill);
+            $statement->execute();
+        }
+
         GeneralController::redirectWithSuccess('../project', "La réalisation '$title' a été ajoutée.");
     }
 
     // UPDATE PROJECT
     public function update(int $id): void
     {
+
+        // Remove skills linked to the project
+        $sql = "
+            DELETE FROM project_skill
+            WHERE id_project = :id
+        ";
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
+        $statement->bindParam(":id", $id);
+        $statement->execute();
+
+        // For each skills, insert a link with the project 
+        foreach ($_POST['skills'] as $idSkill) {
+
+            // Insert in project_skill table in DB
+            $sql = "
+                INSERT INTO project_skill (id_project, id_skill)
+                VALUES (:id_project, :id_skill)
+            ";
+            $statement = DatabaseConnection::getConnection()->prepare($sql);
+            $statement->bindParam(":id_project", $id);
+            $statement->bindParam(":id_skill", $idSkill);
+            $statement->execute();
+        }
+        // var_dump($id);
+        // var_dump($_POST['skills']);
+        // exit;
+
         // check if form valid
         $this->checkForm($_SERVER['REQUEST_URI']);
 
@@ -155,6 +208,15 @@ class ProjectController
     // DELETE PROJECT
     public function delete(int $id): void
     {
+        // Remove skills linked to the project
+        $sql = "
+            DELETE FROM project_skill
+            WHERE id_project = :id
+        ";
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
+        $statement->bindParam(":id", $id);
+        $statement->execute();
+
         // remove the old image (if there is one)
         ImageController::removeFromDisk($id, 'project');
 
@@ -199,20 +261,23 @@ class ProjectController
         }
     }
 
-    // RECUPERE LES SKILLS LIéS AU PROJET
-    // public function loadSkillsFromProject(Project $project)
-    // {
-    //     global $pdo;
-    //     $sql = "SELECT 
-    //         skill.id_skill, skill.name, skill.level, skill.picture
-    //         FROM skill
-    //         INNER JOIN skill_project ON skill_project.id_skill = skill.id_skill
-    //         INNER JOIN project ON project.id_project = skill_project.id_project
-    //         WHERE project.id_project = :id
-    //     ";
-    //     $statement = $pdo->prepare($sql);
-    //     $statement->bindParam(":id", $project->id_project, PDO::PARAM_INT);
-    //     $statement->execute();
-    //     $project->skills = $statement->fetchAll(PDO::FETCH_CLASS, "SkillModel");
-    // }
+    // GET SKILLS FROM A PROJECT
+    public function loadSkillsFromProject(Project $project)
+    {
+        // $sql = "
+        //     SELECT * FROM project
+        //     WHERE id_project = :id";
+        $sql = "
+            SELECT skill.id_skill, skill.title, skill.image
+            FROM skill
+            INNER JOIN project_skill ON project_skill.id_skill = skill.id_skill
+            INNER JOIN project ON project.id_project = project_skill.id_project
+            WHERE project.id_project = :id_project
+        ";
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
+        $statement->bindParam(":id_project", $project->id_project, PDO::PARAM_INT);
+        $statement->execute();
+        $skills = $statement->fetchAll(PDO::FETCH_CLASS, Skill::class);
+        return $skills;
+    }
 }

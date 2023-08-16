@@ -15,8 +15,9 @@ Authentication::check();
 // CHECK IF FORM SUBMITTED
 if (isset($_POST['submit']) && $_POST['action'] === 'delete') (new ProjectController)->delete($_POST['id']);
 
-// GET PROJECT FROM DB
-$project = (new ProjectController())->readOne($_GET['id']); ?>
+// GET PROJECT AND ASSOCIATED SKILLS FROM DB
+$project = (new ProjectController)->readOne($_GET['id']);
+$skills =  (new ProjectController)->loadSkillsFromProject($project) ?>
 
 <!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
@@ -47,6 +48,14 @@ $project = (new ProjectController())->readOne($_GET['id']); ?>
                 <tr>
                     <th class='text-end col-6'>Description :</th>
                     <td class='col-6 text-break'><?= $project->description ?? '&#8211' ?></td>
+                </tr>
+                <tr>
+                    <th class='text-end col-6'>Langage(s) utilisé(s) :</th>
+                    <td class='col-6 text-break'>
+                        <?php foreach ($skills as $skill) : ?>
+                            <img src='/assets/images/upload/<?= $skill->image ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=40px class='rounded'>
+                        <?php endforeach ?>
+                    </td>
                 </tr>
                 <tr>
                     <th class='text-end col-3'>Date de début :</th>

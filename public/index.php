@@ -15,6 +15,11 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
 
 // GET DATAS FROM DB
 $projects = (new ProjectController)->readAll('active', 'ORDER BY id_project DESC');
+foreach ($projects as $project) {
+    $project->skills = (new ProjectController)->loadSkillsFromProject($project);
+}
+// var_dump($projects);
+// exit;
 $skills = (new SkillController())->readAll('active');
 $messages = array_reverse((new MessageController())->readAll('visible'));
 ?>
@@ -44,13 +49,24 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                     <?php foreach ($projects as $project) : ?>
                         <div class="col mx-auto my-1" style="width:250px;">
                             <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
+
+                                <!-- CARD -->
                                 <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
-                                    <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top border-bottom border-secondary" alt="image de <?= $project->title ?>" style="max-height:200px;">
-                                    <div class="card-body text-dark">
+                                    <div class="container-project-picture">
+                                        <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top project-picture border-bottom border-secondary" alt="image de <?= $project->title ?>">
+                                    </div>
+                                    <div class="card-body text-dark pb-1">
                                         <h5 class="card-title"><?= $project->title ?></h5>
-                                        <p class="card-text"><?= $project->description ?></p>
+                                        <p class="card-text" style="font-size: 0.9em;"><?= $project->description ?></p>
+                                    </div>
+                                    <div class="text-end opacity-75 border-top border-secondary p-1">
+                                        <?php foreach ($project->skills as $skill) : ?>
+                                            <img src='/assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=30px class='rounded'>
+                                        <?php endforeach ?>
                                     </div>
                                 </div>
+                                <!-- END -->
+
                             </a>
                         </div>
                     <?php endforeach ?>

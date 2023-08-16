@@ -11,7 +11,7 @@ use Dotenv\Dotenv;
 
 class DatabaseConnection
 {
-    public static $pdo = null;
+    private static $pdo = null;
 
     // GET CONNECTION TO DB
     public static function getConnection(): PDO

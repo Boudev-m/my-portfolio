@@ -55,7 +55,7 @@ class SkillController
         }
 
         // formatting datas
-        $title = strip_tags(ucwords(strtolower($_POST['title'])));
+        $title = strip_tags($_POST['title']);
         $type = (int)$_POST['type'];
         $description = $_POST['description'] ?: null;
         $image = $imageName ?? null;
@@ -110,7 +110,7 @@ class SkillController
         }
 
         // formatting datas
-        $title = strip_tags(ucwords(strtolower($_POST['title'])));
+        $title = strip_tags($_POST['title']);
         $type = (int)$_POST['type'];
         $description = $_POST['description'] ?: null;
         $link = $_POST['link'] ?: null;

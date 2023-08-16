@@ -8,6 +8,7 @@
 
 use App\Controllers\Authentication;
 use App\Controllers\ProjectController;
+use App\Controllers\SkillController;
 
 // CHECK AUTH
 Authentication::check();
@@ -15,8 +16,9 @@ Authentication::check();
 // CHECK IF FORM SUBMITTED
 if (isset($_POST['submit']) && $_POST['action'] === 'update') (new ProjectController)->update($_POST['id']);
 
-// GET PROJECT FROM DB
-$project = (new ProjectController())->readOne($_GET['id']) ?>
+// GET PROJECT AND ALL SKILLS FROM DB
+$project = (new ProjectController())->readOne($_GET['id']);
+$skills = (new SkillController)->readAll() ?>
 
 <!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
@@ -46,6 +48,20 @@ $project = (new ProjectController())->readOne($_GET['id']) ?>
                     <tr>
                         <th class='text-end'>Description :</th>
                         <td><textarea class='form-control' name='description' id='description' rows='2'><?= $project->description ?></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <th class="text-end">Langage(s) utilisé(s) :</th>
+                        <td>
+                            <?php foreach ($skills as $skill) : ?>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input pointer border border-dark" type="checkbox" name="skills[]" id="skill-<?= $skill->id_skill ?>" value="<?= $skill->id_skill ?>">
+                                    <label class="form-check-label pointer" for="skill-<?= $skill->id_skill ?>">
+                                        <img src='/assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=40px class='rounded'>
+                                    </label>
+                                </div>
+                            <?php endforeach ?>
+                        </td>
                     </tr>
 
                     <!-- DATE -->

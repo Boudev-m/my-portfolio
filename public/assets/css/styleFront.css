@@ -56,6 +56,13 @@ main {
     min-height: 82vh;
 }
 
+/* div container of img */
+.container-project-picture {
+    max-height: 150px;
+    overflow: hidden;
+    /*ici je réduit la hauteur du container et je cache le depassement d'image*/
+}
+
 h1 {
     font-size: 1.4rem;
     opacity: 0.8;

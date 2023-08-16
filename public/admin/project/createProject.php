@@ -8,12 +8,16 @@
 
 use App\Controllers\Authentication;
 use App\Controllers\ProjectController;
+use App\Controllers\SkillController;
 
 // CHECK AUTH
 Authentication::check();
 
 // CHECK IF FORM SUBMITTED
-if (isset($_POST['submit']) && $_POST['action'] === 'create') (new ProjectController)->create() ?>
+if (isset($_POST['submit']) && $_POST['action'] === 'create') (new ProjectController)->create();
+
+// GET ALL SKILLS FROM DB
+$skills = (new SkillController)->readAll() ?>
 
 <!-- HEADER -->
 <?php include '../../assets/components/back/header.php' ?>
@@ -45,6 +49,19 @@ if (isset($_POST['submit']) && $_POST['action'] === 'create') (new ProjectContro
                 <div class="my-2">
                     <label for="text">Description :</label>
                     <textarea class="form-control pointer border border-dark" name="description" id="description" rows="3"></textarea>
+                </div>
+
+                <!-- SKILLS -->
+                <div>
+                    <p>Langage(s) utilisé(s) :</p>
+                    <?php foreach ($skills as $skill) : ?>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input pointer border border-dark" type="checkbox" name="skills[]" id="skill-<?= $skill->id_skill ?>" value="<?= $skill->id_skill ?>">
+                            <label class="form-check-label pointer" for="skill-<?= $skill->id_skill ?>">
+                                <img src='/assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=40px class='rounded'>
+                            </label>
+                        </div>
+                    <?php endforeach ?>
                 </div>
 
                 <!-- DATE -->
