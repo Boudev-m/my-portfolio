@@ -47,7 +47,7 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
             <?php else : ?>
                 <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
                     <?php foreach ($projects as $project) : ?>
-                        <div class="col mx-auto my-1" style="width:250px;">
+                        <div class="card-project col mx-auto my-1" style="width:250px;">
                             <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
 
                                 <!-- CARD -->
