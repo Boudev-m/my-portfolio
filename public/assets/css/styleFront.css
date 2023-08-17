@@ -102,6 +102,7 @@ h1 {
     animation-name: move-and-display;
     animation-duration: 2.5s;
     position: relative;
+    animation-timing-function: ease-out;
 }
 
 .card-project:nth-of-type(1) {
