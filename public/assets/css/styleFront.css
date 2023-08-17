@@ -96,7 +96,7 @@ h1 {
     cursor: pointer;
 }
 
-/* Animation */
+/* Animation home page */
 
 .card-project {
     animation-name: move-and-display;
@@ -133,5 +133,47 @@ h1 {
     100% {
         opacity: 1;
         bottom: 0;
+    }
+}
+
+/* Animation about page */
+
+.text-about {
+    animation-name: move-and-display-to-left;
+    animation-duration: 2s;
+    position: relative;
+}
+
+@keyframes move-and-display-to-left {
+    0% {
+        opacity: 0;
+        left: -150px;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+.image-about {
+    animation-name: move-and-display-to-right;
+    animation-duration: 2s;
+    position: relative;
+}
+
+@keyframes move-and-display-to-right {
+    0% {
+        opacity: 0;
+        right: -150px;
+    }
+
+    100% {
+        opacity: 1;
+        right: 0;
     }
 }

@@ -16,8 +16,8 @@
 
         <div class="mx-auto py-4 py-sm-5" style="background-color: rgb(0, 0, 0, 0.1)">
             <div class="w-75 d-flex flex-lg-row align-items-center mx-auto flex-column-reverse">
-                <div class="text-center text-lg-start">
-                    <p class="pe-0 pt-3 pe-lg-4 pt-lg-0 ">Je m'appelle Mustapha et je suis développeur basé dans les Yvelines en Ile-de-France.<br><br>
+                <div class="text-about text-center text-lg-start">
+                    <p class="pe-0 pt-3 pe-lg-4 pt-lg-0">Je m'appelle Mustapha et je suis développeur basé dans les Yvelines en Ile-de-France.<br><br>
                         Je possède un niveau BAC+2 en Développement Web.<br>
                         Mon langage de programmation principale est le PHP et je possède également des compétences sur d'autres langages et frameworks.<br><br>
                         Mes périodes de formation et mon titre obtenu confirment mon choix de travailler dans ce domaine. C'est pourquoi je continue à me former en autodidacte.<br><br>
@@ -27,7 +27,7 @@
                         <a href="/contact" class="btn btn-secondary opacity-75">M'ENVOYER UN EMAIL</a>
                     </div>
                 </div>
-                <div class="col col-sm-8 col-md-7 col-lg-6 col-xl-5">
+                <div class="image-about col col-sm-8 col-md-7 col-lg-6 col-xl-5">
                     <img src="/assets/images/icons/developer-picture.jpg" alt="illustration d'un développeur" width="100%">
                 </div>
             </div>
