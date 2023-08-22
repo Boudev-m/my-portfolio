@@ -109,7 +109,6 @@ Pour éviter les failles de sécurité et renforcer le site, les méthodes ci-de
 - Afficher les messages d'alerte sous forme de fenêtre qui apparait et disparait 
 - Faire apparaitre l'image après la selection d'une image à uploader (en utilisant javascript côté front)
 - Ajouter la possibilité de mettre plusieurs images pour un projet (une seule image actuellement)
-- Ajouter une page 'A propos' pour afficher une brève presentation du developpeur
 
 ### RENDU VISUEL FRONT-OFFICE
 
