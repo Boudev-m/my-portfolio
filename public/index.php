@@ -84,8 +84,8 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
             <?php else : ?>
                 <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
                     <?php foreach ($skills as $skill) : ?>
-                        <div class="col-sm-4 mx-auto" style="max-width:150px;max-height:150px;">
-                            <div class="card border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
+                        <div class="col-sm-4 mx-auto mb-3" style="max-width:140px;max-height:140px;">
+                            <div class="card card-skill border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
                                 <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
                                     <div class="icon-box icon-box--success">
                                         <img src="./assets/images/upload/<?= $skill->getImage() ?>" alt="logo de <?= $skill->title ?>" width="100%">
