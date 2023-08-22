@@ -98,14 +98,18 @@ h1 {
 
 /* Animation home page */
 
-.card-project {
-    animation-name: move-and-display;
+.card-project,
+.form-contact,
+.form-login {
+    animation-name: move-and-display-to-top;
     animation-duration: 2.5s;
     position: relative;
     animation-timing-function: ease-out;
 }
 
-.card-project:nth-of-type(1) {
+.card-project:nth-of-type(1),
+.form-contact,
+.form-login {
     animation-delay: -0.7s;
 }
 
@@ -121,7 +125,7 @@ h1 {
     animation-delay: -0.1s;
 }
 
-@keyframes move-and-display {
+@keyframes move-and-display-to-top {
     0% {
         opacity: 0;
         bottom: -150px;
@@ -140,12 +144,12 @@ h1 {
 /* Animation about page */
 
 .text-about {
-    animation-name: move-and-display-to-left;
+    animation-name: display;
     animation-duration: 3s;
     position: relative;
 }
 
-@keyframes move-and-display-to-left {
+@keyframes display {
     0% {
         opacity: 0;
     }
@@ -160,12 +164,12 @@ h1 {
 }
 
 .image-about {
-    animation-name: move-and-display-to-right;
+    animation-name: move-and-display-to-left;
     animation-duration: 2s;
     position: relative;
 }
 
-@keyframes move-and-display-to-right {
+@keyframes move-and-display-to-left {
     0% {
         opacity: 0;
         right: -150px;
@@ -175,4 +179,13 @@ h1 {
         opacity: 1;
         right: 0;
     }
+}
+
+/* Animation forms */
+
+.form-contact,
+.form-login {
+    animation-name: move-and-display-to-top;
+    animation-duration: 1800ms;
+    animation-timing-function: ease;
 }
