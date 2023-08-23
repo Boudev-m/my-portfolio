@@ -2,7 +2,7 @@
 
 <!-- HEAD -->
 <?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'head.php']) ?>
-<title>Portfolio de BouiMust</title>
+<title>Portfolio de Bouibrine Mustapha - Bouimust</title>
 
 <?php
 

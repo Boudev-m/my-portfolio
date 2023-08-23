@@ -2,7 +2,7 @@
 
 <!-- HEAD -->
 <?php include './assets/components/front/head.php' ?>
-<title>Contact</title>
+<title>Contact - Bouimust</title>
 
 <?php
 
