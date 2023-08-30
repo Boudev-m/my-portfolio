@@ -21,7 +21,7 @@
                         Je possède un niveau BAC+2 en Développement Web.<br>
                         Mon langage de programmation principale est le PHP et je possède également des compétences sur d'autres langages et frameworks.<br><br>
                         Mes périodes de formation et mon titre obtenu confirment mon choix de travailler dans ce domaine. C'est pourquoi je continue à me former en autodidacte.<br><br>
-                        J'aspire à participer et contribuer à des projets concrets et utiles pour la société.
+                        J'aspire à participer et contribuer à des projets concrets et utiles pour les utilisateurs.
                     </p>
                     <div class="my-3">
                         <a href="/contact" class="btn btn-secondary opacity-75">M'ENVOYER UN EMAIL</a>
