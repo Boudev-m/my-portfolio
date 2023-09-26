@@ -2,6 +2,13 @@
 
 <!-- HEAD -->
 <?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'head.php']) ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript" defer>
+    function enableSubmitButton() {
+        const submitButton = document.getElementById("submit-button");
+        submitButton.removeAttribute("disabled");
+    }
+</script>
 <title>Connexion</title>
 
 <?php
@@ -38,7 +45,8 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') {
                     <input type="text" class="form-control my-2 border border-dark rounded-0" name="email" id="email">
                     <label for="password">Mot de passe :</label>
                     <input type="password" class="form-control my-2 border border-dark rounded-0" name="password" id="password">
-                    <button class="d-block btn btn-success border border-dark w-50 my-4 mx-auto" type="submit" name="submit">CONNEXION</button>
+                    <div class="g-recaptcha d-flex justify-content-center" data-sitekey="6LfI5VQoAAAAABE-Jc-j0BItn0nl_tv49RmIVEeB" data-callback="enableSubmitButton"></div>
+                    <button id="submit-button" class="d-block btn btn-success border border-dark w-50 my-4 mx-auto rounded-0" type="submit" name="submit" disabled>CONNEXION</button>
                 </form>
             </div>
             <?php

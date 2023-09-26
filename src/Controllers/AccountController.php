@@ -5,12 +5,18 @@ namespace App\Controllers;
 
 use PDO;
 use App\Models\Account;
+use Dotenv\Dotenv;
+use ReCaptcha\ReCaptcha;
 
 class AccountController
 {
     // LOGIN
     function login(string $email, string $password): void
     {
+        // Load Environment vars
+        $dotenv = Dotenv::createImmutable(dirname($_SERVER['DOCUMENT_ROOT']));
+        $dotenv->load();
+
         // check if form valid
         $this->checkLoginForm($_SERVER['REQUEST_URI']);
 
@@ -94,7 +100,7 @@ class AccountController
         // require_once(__DIR__ . DIRECTORY_SEPARATOR . "GeneralController.php");
         $this->checkUpdatePasswordForm($_SERVER['REQUEST_URI']);
 
-        // Vérifie le mdp
+        // Get account
         $sql = "SELECT * FROM account";
 
         $statement = DatabaseConnection::getConnection()->prepare($sql);
@@ -102,15 +108,15 @@ class AccountController
         $statement->setFetchMode(PDO::FETCH_CLASS, Account::class);
         $account = $statement->fetch();
 
-        // Vérifie le mdp
+        // Check password
         password_verify(trim($_POST['password']), $account->password) ?: GeneralController::redirectWithError($_SERVER['REQUEST_URI'], 'Le mot de passe actuel est incorrect.');
 
         $password = strip_tags(trim($_POST['newPassword']));
-        // le hiddenPassword sera affiché et servira de rappel à l'utilisateur
+        // hiddenPassword is to remember the password
         $hiddenPassword = str_repeat('*', strlen($password) - 2) . substr($password, -2);
         $password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
-        // Requête SQL pour modifier le mdp
+        // SQL query to update the password
         $sql = "
             UPDATE account SET
             password = :password,
@@ -129,6 +135,16 @@ class AccountController
     // CHECK LOGIN FORM (checking the validity of the form, takes redirection path in arg in case the form isn't valid)
     function checkLoginForm(string $redirectionPath): void
     {
+        // Check Recaptcha validation
+        $recaptcha = new ReCaptcha($_ENV['SECRET_KEY']);
+        $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+        $remoteIp = $_SERVER['REMOTE_ADDR'];
+        $resp = $recaptcha->setExpectedHostname($_ENV['HOST_NAME'])
+            ->verify($gRecaptchaResponse, $remoteIp);
+        if (!$resp->isSuccess()) {
+            GeneralController::redirectWithError($redirectionPath, 'Erreur reCaptcha, veuillez réessayer.');
+        }
+
         // check if required fields are filled
         if (!$_POST['email']) {
             GeneralController::redirectWithError($redirectionPath, 'L\'email est obligatoire.');
