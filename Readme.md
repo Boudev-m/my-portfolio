@@ -63,7 +63,9 @@ Programmation orienté objet avec l'utilisation des class, des namespaces et de 
 Pour des raisons de sécurité, le fichier .env d'origine n'est pas disponible.
 
 ### COMPOSER
-Composer a été installé dans ce projet pour permettre le chargement automatique des classes avec l'autoloader et l'exploitation des variables d'environnements avec le paquet phpdotenv (https://github.com/vlucas/phpdotenv).
+Composer a été installé dans ce projet pour permettre le chargement automatique des classes avec l'autoloader et l'installation de certaines dépendances : 
+- ``vlucas/phpdotenv`` : pour l'exploitation des variables d'environnements
+- ``google/recaptcha`` : pour éviter les spams et abus dans les formulaires
 
 ### PAGES / URLs DE L'APPLICATION
 ``/``                               : page d'accueil  

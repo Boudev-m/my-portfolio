@@ -2,6 +2,13 @@
 
 <!-- HEAD -->
 <?php include './assets/components/front/head.php' ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript" defer>
+    function enableSubmitButton() {
+        const submitButton = document.getElementById("submit-button");
+        submitButton.removeAttribute("disabled");
+    }
+</script>
 <title>Contact - Bouimust</title>
 
 <?php
@@ -9,7 +16,10 @@
 use App\Controllers\MessageController;
 
 // CHECK IF FORM IS SUBMITTED
-if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
+if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
+    sleep(1);
+    (new MessageController)->create();
+}
 ?>
 
 <!-- HEADER -->
@@ -67,9 +77,11 @@ if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageCo
                             <label for="content">Message * :</label>
                             <textarea class="form-control pointer border border-dark my-1 rounded-0" name="content" id="content" rows="4" style="background: #EEE"></textarea>
                         </div>
-
+                        <div class="d-flex justify-content-center">
+                            <div class="g-recaptcha" data-sitekey="6LfI5VQoAAAAABE-Jc-j0BItn0nl_tv49RmIVEeB" data-callback="enableSubmitButton"></div>
+                        </div>
                         <div class="my-3 w-50 mx-auto">
-                            <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
+                            <button id="submit-button" type="submit" name="submit" class="btn btn-success border border-dark w-100 rounded-0" disabled>ENVOYER</button>
                         </div>
                         <p class="text-center text-sm-start py-0 my-0">* : champ obligatoire</p>
                     </div>

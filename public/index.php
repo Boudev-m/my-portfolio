@@ -2,6 +2,13 @@
 
 <!-- HEAD -->
 <?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'head.php']) ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript" defer>
+    function enableSubmitButton() {
+        const submitButton = document.getElementById("submit-button");
+        submitButton.removeAttribute("disabled");
+    }
+</script>
 <title>Portfolio de Bouibrine Mustapha - Bouimust</title>
 
 <?php
@@ -11,15 +18,15 @@ use App\Controllers\SkillController;
 use App\Controllers\MessageController;
 
 // CHECK IF FORM IS SUBMITTED
-if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') (new MessageController)->create();
-
+if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
+    sleep(1);
+    (new MessageController)->create();
+}
 // GET DATAS FROM DB
 $projects = (new ProjectController)->readAll('active', 'ORDER BY id_project DESC');
 foreach ($projects as $project) {
     $project->skills = (new ProjectController)->loadSkillsFromProject($project);
 }
-// var_dump($projects);
-// exit;
 $skills = (new SkillController())->readAll('active');
 $messages = array_reverse((new MessageController())->readAll('visible'));
 ?>
@@ -141,10 +148,9 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                     <div class="mb-2">
                         <textarea class="form-control pointer border border-dark rounded-0" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
                     </div>
-
-
+                    <div class="g-recaptcha" data-sitekey="6LfI5VQoAAAAABE-Jc-j0BItn0nl_tv49RmIVEeB" data-callback="enableSubmitButton"></div>
                     <div class="mx-auto mx-sm-0 my-3 w-50">
-                        <button type="submit" name="submit" class="btn btn-success border border-dark w-100">ENVOYER</button>
+                        <button id="submit-button" type="submit" name="submit" class="btn btn-success border border-dark w-100 rounded-0" disabled>ENVOYER</button>
                     </div>
                     <p class="text-center text-sm-start py-0 my-0">* : champ obligatoire</p>
                     <div>

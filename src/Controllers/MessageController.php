@@ -6,6 +6,7 @@ namespace App\Controllers;
 use PDO;
 use App\Models\Message;
 use Dotenv\Dotenv;
+use ReCaptcha\ReCaptcha;
 
 class MessageController
 {
@@ -42,6 +43,10 @@ class MessageController
         // Display alert message in the message section in home page
         $_SESSION['messageSection'] = true;
 
+        // Load Environment vars
+        $dotenv = Dotenv::createImmutable(dirname($_SERVER['DOCUMENT_ROOT']));
+        $dotenv->load();
+
         // check if form valid
         $this->checkForm($_POST['path']);
 
@@ -56,8 +61,6 @@ class MessageController
 
         // Send private message to mailbox
         if ($visible === 0) {
-            $dotenv = Dotenv::createImmutable(dirname($_SERVER['DOCUMENT_ROOT']));
-            $dotenv->load();
             $to      =  $_ENV['MY_MAILBOX'];
             $subject = "Message de $lastName $firstName";
             $message = $content . "\r\n" . "Société : $company" . "\r\n" . "Téléphone : $phone";
@@ -140,6 +143,16 @@ class MessageController
     // CHECK MESSAGE FORM
     public function checkForm($redirectionPath): void
     {
+        // Check Recaptcha validation
+        $recaptcha = new ReCaptcha($_ENV['SECRET_KEY']);
+        $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+        $remoteIp = $_SERVER['REMOTE_ADDR'];
+        $resp = $recaptcha->setExpectedHostname($_ENV['HOST_NAME'])
+            ->verify($gRecaptchaResponse, $remoteIp);
+        if (!$resp->isSuccess()) {
+            GeneralController::redirectWithError($redirectionPath, 'Erreur reCaptcha, veuillez réessayer.');
+        }
+
         // check if required fields are filled
         if (!$_POST['last-name']) GeneralController::redirectWithError($redirectionPath, 'Le nom est obligatoire.');
         if (!$_POST['email']) GeneralController::redirectWithError($redirectionPath, 'L\'adresse email est obligatoire.');

@@ -14,7 +14,11 @@ if (isset($_SESSION['isLogged'], $_SESSION['role'])) {
 };
 
 // CHECK IF FORM SUBMITTED
-if (isset($_POST['submit']) && $_POST['action'] === 'login') (new AccountController)->login($_POST['email'], $_POST['password']) ?>
+if (isset($_POST['submit']) && $_POST['action'] === 'login') {
+    sleep(1);
+    (new AccountController)->login($_POST['email'], $_POST['password']);
+}
+?>
 
 <!-- HEADER -->
 <?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'header.php']) ?>
