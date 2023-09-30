@@ -158,6 +158,16 @@ class MessageController
         if (!$_POST['email']) GeneralController::redirectWithError($redirectionPath, 'L\'adresse email est obligatoire.');
         if (!$_POST['content']) GeneralController::redirectWithError($redirectionPath, 'Le message ne peut être vide.');
 
+        // check if the content is in russian (forbidden)
+        if (preg_match('/[А-Яа-яЁё]/u', $_POST['content'])) {
+            GeneralController::redirectWithError($redirectionPath, 'Русский здесь запрещен.');
+        }
+
+        // check if the content includes url link (forbidden)
+        if (preg_match('/https?:\/\//', $_POST['content'])) {
+            GeneralController::redirectWithError($redirectionPath, 'Les liens urls sont interdits.');
+        }
+
         // check if visibility is set
         if ($_POST['isVisible'] !== '0' && $_POST['isVisible'] !== '1') {
             GeneralController::redirectWithError($redirectionPath, 'Erreur, veuillez réessayer.');
