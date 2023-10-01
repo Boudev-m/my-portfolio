@@ -62,12 +62,6 @@ if (isset($_POST['submit']) && $_POST['action'] === 'create') (new SkillControll
                     <textarea class="form-control pointer border border-dark" name="description" id="description" rows="3"></textarea>
                 </div>
 
-                <!-- LINK -->
-                <div class="my-2">
-                    <label for="link">Lien :</label>
-                    <input class="form-control pointer border border-dark" type="text" name="link" id="link">
-                </div>
-
                 <!-- IMAGE -->
                 <div class="my-2 pointer">
                     <label for="image">Charger une image :</label>
