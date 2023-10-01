@@ -115,10 +115,10 @@ Pour éviter les failles de sécurité et renforcer le site, les méthodes ci-de
 ### RENDU VISUEL FRONT-OFFICE
 
 #### Accueil :  
-<img src="https://i.ibb.co/9vt8kbk/portfolio-home.webp" width="500px">
+<img src="https://i.ibb.co/XJ9xFv8/Home-Bouimust.webp" width="500px">
 
 #### Contact :
-<img src="https://i.ibb.co/XDtcK88/portfolio-contact.webp" width="500px">
+<img src="https://i.ibb.co/f8b4WHt/Contact-Bouimust.webp" width="500px">
 
 ___
 ### RENDU VISUEL BACK-OFFICE
@@ -129,16 +129,16 @@ ___
 <img src="https://i.ibb.co/JmpX1hS/portfolio-skills.webp" width="500px">
 
 #### Liste des réalisations :
-<img src="https://i.ibb.co/6JZqFwS/portfolio-projects.webp" width="500px">
+<img src="https://i.ibb.co/vs3xRqd/Gestion-realisations.webp" width="500px">
 
 #### Détail d'une réalisation :
-<img src="https://i.ibb.co/dQw5dDw/portfolio-detail.webp" width="500px">
+<img src="https://i.ibb.co/JpPdKSm/Details-realisation.webp" width="500px">
+
+#### Modification d'une réalisation :
+<img src="https://i.ibb.co/Dtdpkxc/Modification-realisation.webp" width="500px">
 
 #### Confirmation de suppression d'une réalisation :
-<img src="https://i.ibb.co/khPDNB2/portfolio-delete.webp" width="500px">
-
-#### Création d'une réalisation :
-<img src="https://i.ibb.co/7GyJ3LS/portfolio-new.webp" width="500px">
+<img src="https://i.ibb.co/BZtVdqw/Confirmation-suppression.webp" width="500px">
 
 #### Détails du compte utilisateur :
 <img src="https://i.ibb.co/vZBr9vf/portfolio-account.webp" width="500px">
