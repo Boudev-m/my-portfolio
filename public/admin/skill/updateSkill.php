@@ -68,10 +68,6 @@ $skill = (new SkillController())->readOne($_GET['id']) ?>
                         <td><input class='form-control' type='file' name='image' id='image'></td>
                     </tr>
                     <tr>
-                        <th class='text-end align-middle col-3'>Lien :</th>
-                        <td><input class='form-control' type='text' name='link' id='link' value='<?= $skill->link ?>'></td>
-                    </tr>
-                    <tr>
                         <th class='text-end align-middle col-3'>Statut :</th>
                         <td>
                             <select class='pointer' style='padding: 10px;' name='isActive' id='isActive'>

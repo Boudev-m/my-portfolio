@@ -59,13 +59,12 @@ class SkillController
         $type = (int)$_POST['type'];
         $description = $_POST['description'] ?: null;
         $image = $imageName ?? null;
-        $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
         // save skill in DB
         $sql = "
-            INSERT INTO skill (title, type, description, image, link, active)
-            VALUES (:title, :type, :description, :image, :link, :active)
+            INSERT INTO skill (title, type, description, image, active)
+            VALUES (:title, :type, :description, :image, :active)
         ";
 
         $statement = DatabaseConnection::getConnection()->prepare($sql);
@@ -73,7 +72,6 @@ class SkillController
         $statement->bindParam(":type", $type);
         $statement->bindParam(":description", $description);
         $statement->bindParam(":image", $image);
-        $statement->bindParam(":link", $link);
         $statement->bindParam(":active", $active);
         $statement->execute();
 
@@ -113,7 +111,6 @@ class SkillController
         $title = strip_tags($_POST['title']);
         $type = (int)$_POST['type'];
         $description = $_POST['description'] ?: null;
-        $link = $_POST['link'] ?: null;
         $active = (int)$_POST['isActive'];
 
         // Update skill in DB
@@ -122,7 +119,6 @@ class SkillController
             title = :title,
             type = :type,
             description = :description,
-            link = :link,
             active = :active
             WHERE id_skill = :id
         ";
@@ -131,7 +127,6 @@ class SkillController
         $statement->bindParam(":title", $title);
         $statement->bindParam(":type", $type);
         $statement->bindParam(":description", $description);
-        $statement->bindParam(":link", $link);
         $statement->bindParam(":active", $active);
         $statement->bindParam(":id", $id);
         $statement->execute();
@@ -167,9 +162,6 @@ class SkillController
         }
         if ($_POST['description'] && strlen($_POST['description']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'La description ne doit pas dépasser 255 caractères.');
-        }
-        if ($_POST['link'] && strlen($_POST['link']) > 255) {
-            GeneralController::redirectWithError($redirectionPath, 'Le lien ne doit pas dépasser 255 caractères.');
         }
 
         // check if type is set

@@ -53,16 +53,6 @@ $skill = (new SkillController())->readOne($_GET['id']) ?>
                     <td class='col-6 text-break'><?= $skill->description ?? '&#8211' ?></td>
                 </tr>
                 <tr>
-                    <th class='text-end col-6'>Lien :</th>
-                    <td class='col-6 text-break'>
-                        <?php if ($skill->link) : ?>
-                            <a href='<?= $skill->link ?>' class='fw-bold' target='_blank'><?= $skill->link ?></a>
-                        <?php else : ?>
-                            &#8211
-                        <?php endif ?>
-                    </td>
-                </tr>
-                <tr>
                     <th class='text-end col-6'>Statut :</th>
                     <td class='col-6'><?= $skill->getStatut() ?></td>
                 </tr>
