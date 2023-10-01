@@ -55,26 +55,38 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
                 <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
                     <?php foreach ($projects as $project) : ?>
                         <div class="card-project col mx-auto my-1" style="width:250px;">
-                            <a href="<?= $project->link ?? '#' ?>" class="text-decoration-none d-block h-100 w-100 pt-2 rounded">
 
-                                <!-- CARD -->
-                                <div class="card bg-transparent h-100 border border-secondary" style="transition:300ms" onmouseout="this.style.transform='translate(0,0)'" onmouseover="this.style.transform='translate(0,-10px)'">
-                                    <div class="container-project-picture">
-                                        <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top project-picture border-bottom border-secondary" alt="image de <?= $project->title ?>">
-                                    </div>
-                                    <div class="card-body text-dark pb-1">
-                                        <h5 class="card-title"><?= $project->title ?></h5>
-                                        <p class="card-text" style="font-size: 0.9em;"><?= $project->description ?></p>
-                                    </div>
-                                    <div class="text-end opacity-75 border-top border-secondary p-1">
-                                        <?php foreach ($project->skills as $skill) : ?>
-                                            <img src='/assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=30px class='rounded'>
-                                        <?php endforeach ?>
-                                    </div>
+                            <!-- CARD -->
+                            <div class="card bg-transparent h-100 border border-secondary">
+                                <div class="container-project-picture">
+                                    <img src="./assets/images/upload/<?= $project->getImage() ?>" class="card-img-top project-picture border-bottom border-secondary" alt="image de <?= $project->title ?>">
                                 </div>
-                                <!-- END -->
+                                <div class="card-body text-dark pb-1">
+                                    <h5 class="card-title"><?= $project->title ?></h5>
+                                    <p class="card-text" style="font-size: 0.9em;"><?= $project->description ?></p>
+                                </div>
+                                <div class="text-end opacity-75 border-top border-secondary p-1">
+                                    <?php foreach ($project->skills as $skill) : ?>
+                                        <img src='/assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=25px class='rounded'>
+                                    <?php endforeach ?>
+                                </div>
+                                <?php if ($project->link_web) : ?>
+                                    <p class="lien lien1">
+                                        <a href="<?= $project->link_web ?? '#' ?>" style="word-break: keep-all;">Voir en ligne
+                                            <img src="./assets/images/icons/web_icon.svg" alt="github" width="25px" style="filter: invert(1);">
+                                        </a>
+                                    </p>
+                                <?php endif ?>
+                                <?php if ($project->link_github) : ?>
+                                    <p class="lien lien2">
+                                        <a href="<?= $project->link_github ?? '#' ?>">Voir sur github
+                                            <img src="./assets/images/icons/github-mark-white.svg" alt="github" width="25px">
+                                        </a>
+                                    </p>
+                                <?php endif ?>
+                            </div>
+                            <!-- END CARD -->
 
-                            </a>
                         </div>
                     <?php endforeach ?>
                 </div>

@@ -57,7 +57,7 @@ $skills =  (new ProjectController)->loadSkillsFromProject($project) ?>
                     </tr>
 
                     <tr>
-                        <th class='text-end col-3'>Langage(s) utilisé(s)</th>
+                        <th class='text-end col-3'>Compétence(s) exploitée(s) :</th>
                         <td class='text-break'>
                             <?php foreach ($skills as $skill) : ?>
                                 <img src='/assets/images/upload/<?= $skill->image ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=40px class='rounded'>
@@ -76,10 +76,21 @@ $skills =  (new ProjectController)->loadSkillsFromProject($project) ?>
                     </tr>
 
                     <tr>
-                        <th class='text-end col-3'>Lien :</th>
+                        <th class='text-end col-3'>Lien web :</th>
                         <td class='text-break'>
-                            <?php if ($project->link) : ?>
-                                <a href='<?= $project->link ?>' class='fw-bold' target='_blank'><?= $project->link ?></a>
+                            <?php if ($project->link_web) : ?>
+                                <a href='<?= $project->link_web ?>' class='fw-bold' target='_blank'><?= $project->link_web ?></a>
+                            <?php else : ?>
+                                &#8211
+                            <?php endif ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class='text-end col-3'>Lien github :</th>
+                        <td class='text-break'>
+                            <?php if ($project->link_github) : ?>
+                                <a href='<?= $project->link_github ?>' class='fw-bold' target='_blank'><?= $project->link_github ?></a>
                             <?php else : ?>
                                 &#8211
                             <?php endif ?>

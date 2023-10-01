@@ -18,6 +18,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'update') (new ProjectContro
 
 // GET PROJECT AND ALL SKILLS FROM DB
 $project = (new ProjectController())->readOne($_GET['id']);
+$project->skills = (new ProjectController)->loadSkillsFromProject($project);
 $skills = (new SkillController)->readAll() ?>
 
 <!-- HEADER -->
@@ -51,11 +52,11 @@ $skills = (new SkillController)->readAll() ?>
                     </tr>
 
                     <tr>
-                        <th class="text-end">Langage(s) utilisé(s) :</th>
+                        <th class="text-end">Compétence(s) exploitée(s) :</th>
                         <td>
                             <?php foreach ($skills as $skill) : ?>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input pointer border border-dark" type="checkbox" name="skills[]" id="skill-<?= $skill->id_skill ?>" value="<?= $skill->id_skill ?>">
+                                    <input class="form-check-input pointer border border-dark" type="checkbox" name="skills[]" id="skill-<?= $skill->id_skill ?>" value="<?= $skill->id_skill ?>" <?php foreach ($project->skills as $skillOfProject) : ?> <?= $skill->id_skill === $skillOfProject->id_skill ? 'checked' : '' ?> <?php endforeach ?>>
                                     <label class="form-check-label pointer" for="skill-<?= $skill->id_skill ?>">
                                         <img src='/assets/images/upload/<?= $skill->getImage() ?>' alt='image de <?= $skill->title ?>' title="<?= $skill->title ?>" width=40px class='rounded'>
                                     </label>
@@ -73,15 +74,17 @@ $skills = (new SkillController)->readAll() ?>
                         <th class='text-end'>Date de fin :</th>
                         <td><input class="form-control pointer border border-dark w-50" type="date" name="date-end" id="date-end" value='<?= $project->date_end ?>'></td>
                     </tr>
-
-
                     <tr>
                         <th class='text-end align-middle col-3'>Image :</th>
                         <td><input class='form-control' type='file' name='image' id='image'></td>
                     </tr>
                     <tr>
-                        <th class='text-end align-middle col-3'>Lien :</th>
-                        <td><input class='form-control' type='text' name='link' id='link' value='<?= $project->link ?>'></td>
+                        <th class='text-end align-middle col-3'>Lien web :</th>
+                        <td><input class='form-control' type='text' name='link-web' id='link-web' value='<?= $project->link_web ?>'></td>
+                    </tr>
+                    <tr>
+                        <th class='text-end align-middle col-3'>Lien github :</th>
+                        <td><input class='form-control' type='text' name='link-github' id='link-github' value='<?= $project->link_github ?>'></td>
                     </tr>
                     <tr>
                         <th class='text-end align-middle col-3'>Statut :</th>

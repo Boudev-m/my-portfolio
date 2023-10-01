@@ -53,7 +53,7 @@ $skills = (new SkillController)->readAll() ?>
 
                 <!-- SKILLS -->
                 <div>
-                    <p>Langage(s) utilisé(s) :</p>
+                    <p>Compétence(s) exploitée(s) :</p>
                     <?php foreach ($skills as $skill) : ?>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input pointer border border-dark" type="checkbox" name="skills[]" id="skill-<?= $skill->id_skill ?>" value="<?= $skill->id_skill ?>">
@@ -82,8 +82,12 @@ $skills = (new SkillController)->readAll() ?>
 
                 <!-- LINK -->
                 <div class="my-2">
-                    <label for="link">Lien :</label>
-                    <input class="form-control pointer border border-dark" type="text" name="link" id="link">
+                    <label for="link">Lien web :</label>
+                    <input class="form-control pointer border border-dark" type="text" name="link-web" id="link-web">
+                </div>
+                <div class="my-2">
+                    <label for="link">Lien github :</label>
+                    <input class="form-control pointer border border-dark" type="text" name="link-github" id="link-github">
                 </div>
 
                 <!-- IMAGE -->

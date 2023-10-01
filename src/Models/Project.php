@@ -12,9 +12,11 @@ class Project
     public ?string $description;
     public string $date_start;
     public ?string $date_end;
-    public ?string $link;
+    public ?string $link_web;
+    public ?string $link_github;
     public ?string $image;
     public bool $active;
+    public array $skills;
 
     public function getImage(): string
     {

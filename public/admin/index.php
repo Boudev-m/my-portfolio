@@ -46,7 +46,7 @@ if (isset($_POST['submit']) && $_POST['action'] === 'login') {
                     <label for="password">Mot de passe :</label>
                     <input type="password" class="form-control my-2 border border-dark rounded-0" name="password" id="password">
                     <div class="g-recaptcha d-flex justify-content-center" data-sitekey="6LfI5VQoAAAAABE-Jc-j0BItn0nl_tv49RmIVEeB" data-callback="enableSubmitButton"></div>
-                    <button id="submit-button" class="d-block btn btn-success border border-dark w-50 my-4 mx-auto rounded-0" type="submit" name="submit" disabled>CONNEXION</button>
+                    <button id="submit-button" class="d-block btn btn-success border border-dark w-50 my-4 mx-auto rounded-0" type="submit" name="submit" disabled>SE CONNECTER</button>
                 </form>
             </div>
             <?php

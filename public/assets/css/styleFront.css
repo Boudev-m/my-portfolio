@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/background.png") !important;
+    /* background-image: url("../images/background.png") !important; */
     margin: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -9,6 +9,68 @@ nav ul a {
     position: relative;
     font-size: 1em;
 }
+
+/**************** TRANSITION PROJECT *********************/
+
+.card-project>.card {
+    position: relative;
+    transition: opacity 0.5s;
+    overflow: hidden;
+}
+
+.lien {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.5s, height 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0
+}
+
+.lien>a {
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.5s;
+}
+
+.lien>a:hover {
+    opacity: 1;
+}
+
+.lien2 {
+    top: 50%;
+    left: 0;
+}
+
+.lien1 {
+    bottom: 50%;
+    right: 0;
+}
+
+.card-project>.card>div,
+.card-project>.card>div>img {
+    opacity: 1;
+    transition: opacity 0.8s;
+}
+
+.card-project>.card:hover>div,
+.card-project>.card:hover>div>img {
+    opacity: 0.6;
+}
+
+.card-project>.card:hover .lien {
+    height: 15%;
+    opacity: 1;
+}
+
+/**************** END TRANSITION PROJECT *********************/
 
 /* Fade in */
 nav ul a::after {

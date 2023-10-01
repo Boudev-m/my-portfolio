@@ -11,7 +11,7 @@
 <main>
     <div class="my-2">
         <div>
-            <h1 class="text-center mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> À PROPOS <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
+            <h1 class="text-center mt-4"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> À PROPOS DE MOI <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
         </div>
 
         <div class="mx-auto py-4 py-sm-5" style="background-color: rgb(0, 0, 0, 0.1)">

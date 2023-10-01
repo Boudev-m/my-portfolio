@@ -70,13 +70,14 @@ class ProjectController
         $date_start = $_POST['date-start'];
         $date_end = $_POST['date-end'] ?: null;
         $image = $imageName ?? null;
-        $link = $_POST['link'] ?: null;
+        $link_web = $_POST['link-web'] ?: null;
+        $link_github = $_POST['link-github'] ?: null;
         $active = (int)$_POST['isActive'];
 
         // save project in DB
         $sql = "
-            INSERT INTO project (title, description, date_start, date_end, image, link, active)
-            VALUES (:title, :description, :date_start, :date_end, :image, :link, :active);
+            INSERT INTO project (title, description, date_start, date_end, image, link_web, link_github, active)
+            VALUES (:title, :description, :date_start, :date_end, :image, :link_web, :link_github, :active);
             SELECT LAST_INSERT_ID();
         ";
 
@@ -86,7 +87,8 @@ class ProjectController
         $statement->bindParam(":date_start", $date_start);
         $statement->bindParam(":date_end", $date_end);
         $statement->bindParam(":image", $image);
-        $statement->bindParam(":link", $link);
+        $statement->bindParam(":link_web", $link_web);
+        $statement->bindParam(":link_github", $link_github);
         $statement->bindParam(":active", $active);
         $statement->execute();
 
@@ -100,18 +102,21 @@ class ProjectController
         $statement->setFetchMode(PDO::FETCH_CLASS, Project::class);
         $idProject = $statement->fetch()->id;
 
-        // For each skills, insert a link with the project 
-        foreach ($_POST['skills'] as $idSkill) {
+        // check if skills selected
+        if (!empty($_POST['skills'])) {
+            // For each skills, insert a link with the project 
+            foreach ($_POST['skills'] as $idSkill) {
 
-            // Insert in project_skill table in DB
-            $sql = "
-                INSERT INTO project_skill (id_project, id_skill)
-                VALUES (:id_project, :id_skill)
-            ";
-            $statement = DatabaseConnection::getConnection()->prepare($sql);
-            $statement->bindParam(":id_project", $idProject);
-            $statement->bindParam(":id_skill", $idSkill);
-            $statement->execute();
+                // Insert in project_skill table in DB
+                $sql = "
+                    INSERT INTO project_skill (id_project, id_skill)
+                    VALUES (:id_project, :id_skill)
+                ";
+                $statement = DatabaseConnection::getConnection()->prepare($sql);
+                $statement->bindParam(":id_project", $idProject);
+                $statement->bindParam(":id_skill", $idSkill);
+                $statement->execute();
+            }
         }
 
         GeneralController::redirectWithSuccess('../project', "La réalisation '$title' a été ajoutée.");
@@ -120,32 +125,6 @@ class ProjectController
     // UPDATE PROJECT
     public function update(int $id): void
     {
-
-        // Remove skills linked to the project
-        $sql = "
-            DELETE FROM project_skill
-            WHERE id_project = :id
-        ";
-        $statement = DatabaseConnection::getConnection()->prepare($sql);
-        $statement->bindParam(":id", $id);
-        $statement->execute();
-
-        // For each skills, insert a link with the project 
-        foreach ($_POST['skills'] as $idSkill) {
-
-            // Insert in project_skill table in DB
-            $sql = "
-                INSERT INTO project_skill (id_project, id_skill)
-                VALUES (:id_project, :id_skill)
-            ";
-            $statement = DatabaseConnection::getConnection()->prepare($sql);
-            $statement->bindParam(":id_project", $id);
-            $statement->bindParam(":id_skill", $idSkill);
-            $statement->execute();
-        }
-        // var_dump($id);
-        // var_dump($_POST['skills']);
-        // exit;
 
         // check if form valid
         $this->checkForm($_SERVER['REQUEST_URI']);
@@ -178,7 +157,8 @@ class ProjectController
         $description = $_POST['description'] ?: null;
         $date_start = $_POST['date-start'];
         $date_end = $_POST['date-end'] ?: null;
-        $link = $_POST['link'] ?: null;
+        $link_web = $_POST['link-web'] ?: null;
+        $link_github = $_POST['link-github'] ?: null;
         $active = (int)$_POST['isActive'];
 
         // Update project in DB
@@ -188,19 +168,49 @@ class ProjectController
             description = :description,
             date_start = :date_start,
             date_end = :date_end,
-            link = :link,
+            link_web = :link_web,
+            link_github = :link_github,
             active = :active
             WHERE id_project = :id
         ";
+
+        // prepare and execute the query
         $statement = DatabaseConnection::getConnection()->prepare($sql);
         $statement->bindParam(":title", $title);
         $statement->bindParam(":description", $description);
         $statement->bindParam(":date_start", $date_start);
         $statement->bindParam(":date_end", $date_end);
-        $statement->bindParam(":link", $link);
+        $statement->bindParam(":link_web", $link_web);
+        $statement->bindParam(":link_github", $link_github);
         $statement->bindParam(":active", $active);
         $statement->bindParam(":id", $id);
         $statement->execute();
+
+        // Remove skills linked to the project
+        $sql = "
+                DELETE FROM project_skill
+                WHERE id_project = :id
+            ";
+        $statement = DatabaseConnection::getConnection()->prepare($sql);
+        $statement->bindParam(":id", $id);
+        $statement->execute();
+
+        // check if skills selected
+        if (!empty($_POST['skills'])) {
+            // For each skills, insert a link with the project
+            foreach ($_POST['skills'] as $idSkill) {
+
+                // Insert in project_skill table in DB
+                $sql = "
+                        INSERT INTO project_skill (id_project, id_skill)
+                        VALUES (:id_project, :id_skill)
+                    ";
+                $statement = DatabaseConnection::getConnection()->prepare($sql);
+                $statement->bindParam(":id_project", $id);
+                $statement->bindParam(":id_skill", $idSkill);
+                $statement->execute();
+            }
+        }
 
         GeneralController::redirectWithSuccess("../$id", "La réalisation '$title' a été modifiée.");
     }
@@ -243,8 +253,11 @@ class ProjectController
         if ($_POST['description'] && strlen($_POST['description']) > 255) {
             GeneralController::redirectWithError($redirectionPath, 'La description ne doit pas dépasser 255 caractères.');
         }
-        if ($_POST['link'] && strlen($_POST['link']) > 255) {
-            GeneralController::redirectWithError($redirectionPath, 'Le lien ne doit pas dépasser 255 caractères.');
+        if ($_POST['link-web'] && strlen($_POST['link-web']) > 255) {
+            GeneralController::redirectWithError($redirectionPath, 'Le lien web ne doit pas dépasser 255 caractères.');
+        }
+        if ($_POST['link-github'] && strlen($_POST['link-github']) > 255) {
+            GeneralController::redirectWithError($redirectionPath, 'Le lien github ne doit pas dépasser 255 caractères.');
         }
 
         // check if statut is set
