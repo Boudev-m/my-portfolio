@@ -19,7 +19,7 @@
                 <div class="text-about text-center text-lg-start">
                     <p class="pe-0 pt-3 pe-lg-4 pt-lg-0">Je m'appelle Mustapha et je suis développeur basé dans les Yvelines en Ile-de-France.<br><br>
                         Je possède un niveau BAC+2 en Développement Web.<br>
-                        Mon langage de programmation principale est le PHP et je possède également des compétences sur d'autres langages et frameworks.<br><br>
+                        J'utilise principalement les langages PHP et Javascript. Je possède également des compétences sur d'autres langages et frameworks.<br><br>
                         Mes périodes de formation et mon titre obtenu confirment mon choix de travailler dans ce domaine. C'est pourquoi je continue à me former en autodidacte.<br><br>
                         J'aspire à participer et contribuer à des projets concrets et utiles pour les utilisateurs.
                     </p>

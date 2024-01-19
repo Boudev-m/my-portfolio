@@ -160,7 +160,7 @@ h1 {
 
 /* Animation home page */
 
-.card-project,
+/* .card-project,
 .form-contact,
 .form-login {
     animation-name: move-and-display-to-top;
@@ -201,7 +201,7 @@ h1 {
         opacity: 1;
         bottom: 0;
     }
-}
+} */
 
 /* Animation about page */
 
@@ -245,9 +245,9 @@ h1 {
 
 /* Animation forms */
 
-.form-contact,
+/* .form-contact,
 .form-login {
     animation-name: move-and-display-to-top;
     animation-duration: 1800ms;
     animation-timing-function: ease;
-}
+} */

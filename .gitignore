@@ -1,0 +1,6 @@
+.env
+.env.prod
+/vendor/
+notes.md
+/public/assets/images/upload
+image_script.py

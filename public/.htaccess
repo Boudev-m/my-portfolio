@@ -1,0 +1,52 @@
+## Apache file
+## This file is used to insert some configurations for Apache server.
+## This file must be into root folder
+
+## Enable rewritting
+RewriteEngine On
+
+# Redirect all non-existent file to home
+# RewriteRule ^ index.php [QSA,L]
+
+# Prevent contents to be listing
+Options -Indexes
+
+## Block access to a Specific File (.env here)
+# <Files .env>
+# Order allow,deny
+# Deny from all
+# </Files>
+
+## Block access to dot file
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+## Rewritting for detail pages
+## Get '/project/1' instead of '/project/projectDetail.php?id=1'
+## $1 is a variable
+RewriteRule admin/project/([0-9]+)/*$ admin/project/detailProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*$ admin/skill/detailSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*$ admin/message/detailMessage.php?id=$1 [L]
+
+## Rewritting for update pages
+RewriteRule admin/project/([0-9]+)/*/update admin/project/updateProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*/update admin/skill/updateSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*/update admin/message/updateMessage.php?id=$1 [L]
+
+## Rewritting for delete pages
+RewriteRule admin/project/([0-9]+)/*/confirm-delete admin/project/confirmDeleteProject.php?id=$1 [L]
+RewriteRule admin/skill/([0-9]+)/*/confirm-delete admin/skill/confirmDeleteSkill.php?id=$1 [L]
+RewriteRule admin/message/([0-9]+)/*/confirm-delete admin/message/confirmDeleteMessage.php?id=$1 [L]
+
+## Rewritting for create pages
+RewriteRule admin/project/new admin/project/createProject.php
+RewriteRule admin/skill/new admin/skill/createSkill.php
+
+## Rewritting for account pages
+RewriteRule admin/account/update-email admin/account/updateEmail.php
+RewriteRule admin/account/update-password admin/account/updatePassword.php
+
+## Rewritting for clean URL, remove the extension file
+## RewriteRule ^([a-zA-Z_]+)/*$ $1.php [L]
