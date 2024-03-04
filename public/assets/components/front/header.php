@@ -2,8 +2,8 @@
     <div>
         <div style="background-color: rgb(0, 0, 0, 0.1)">
             <header class="col col-sm-11 col-md-9 mx-auto py-1">
-                <nav class="navbar navbar-expand-lg my-2">
-                    <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg my-1">
+                    <div class="container-fluid" style="max-width:1100px;">
                         <a class="navbar-brand d-block" id="logo" href="/" style='padding:0;'>
                             <img class='d-block' src="/assets/images/icons/bouimust-logo.png" alt="Logo du site" style="width:65px;opacity:0.7;transition-duration:300ms;transform:scale(1);" onmouseout="this.style.opacity=0.7;this.style.transform='scale(1)'" onmouseover="this.style.opacity=1;this.style.transform='scale(1.1)'">
                         </a>

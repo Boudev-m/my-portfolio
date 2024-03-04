@@ -2,33 +2,25 @@
 
 <!-- HEAD -->
 <?php require_once join(DIRECTORY_SEPARATOR, [$_SERVER['DOCUMENT_ROOT'], 'assets', 'components', 'front', 'head.php']) ?>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script type="text/javascript" defer>
-    function enableSubmitButton() {
-        const submitButton = document.getElementById("submit-button");
-        submitButton.removeAttribute("disabled");
-    }
-</script>
 <title>Portfolio de Bouibrine Mustapha - Bouimust</title>
 
 <?php
 
 use App\Controllers\ProjectController;
 use App\Controllers\SkillController;
-use App\Controllers\MessageController;
+// use App\Controllers\MessageController;
 
 // CHECK IF FORM IS SUBMITTED
-if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
-    sleep(1);
-    (new MessageController)->create();
-}
+// if (isset($_POST['submit']) && $_POST['action'] === 'newMessage') {
+//     sleep(1);
+//     (new MessageController)->create();
+// }
 // GET DATAS FROM DB
 $projects = (new ProjectController)->readAll('active', 'ORDER BY id_project DESC');
 foreach ($projects as $project) {
     $project->skills = (new ProjectController)->loadSkillsFromProject($project);
 }
 $skills = (new SkillController())->readAll('active');
-$messages = array_reverse((new MessageController())->readAll('visible'));
 ?>
 
 <!-- HEADER -->
@@ -50,9 +42,9 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
         </div>
         <div style="background-color: rgb(0, 0, 0, 0.1)">
             <?php if (!$projects) : ?>
-                <div class='w-75 py-5 text-center text-warning mx-auto'>Aucune réalisation n'a été publiée ...</div>
+                <div class='py-5 text-center text-warning mx-auto'>Aucune réalisation n'a été publiée ...</div>
             <?php else : ?>
-                <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
+                <div class="row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between" style="max-width:1100px;width:90%">
                     <?php foreach ($projects as $project) : ?>
                         <div class="card-project col mx-auto my-1" style="width:250px;">
 
@@ -99,9 +91,9 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
         </div>
         <div style="background-color: rgb(0, 0, 0, 0.1)">
             <?php if (!$skills) : ?>
-                <div class='w-75 py-5 text-center text-warning mx-auto'>Aucune compétence n'a été publiée ...</div>
+                <div class='py-5 text-center text-warning mx-auto'>Aucune compétence n'a été publiée ...</div>
             <?php else : ?>
-                <div class="w-75 row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between">
+                <div class="row row-cols-1 mx-auto row-cols-md-3 py-5 justify-content-between" style="max-width:1100px;width:90%">
                     <?php foreach ($skills as $skill) : ?>
                         <div class="col-sm-4 mx-auto mb-3" style="max-width:140px;max-height:140px;">
                             <div class="card card-skill border-warning border-top-0 border-bottom-0 border-start border-end shadow h-100 bg-transparent" style="transform:rotate(5deg);transition:300ms" onmouseout="this.style.transform='rotate(5deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(0deg)'+'scale(1.1)'" title="<?= $skill->title ?>">
@@ -117,7 +109,6 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
             <?php endif ?>
         </div>
 
-
         <!-- PARCOURS BLOCK -->
         <div>
             <h1 class="text-center mt-5"><img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon'> MON PARCOURS DEVELOPPEUR <img src="./assets/images/icons/arrow.svg" alt="arrow icon" class='align-bottom arrow-icon reverse'></h1>
@@ -129,80 +120,6 @@ $messages = array_reverse((new MessageController())->readAll('visible'));
 
     </div>
 
-
-    <!-- FORM MESSAGE BLOCK-->
-    <div id="messageForm" class="container w-100 w-sm-75 my-5 bg-transparent">
-        <div class="mb-4">
-            <h1 class="text-center text-sm-start pt-1">Laisser un commentaire</h1>
-        </div>
-        <div>
-            <div class="col col-sm-10 col-md-8 col-lg-6">
-                <form action="" method="post">
-
-                    <div class="row">
-                    </div>
-
-                    <input type="hidden" name="action" value="newMessage">
-                    <input type="hidden" name="path" value=<?= $_SERVER['SCRIPT_NAME'] . '#messageForm' ?>>
-                    <input type="hidden" name="isVisible" id="isVisible" value=1>
-                    <input type="hidden" name="first-name" id="first-name">
-                    <input type="hidden" name="company" id="company">
-                    <input type="hidden" name="phone" id="phone">
-
-                    <div class="col col-sm-9 col-md-6">
-                        <div class="mb-2">
-                            <input class="form-control pointer border border-dark rounded-0" type="text" name="last-name" id="last-name" placeholder="Nom *">
-                        </div>
-                        <div class="mb-2">
-                            <input class="form-control pointer border border-dark rounded-0" type="text" name="email" id="email" placeholder="Adresse email *">
-                        </div>
-                    </div>
-                    <div class="mb-2">
-                        <textarea class="form-control pointer border border-dark rounded-0" name="content" id="content" rows="3" placeholder="Votre message *"></textarea>
-                    </div>
-                    <div class="g-recaptcha" data-sitekey="6LfI5VQoAAAAABE-Jc-j0BItn0nl_tv49RmIVEeB" data-callback="enableSubmitButton"></div>
-                    <div class="mx-auto mx-sm-0 my-3 w-50">
-                        <button id="submit-button" type="submit" name="submit" class="btn btn-success border border-dark w-100 rounded-0" disabled>ENVOYER</button>
-                    </div>
-                    <p class="text-center text-sm-start py-0 my-0">* : champ obligatoire</p>
-                    <div>
-                        <?php
-                        if (isset($_SESSION['message']) && isset($_SESSION['messageSection'])) {
-                            echo $_SESSION['message'];
-                            unset($_SESSION['message'], $_SESSION['messageSection']);
-                        };
-                        ?>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- MESSAGE LIST BLOCK -->
-    <div class="container w-100 w-sm-75 my-5 bg-transparent w-50">
-
-        <?php if (!$messages) : ?>
-            <div class='py-3 px-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">Aucun commentaire n'a été publié ...</div>
-        <?php else : ?>
-            <?php define('PROFIL_COLORS', ['#0099cc', '#9933ff', '#cc0000', '#ff9933', '#009933', '#777']) ?>
-            <?php foreach ($messages as $message) : ?>
-                <?php $randomColor = PROFIL_COLORS[mt_rand(0, count(PROFIL_COLORS) - 1)] ?>
-                <div class='p-2 mb-3' style="background-color: rgb(0, 0, 0, 0.1)">
-                    <div class="border-bottom border-secondary d-flex pb-1">
-                        <div class="pe-3" style="width: max-content;">
-                            <img src="./assets/images/icons/default-profile.svg" alt="photo par defaut" style="width:50px;border-radius:50%;background:<?= $randomColor ?>;">
-                        </div>
-                        <div>
-                            <p class="m-0"><?= $message->first_name ?> <?= $message->last_name ?>,</p>
-                            <p class="m-0">le <?= $message->getDate() ?> à <?= $message->getTime() ?></p>
-                        </div>
-                    </div>
-                    <p class='text-break'><?= $message->getContent() ?></p>
-                </div>
-            <?php endforeach ?>
-        <?php endif ?>
-    </div>
 </main>
 
 <!-- FOOTER -->
