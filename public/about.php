@@ -2,7 +2,7 @@
 
 <!-- HEAD -->
 <?php include './assets/components/front/head.php' ?>
-<title>A propos - Bouimust</title>
+<title>A propos - Boudev</title>
 
 <!-- HEADER -->
 <?php include './assets/components/front/header.php' ?>

@@ -9,7 +9,7 @@
         submitButton.removeAttribute("disabled");
     }
 </script>
-<title>Contact - Bouimust</title>
+<title>Contact - Boudev</title>
 
 <?php
 
