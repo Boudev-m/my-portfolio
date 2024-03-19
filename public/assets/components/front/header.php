@@ -15,7 +15,7 @@
                                 </a>
                             </div>
                             <div class="mx-1">
-                                <a href="https://www.linkedin.com/in/bouibrine" class="d-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
+                                <a href="https://www.linkedin.com/in/boui" class="d-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
                                     <img src="/assets/images/icons/linkedin-icon.svg" class="rounded-circle" alt="mon linkedin" title="LinkedIn" width="40px">
                                 </a>
                             </div>
@@ -50,7 +50,7 @@
                                 </a>
                             </div>
                             <div class="mx-1">
-                                <a href="https://www.linkedin.com/in/bouibrine" class="d-none d-lg-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
+                                <a href="https://www.linkedin.com/in/boui" class="d-none d-lg-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
                                     <img src="/assets/images/icons/linkedin-icon.svg" class="rounded-circle" alt="mon linkedin" title="LinkedIn" width="40px">
                                 </a>
                             </div>
