@@ -1,7 +1,7 @@
 ### Portfolio
   
-Il s'agit d'un site qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.  
-Crée à partir de l'ancienne version de mon portfolio (https://github.com/BouiMust/my-portfolio-old-version)
+Objectif : créer un site qui regroupe mes réalisations, mes compétences, mon parcours, et également un système de connexion et un tableau de bord pour que je puisse gérer les données de l'application.  
+Crée à partir de l'ancienne version de mon portfolio (https://github.com/boudev-m/my-portfolio-old-version)
 
 ### FONCTIONNALITES GLOBALES
 - Gestion des réalisations (afficher les informations, créer, modifier, supprimer)
@@ -105,42 +105,7 @@ Pour éviter les failles de sécurité et renforcer le site, les méthodes ci-de
 - Certificat SSL installé pour crypter les données qui transitent entre le site web et le navigateur
 
 ### AXES D'AMELIORATION
-- Ajouter la possibilité de commenter un message posté en public sur la page d'accueil
 - Ajouter le champ 'level' dans la table 'skill' (pour indiquer le niveau d'une compétence, basé sur une échelle de 5 par exemple)
 - Afficher les messages d'alerte sous forme de fenêtre qui apparait et disparait 
 - Faire apparaitre l'image après la selection d'une image à uploader (en utilisant javascript côté front)
 - Ajouter la possibilité de mettre plusieurs images pour un projet (une seule image actuellement)
-
-### RENDU VISUEL FRONT-OFFICE
-
-#### Accueil :  
-<img src="https://i.ibb.co/XJ9xFv8/Home-Bouimust.webp" width="500px">
-
-#### Contact :
-<img src="https://i.ibb.co/f8b4WHt/Contact-Bouimust.webp" width="500px">
-
-___
-### RENDU VISUEL BACK-OFFICE
-#### Tableau de bord :
-<img src="https://i.ibb.co/ZNTC81j/portfolio-dashboard.webp" width="500px">
-
-#### Liste des compétences :
-<img src="https://i.ibb.co/JmpX1hS/portfolio-skills.webp" width="500px">
-
-#### Liste des réalisations :
-<img src="https://i.ibb.co/vs3xRqd/Gestion-realisations.webp" width="500px">
-
-#### Détail d'une réalisation :
-<img src="https://i.ibb.co/JpPdKSm/Details-realisation.webp" width="500px">
-
-#### Modification d'une réalisation :
-<img src="https://i.ibb.co/Dtdpkxc/Modification-realisation.webp" width="500px">
-
-#### Confirmation de suppression d'une réalisation :
-<img src="https://i.ibb.co/BZtVdqw/Confirmation-suppression.webp" width="500px">
-
-#### Détails du compte utilisateur :
-<img src="https://i.ibb.co/vZBr9vf/portfolio-account.webp" width="500px">
-
-#### Modification de mot de passe du compte :
-<img src="https://i.ibb.co/vdpRt4k/portfolio-password.webp" width="500px">

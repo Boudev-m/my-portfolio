@@ -5,17 +5,17 @@
                 <nav class="navbar navbar-expand-lg my-1">
                     <div class="container-fluid" style="max-width:1100px;">
                         <a class="navbar-brand d-block" id="logo" href="/" style='padding:0;'>
-                            <img class='d-block' src="/assets/images/icons/bouimust-logo.png" alt="Logo du site" style="width:65px;opacity:0.7;transition-duration:300ms;transform:scale(1);" onmouseout="this.style.opacity=0.7;this.style.transform='scale(1)'" onmouseover="this.style.opacity=1;this.style.transform='scale(1.1)'">
+                            <img class='d-block' src="/assets/images/icons/boudev-logo.png" alt="Logo du site" style="width:65px;opacity:0.7;transition-duration:300ms;transform:scale(1);" onmouseout="this.style.opacity=0.7;this.style.transform='scale(1)'" onmouseover="this.style.opacity=1;this.style.transform='scale(1.1)'">
                         </a>
 
                         <div class="d-flex d-lg-none mx-auto me-1">
                             <div class="mx-1">
-                                <a href="https://github.com/Bouimust" class="d-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(360deg)'+'scale(1.2)'">
+                                <a href="https://github.com/boudev-m" class="d-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(360deg)'+'scale(1.2)'">
                                     <img src="/assets/images/icons/github-icon.svg" class="rounded-circle" alt="mon github" title="Github" width="40px">
                                 </a>
                             </div>
                             <div class="mx-1">
-                                <a href="https://www.linkedin.com/in/mustapha-bouibrine-b83216265" class="d-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
+                                <a href="https://www.linkedin.com/in/bouibrine" class="d-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
                                     <img src="/assets/images/icons/linkedin-icon.svg" class="rounded-circle" alt="mon linkedin" title="LinkedIn" width="40px">
                                 </a>
                             </div>
@@ -45,12 +45,12 @@
                                 <?php endif ?>
                             </ul>
                             <div class="mx-1">
-                                <a href="https://github.com/Bouimust" class="d-none d-lg-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(360deg)'+'scale(1.2)'">
+                                <a href="https://github.com/boudev-m" class="d-none d-lg-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(360deg)'+'scale(1.2)'">
                                     <img src="/assets/images/icons/github-icon.svg" class="rounded-circle" alt="mon github" title="Github" width="40px">
                                 </a>
                             </div>
                             <div class="mx-1">
-                                <a href="https://www.linkedin.com/in/mustapha-bouibrine-b83216265" class="d-none d-lg-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
+                                <a href="https://www.linkedin.com/in/bouibrine" class="d-none d-lg-block rounded-circle" style="transform:rotate(0deg);transition:500ms" onmouseout="this.style.transform='rotate(0deg)'+'scale(1)'" onmouseover="this.style.transform='rotate(-360deg)'+'scale(1.2)'">
                                     <img src="/assets/images/icons/linkedin-icon.svg" class="rounded-circle" alt="mon linkedin" title="LinkedIn" width="40px">
                                 </a>
                             </div>
